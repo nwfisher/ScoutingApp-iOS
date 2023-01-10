@@ -13,13 +13,15 @@ struct MBRView: View {
     @State private var searchText = ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 List {
                     ForEach(vm.MBRTeams, id: \.team_number) { team in
-                        MBRTeamView(team: team)
-                            .listRowSeparator(.hidden)
-                            .searchable(text: $searchText)
+                        NavigationLink(destination: MBRTeamView(team: team)) {
+                            Text("**\(team.team_number)** \n\(team.nickname)")
+                                
+                        }
+                        
                     }
                     
                     .listStyle(.plain)
@@ -27,8 +29,10 @@ struct MBRView: View {
                 }
                 .onAppear(perform: vm.fetchUsers)
             }
+            .searchable(text: $searchText)
         }
     }
+    
 }
 
 struct MBRView_Previews: PreviewProvider {
