@@ -19,6 +19,9 @@
 		5A749168296DEA350012A632 /* MBRTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A749167296DEA350012A632 /* MBRTeam.swift */; };
 		5A74916C296DF3EC0012A632 /* MBRTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */; };
 		5A74916E296E12590012A632 /* MBRTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A74916D296E12590012A632 /* MBRTeamView.swift */; };
+		5A749170296E29C20012A632 /* SVRTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A74916F296E29C20012A632 /* SVRTeam.swift */; };
+		5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A749171296E29D50012A632 /* SVRTeamViewModel.swift */; };
+		5A749174296E2A6D0012A632 /* SVRTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A749173296E2A6D0012A632 /* SVRTeamView.swift */; };
 		5A8A4BA1296795DE0051C128 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA0296795DE0051C128 /* FirebaseAuth */; };
 		5A8A4BA3296795DE0051C128 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA2296795DE0051C128 /* FirebaseAuthCombine-Community */; };
 		5A8A4BA5296795DE0051C128 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA4296795DE0051C128 /* FirebaseDatabase */; };
@@ -65,6 +68,9 @@
 		5A749167296DEA350012A632 /* MBRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeam.swift; sourceTree = "<group>"; };
 		5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamViewModel.swift; sourceTree = "<group>"; };
 		5A74916D296E12590012A632 /* MBRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamView.swift; sourceTree = "<group>"; };
+		5A74916F296E29C20012A632 /* SVRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeam.swift; sourceTree = "<group>"; };
+		5A749171296E29D50012A632 /* SVRTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeamViewModel.swift; sourceTree = "<group>"; };
+		5A749173296E2A6D0012A632 /* SVRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeamView.swift; sourceTree = "<group>"; };
 		5A8A4BAE296796F20051C128 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		5A8A4BB029679BAC0051C128 /* Scouting View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scouting View.swift"; sourceTree = "<group>"; };
 		5A8A4BB229679C120051C128 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				5A749167296DEA350012A632 /* MBRTeam.swift */,
+				5A74916F296E29C20012A632 /* SVRTeam.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */,
+				5A749171296E29D50012A632 /* SVRTeamViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 				5A8A4BB4296889370051C128 /* MBRView.swift */,
 				5A8A4BB6296889470051C128 /* SVRView.swift */,
 				5A74916D296E12590012A632 /* MBRTeamView.swift */,
+				5A749173296E2A6D0012A632 /* SVRTeamView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -346,8 +355,11 @@
 				5A8A4BB7296889470051C128 /* SVRView.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
 				5A38A4432966012000FE2C56 /* ContentView.swift in Sources */,
+				5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */,
+				5A749174296E2A6D0012A632 /* SVRTeamView.swift in Sources */,
 				5A8A4BB329679C120051C128 /* HomeView.swift in Sources */,
 				5A8A4BB5296889370051C128 /* MBRView.swift in Sources */,
+				5A749170296E29C20012A632 /* SVRTeam.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
