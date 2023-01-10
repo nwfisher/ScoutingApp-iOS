@@ -17,8 +17,10 @@ struct MBRView: View {
             ZStack {
                 //Create list
                 List {
+                    //Sort teams by asending team number
+                    let sortedTeams = vm.MBRTeams.sorted(by: { $0.team_number < $1.team_number })
                     //Create a NavigationLink for each MBRTeam
-                    ForEach(vm.MBRTeams, id: \.team_number) { team in
+                    ForEach(sortedTeams, id: \.team_number) { team in
                         
                             NavigationLink(destination: MBRTeamView(team: team)) {
                                 Text("**\(team.team_number)** \n\(team.nickname)")

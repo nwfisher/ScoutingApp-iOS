@@ -16,8 +16,10 @@ struct SVRView: View {
             ZStack {
                 //Create list
                 List {
+                    //Sort teams by asending team number
+                    let sortedTeams = vm.SVRTeams.sorted(by: { $0.team_number < $1.team_number })
                     //Create a NavigationLink for each SVRTeam
-                    ForEach(vm.SVRTeams, id: \.team_number) { team in
+                    ForEach(sortedTeams, id: \.team_number) { team in
                         
                             NavigationLink(destination: SVRTeamView(team: team)) {
                                 Text("**\(team.team_number)** \n\(team.nickname)")
