@@ -15,10 +15,14 @@ struct MBRView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                //Create list
                 List {
+                    //Create a NavigationLink for each MBRTeam
                     ForEach(vm.MBRTeams, id: \.team_number) { team in
-                        NavigationLink(destination: MBRTeamView(team: team)) {
-                            Text("**\(team.team_number)** \n\(team.nickname)")
+                        
+                            NavigationLink(destination: MBRTeamView(team: team)) {
+                                Text("**\(team.team_number)** \n\(team.nickname)")
+                            }
                                 
                         }
                         
@@ -29,8 +33,8 @@ struct MBRView: View {
                 }
                 .onAppear(perform: vm.fetchUsers)
             }
-            .searchable(text: $searchText)
-        }
+    //Search function is non-functional
+        .searchable(text: $searchText, prompt: "Seach by Team number")
     }
     
 }
