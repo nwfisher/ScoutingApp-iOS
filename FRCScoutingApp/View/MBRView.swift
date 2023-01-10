@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct MBRView: View {
+    
+    @StateObject private var vm = MBRTeamViewModel()
+    @State private var searchText = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ZStack {
+                List {
+                    ForEach(vm.MBRTeams, id: \.team_number) { team in
+                        MBRTeamView(team: team)
+                            .listRowSeparator(.hidden)
+                            .searchable(text: $searchText)
+                    }
+                    
+                    .listStyle(.plain)
+                    .navigationTitle("Teams")
+                }
+                .onAppear(perform: vm.fetchUsers)
+            }
+        }
     }
 }
 

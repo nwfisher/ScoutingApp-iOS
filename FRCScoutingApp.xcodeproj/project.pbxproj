@@ -16,6 +16,9 @@
 		5A38A45C2966012100FE2C56 /* FRCScoutingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A45B2966012100FE2C56 /* FRCScoutingAppUITests.swift */; };
 		5A38A45E2966012100FE2C56 /* FRCScoutingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A45D2966012100FE2C56 /* FRCScoutingAppUITestsLaunchTests.swift */; };
 		5A38A46E2966029900FE2C56 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A46D2966029900FE2C56 /* HomepageView.swift */; };
+		5A749168296DEA350012A632 /* MBRTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A749167296DEA350012A632 /* MBRTeam.swift */; };
+		5A74916C296DF3EC0012A632 /* MBRTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */; };
+		5A74916E296E12590012A632 /* MBRTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A74916D296E12590012A632 /* MBRTeamView.swift */; };
 		5A8A4BA1296795DE0051C128 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA0296795DE0051C128 /* FirebaseAuth */; };
 		5A8A4BA3296795DE0051C128 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA2296795DE0051C128 /* FirebaseAuthCombine-Community */; };
 		5A8A4BA5296795DE0051C128 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA4296795DE0051C128 /* FirebaseDatabase */; };
@@ -59,6 +62,9 @@
 		5A38A45B2966012100FE2C56 /* FRCScoutingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppUITests.swift; sourceTree = "<group>"; };
 		5A38A45D2966012100FE2C56 /* FRCScoutingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5A38A46D2966029900FE2C56 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
+		5A749167296DEA350012A632 /* MBRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeam.swift; sourceTree = "<group>"; };
+		5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamViewModel.swift; sourceTree = "<group>"; };
+		5A74916D296E12590012A632 /* MBRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamView.swift; sourceTree = "<group>"; };
 		5A8A4BAE296796F20051C128 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		5A8A4BB029679BAC0051C128 /* Scouting View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scouting View.swift"; sourceTree = "<group>"; };
 		5A8A4BB229679C120051C128 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 		5A38A46A296601A700FE2C56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5A749167296DEA350012A632 /* MBRTeam.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +175,7 @@
 		5A38A46B296601AC00FE2C56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 				5A8A4BB029679BAC0051C128 /* Scouting View.swift */,
 				5A8A4BB4296889370051C128 /* MBRView.swift */,
 				5A8A4BB6296889470051C128 /* SVRView.swift */,
+				5A74916D296E12590012A632 /* MBRTeamView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,7 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A749168296DEA350012A632 /* MBRTeam.swift in Sources */,
+				5A74916E296E12590012A632 /* MBRTeamView.swift in Sources */,
 				5A38A46E2966029900FE2C56 /* HomepageView.swift in Sources */,
+				5A74916C296DF3EC0012A632 /* MBRTeamViewModel.swift in Sources */,
 				5A8A4BB7296889470051C128 /* SVRView.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
 				5A38A4432966012000FE2C56 /* ContentView.swift in Sources */,
