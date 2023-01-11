@@ -13,7 +13,7 @@ struct MBRTeamView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("**Team Number**: \(team.team_number)")
-            Text("**Name**: \(team.nickname)]")
+            Text("**Name**: \(team.nickname)")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
@@ -24,6 +24,6 @@ struct MBRTeamView: View {
 
 struct MBRTeamView_Previews: PreviewProvider {
     static var previews: some View {
-        MBRTeamView(team: .init(team_number: 4255, nickname: "Robodores"))
+        MBRTeamView(team: .init(team_number: 4255, nickname: "Robodores", drivetrainType: "Swerve", motorType: "Falcon 500", programmingLanguage: "Java", canPlaceLow: true, canPlaceMid: true, canPlaceHigh: false, canPickCone: true, canPickCube: true, canPickFallenCones: false, cycleTimes: "15", canPickFromGround: true, canPickFromShelf: true))
     }
 }

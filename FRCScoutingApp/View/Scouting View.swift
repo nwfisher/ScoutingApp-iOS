@@ -9,7 +9,33 @@ import SwiftUI
 
 struct Scouting_View: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            NavigationStack {
+                NavigationLink(destination: pitScoutingForm()) {
+                    Text("Pit Scouting")
+                        .bold()
+                        .foregroundColor(.white)
+                        .frame(width: 350, alignment: .center)
+                        .frame(height: 200)
+                        .background(Color(hex: "#144600"))
+                        .cornerRadius(10)
+                    
+                }
+                
+                NavigationLink(destination: pitScoutingForm()) {
+                    Text("Field Scouting")
+                        .bold()
+                        .foregroundColor(.white)
+                        .frame(width: 350, alignment: .center)
+                        .frame(height: 200)
+                        .background(Color(hex: "#fdda24"))
+                        .navigationTitle("Scouting")
+                        .cornerRadius(10)
+                }
+             
+            }
+        }
+        
     }
 }
 

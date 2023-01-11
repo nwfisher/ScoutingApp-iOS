@@ -22,6 +22,7 @@
 		5A749170296E29C20012A632 /* SVRTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A74916F296E29C20012A632 /* SVRTeam.swift */; };
 		5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A749171296E29D50012A632 /* SVRTeamViewModel.swift */; };
 		5A749174296E2A6D0012A632 /* SVRTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A749173296E2A6D0012A632 /* SVRTeamView.swift */; };
+		5A749176296E53680012A632 /* pitScoutingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A749175296E53680012A632 /* pitScoutingForm.swift */; };
 		5A8A4BA1296795DE0051C128 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA0296795DE0051C128 /* FirebaseAuth */; };
 		5A8A4BA3296795DE0051C128 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA2296795DE0051C128 /* FirebaseAuthCombine-Community */; };
 		5A8A4BA5296795DE0051C128 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8A4BA4296795DE0051C128 /* FirebaseDatabase */; };
@@ -71,6 +72,7 @@
 		5A74916F296E29C20012A632 /* SVRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeam.swift; sourceTree = "<group>"; };
 		5A749171296E29D50012A632 /* SVRTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeamViewModel.swift; sourceTree = "<group>"; };
 		5A749173296E2A6D0012A632 /* SVRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeamView.swift; sourceTree = "<group>"; };
+		5A749175296E53680012A632 /* pitScoutingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pitScoutingForm.swift; sourceTree = "<group>"; };
 		5A8A4BAE296796F20051C128 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		5A8A4BB029679BAC0051C128 /* Scouting View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scouting View.swift"; sourceTree = "<group>"; };
 		5A8A4BB229679C120051C128 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				5A8A4BB6296889470051C128 /* SVRView.swift */,
 				5A74916D296E12590012A632 /* MBRTeamView.swift */,
 				5A749173296E2A6D0012A632 /* SVRTeamView.swift */,
+				5A749175296E53680012A632 /* pitScoutingForm.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				5A749168296DEA350012A632 /* MBRTeam.swift in Sources */,
 				5A74916E296E12590012A632 /* MBRTeamView.swift in Sources */,
 				5A38A46E2966029900FE2C56 /* HomepageView.swift in Sources */,
+				5A749176296E53680012A632 /* pitScoutingForm.swift in Sources */,
 				5A74916C296DF3EC0012A632 /* MBRTeamViewModel.swift in Sources */,
 				5A8A4BB7296889470051C128 /* SVRView.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,

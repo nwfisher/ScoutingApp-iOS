@@ -14,7 +14,7 @@ struct HomeView: View {
     var body: some View {
       
         VStack {
-            ZStack {
+        /*    ZStack {
                 Color(hex: "#2c9c00").ignoresSafeArea()
                 
                 HStack{
@@ -41,7 +41,7 @@ struct HomeView: View {
                 
             }
             //Set frame height of Colored Bar
-            .frame(height: 100)
+            //.frame(height: 100)*/
             
             //Create list of events
             NavigationStack {
