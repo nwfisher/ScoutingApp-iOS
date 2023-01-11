@@ -35,6 +35,12 @@
 		5A8A4BB329679C120051C128 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB229679C120051C128 /* HomeView.swift */; };
 		5A8A4BB5296889370051C128 /* MBRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB4296889370051C128 /* MBRView.swift */; };
 		5A8A4BB7296889470051C128 /* SVRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB6296889470051C128 /* SVRView.swift */; };
+		5AA83460296F1BDE00728F59 /* robotInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8345F296F1BDE00728F59 /* robotInformationView.swift */; };
+		5AA83462296F231100728F59 /* scoringLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83461296F231100728F59 /* scoringLocationsView.swift */; };
+		5AA83464296F269500728F59 /* scoringHeightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83463296F269500728F59 /* scoringHeightsView.swift */; };
+		5AA83466296F274B00728F59 /* intakingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83465296F274B00728F59 /* intakingView.swift */; };
+		5AA83468296F281000728F59 /* intakingLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83467296F281000728F59 /* intakingLocationsView.swift */; };
+		5AA8346A296F28EE00728F59 /* cycleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83469296F28EE00728F59 /* cycleTimeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +84,12 @@
 		5A8A4BB229679C120051C128 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5A8A4BB4296889370051C128 /* MBRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRView.swift; sourceTree = "<group>"; };
 		5A8A4BB6296889470051C128 /* SVRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRView.swift; sourceTree = "<group>"; };
+		5AA8345F296F1BDE00728F59 /* robotInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = robotInformationView.swift; sourceTree = "<group>"; };
+		5AA83461296F231100728F59 /* scoringLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoringLocationsView.swift; sourceTree = "<group>"; };
+		5AA83463296F269500728F59 /* scoringHeightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoringHeightsView.swift; sourceTree = "<group>"; };
+		5AA83465296F274B00728F59 /* intakingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intakingView.swift; sourceTree = "<group>"; };
+		5AA83467296F281000728F59 /* intakingLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intakingLocationsView.swift; sourceTree = "<group>"; };
+		5AA83469296F28EE00728F59 /* cycleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cycleTimeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +151,7 @@
 				5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */,
 				5A38A4442966012100FE2C56 /* Assets.xcassets */,
 				5A8A4BAE296796F20051C128 /* GoogleService-Info-2.plist */,
+				5AA8345E296F1BC200728F59 /* Supporting Views */,
 				5A38A46C296601C300FE2C56 /* View */,
 				5A38A46B296601AC00FE2C56 /* ViewModel */,
 				5A38A46A296601A700FE2C56 /* Model */,
@@ -204,6 +217,19 @@
 				5A749175296E53680012A632 /* pitScoutingForm.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5AA8345E296F1BC200728F59 /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				5AA8345F296F1BDE00728F59 /* robotInformationView.swift */,
+				5AA83461296F231100728F59 /* scoringLocationsView.swift */,
+				5AA83463296F269500728F59 /* scoringHeightsView.swift */,
+				5AA83465296F274B00728F59 /* intakingView.swift */,
+				5AA83467296F281000728F59 /* intakingLocationsView.swift */,
+				5AA83469296F28EE00728F59 /* cycleTimeView.swift */,
+			);
+			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +378,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A749168296DEA350012A632 /* MBRTeam.swift in Sources */,
+				5AA83468296F281000728F59 /* intakingLocationsView.swift in Sources */,
+				5AA83462296F231100728F59 /* scoringLocationsView.swift in Sources */,
+				5AA8346A296F28EE00728F59 /* cycleTimeView.swift in Sources */,
 				5A74916E296E12590012A632 /* MBRTeamView.swift in Sources */,
 				5A38A46E2966029900FE2C56 /* HomepageView.swift in Sources */,
 				5A749176296E53680012A632 /* pitScoutingForm.swift in Sources */,
@@ -361,10 +390,13 @@
 				5A38A4432966012000FE2C56 /* ContentView.swift in Sources */,
 				5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */,
 				5A749174296E2A6D0012A632 /* SVRTeamView.swift in Sources */,
+				5AA83466296F274B00728F59 /* intakingView.swift in Sources */,
 				5A8A4BB329679C120051C128 /* HomeView.swift in Sources */,
 				5A8A4BB5296889370051C128 /* MBRView.swift in Sources */,
 				5A749170296E29C20012A632 /* SVRTeam.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
+				5AA83460296F1BDE00728F59 /* robotInformationView.swift in Sources */,
+				5AA83464296F269500728F59 /* scoringHeightsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
