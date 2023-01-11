@@ -13,7 +13,7 @@ struct MBRTeam: Decodable {
     let nickname: String
     
     //get from scouting data
-    var drivetrainType: String
+  /*  var drivetrainType: String
     var motorType: String
     var programmingLanguage: String
     var canPlaceLow: Bool
@@ -24,6 +24,6 @@ struct MBRTeam: Decodable {
     var canPickFallenCones: Bool
     var cycleTimes: String
     var canPickFromGround: Bool
-    var canPickFromShelf: Bool
+    var canPickFromShelf: Bool*/
     
 }
