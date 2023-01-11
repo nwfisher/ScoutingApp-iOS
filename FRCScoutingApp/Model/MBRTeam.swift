@@ -13,17 +13,21 @@ struct MBRTeam: Decodable {
     let nickname: String
     
     //get from scouting data
-  /*  var drivetrainType: String
-    var motorType: String
-    var programmingLanguage: String
-    var canPlaceLow: Bool
-    var canPlaceMid: Bool
-    var canPlaceHigh: Bool
-    var canPickCone: Bool
-    var canPickCube: Bool
-    var canPickFallenCones: Bool
-    var cycleTimes: String
-    var canPickFromGround: Bool
-    var canPickFromShelf: Bool*/
+    var drivetrainType: String = ""
+    var motorType: String = ""
+    var programmingLanguage: String = ""
+    var canPlaceLow: Bool = false
+    var canPlaceMid: Bool = false
+    var canPlaceHigh: Bool = false
+    var canPickCone: Bool = false
+    var canPickCube: Bool = false
+    var canPickFallenCones: Bool = false
+    var cycleTimes: String = ""
+    var canPickFromGround: Bool = false
+    var canPickFromShelf: Bool = false
     
+    enum CodingKeys: String, CodingKey {
+        case team_number = "team_number"
+        case nickname = "nickname"
+    }
 }

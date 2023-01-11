@@ -22,7 +22,9 @@ struct SVRView: View {
                     ForEach(sortedTeams, id: \.team_number) { team in
                         
                             NavigationLink(destination: SVRTeamView(team: team)) {
-                                Text("**\(team.team_number)** \n\(team.nickname)")
+                                let i = String(team.team_number)
+                                
+                                Text("**\(i)** \n\(team.nickname)")
                             }
                                 
                         }
@@ -32,7 +34,7 @@ struct SVRView: View {
                     .listStyle(.plain)
                     .navigationTitle("Teams")
                 }
-                .onAppear(perform: vm.fetchUsers)
+                .onAppear(perform: vm.fetchTeams)
             }
     //Search function is non-functional
         .searchable(text: $searchText, prompt: "Seach by Team number")

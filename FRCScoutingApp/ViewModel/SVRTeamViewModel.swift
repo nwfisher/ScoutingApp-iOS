@@ -11,7 +11,7 @@ final class SVRTeamViewModel: ObservableObject {
     
     @Published var SVRTeams: [SVRTeam] = []
     
-    func fetchUsers () {
+    func fetchTeams () {
         let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023casj/teams")!
         var request = URLRequest(url: url)
         

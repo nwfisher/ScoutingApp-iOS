@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import Firebase
 
 final class MBRTeamViewModel: ObservableObject {
     
     @Published var MBRTeams: [MBRTeam] = []
-    func fetchUsers () {
+    func fetchTeams () {
         let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023camb/teams")!
         var request = URLRequest(url: url)
         

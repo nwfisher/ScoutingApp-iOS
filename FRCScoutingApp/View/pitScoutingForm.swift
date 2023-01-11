@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct pitScoutingForm: View {
+    @State private var showingAlert = false
+    
     
     var Events = ["Monterey Bay Regional", "Silicon Valley Regional", "Select Option"]
     @State private var selectedEvent = "Select Option"
@@ -24,6 +26,7 @@ struct pitScoutingForm: View {
     @State private var cycleTimes = ""
     @State private var canPickFromGround = false
     @State private var canPickFromShelf = false
+    
     
     var body: some View {
         NavigationStack {
@@ -89,6 +92,7 @@ struct pitScoutingForm: View {
                         TextField("Cycle Time", text: $cycleTimes)
                     }
                         Button(action: {
+                            showingAlert = true
                             //The really annoying part of encoding this bitch
                         }, label: {
                             Text("Submit")
@@ -98,6 +102,9 @@ struct pitScoutingForm: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                         })
+                        .alert("Submitted data, feel free to return.", isPresented: $showingAlert) {
+                                  Button("OK", role: .cancel) { }
+                              }
 
                     
                 }
