@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 final class SVRTeamViewModel: ObservableObject {
     
@@ -39,5 +40,54 @@ final class SVRTeamViewModel: ObservableObject {
                        
                     }.resume()
         
+    }
+    
+    //Quick, one time function so I don't need to do work
+    //This function will likley never have to be used again
+    func addTeams() {
+        FirebaseApp.configure()
+        let db = Firestore.firestore()
+        
+        for team in self.SVRTeams {
+            db.collection("SiliconValleyRegional").document(String(team.team_number)).setData([
+                "team_number": team.team_number,
+                "nickname": team.nickname
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        }
+    }
+    
+    func addPitData(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromShelf: Bool, intakeFromGround: Bool) {
+        
+        FirebaseApp.configure()
+        let db = Firestore.firestore()
+        
+       // let i = String(teamnumber)
+        
+        db.collection("SiliconValleyRegional").document(teamnumber).setData([
+            "drivetrainType":drivetrainType,
+            "motorType":motorType,
+            "programmingLanguage":programmingLanguage,
+            "placeLow":placeLow,
+            "placeMid":placeMid,
+            "placeHigh":placeHigh,
+            "intakeCone":intakeCone,
+            "intakeCube":intakeCube,
+            "intakeFallenCone":intakeFallenCone,
+            "cycleTime":cycleTime,
+            "intakeFromShelf":intakeFromShelf,
+            "intaleFromGround":intakeFromGround
+        ], merge: true) { error in
+            if error == nil {
+                
+            } else {
+                print("Something went wrong")
+            }
+        }
     }
 }
