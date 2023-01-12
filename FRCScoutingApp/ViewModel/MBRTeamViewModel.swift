@@ -9,6 +9,8 @@ import Foundation
 import Firebase
 
 final class MBRTeamViewModel: ObservableObject {
+
+  //  let db = Firestore.firestore()
     
     @Published var MBRTeams: [MBRTeam] = []
     func fetchTeams () {
@@ -39,5 +41,93 @@ final class MBRTeamViewModel: ObservableObject {
                        
                     }.resume()
         
+    }
+    
+    //Quick, one time function so I don't need to do work
+    //This function will likley never have to be used again
+    func addTeams() {
+       
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        for team in self.MBRTeams {
+            db.collection("MontereyBayRegional").document(String(team.team_number)).setData([
+                "team_number": team.team_number,
+                "nickname": team.nickname
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        }
+    }
+    
+    func addPitData(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromShelf: Bool, intakeFromGround: Bool) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+       // let i = String(teamnumber)
+        
+        db.collection("MontereyBayRegional").document(teamnumber).setData([
+            "drivetrainType":drivetrainType,
+            "motorType":motorType,
+            "programmingLanguage":programmingLanguage,
+            "placeLow":placeLow,
+            "placeMid":placeMid,
+            "placeHigh":placeHigh,
+            "intakeCone":intakeCone,
+            "intakeCube":intakeCube,
+            "intakeFallenCone":intakeFallenCone,
+            "cycleTime":cycleTime,
+            "intakeFromShelf":intakeFromShelf,
+            "intaleFromGround":intakeFromGround
+        ], merge: true) { error in
+            if error == nil {
+                
+            } else {
+                print("Something went wrong")
+            }
+        }
+    }
+    
+    func addMatchData(teamnumber: String, matchnumber: String, matchType: String, autoChargeStationComplete: String, autoCyclesCompleted: String, autoLevelsReached: String, teleopCyclesCompleted: String, teamDefenseSkill: String, opponentDefenseSkill: String, opponentTeam: String, teamDefendedAgainst: String, teleopReachedL1: Bool, teleopReachedL2: Bool, teleopReachedL3: Bool, defended: Bool, teamPlayedDefense: Bool, endgameChargeStation: String, notes: String) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        let documentID = matchType + matchnumber
+        
+        db.collection("MontereyBayRegional").document(teamnumber).collection("Matches").document(documentID).setData([
+            "selectedMatchtype":matchType,
+            "autoChargeStationComplete":autoChargeStationComplete,
+            "autoCyclesCompleted":autoCyclesCompleted,
+            "autoLevelsReached":autoLevelsReached,
+            "telopCyclesCompleted":teleopCyclesCompleted,
+            "teamDefenseSkill":teamDefenseSkill,
+            "opponentDefenseSkill":opponentDefenseSkill,
+            "opponentTeam":opponentTeam,
+            "teamDefendedAgainst":teamDefendedAgainst,
+            "teleopReachedL1":teleopReachedL1,
+            "teleopReachedL2":teleopReachedL2,
+            "teleopReachedL3":teleopReachedL3,
+            "defended":defended,
+            "teamPlayedDefense":teamPlayedDefense,
+            "notes":notes
+        ], merge: true) { error in
+            if error == nil {
+                
+            } else {
+                print("Something went wrong")
+            }
+        }
     }
 }

@@ -11,10 +11,13 @@ import FirebaseCore
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    override init() {
+          // Firebase Init
+          FirebaseApp.configure()
+       }
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
+      FirebaseApp.configure()
 
     return true
   }

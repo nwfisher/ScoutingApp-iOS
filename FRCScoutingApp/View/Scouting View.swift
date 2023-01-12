@@ -22,7 +22,7 @@ struct Scouting_View: View {
                     
                 }
                 
-                NavigationLink(destination: pitScoutingForm()) {
+                NavigationLink(destination: fieldScoutingForm()) {
                     Text("Field Scouting")
                         .bold()
                         .foregroundColor(.white)
