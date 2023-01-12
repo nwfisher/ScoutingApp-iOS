@@ -41,6 +41,7 @@
 		5AA83466296F274B00728F59 /* intakingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83465296F274B00728F59 /* intakingView.swift */; };
 		5AA83468296F281000728F59 /* intakingLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83467296F281000728F59 /* intakingLocationsView.swift */; };
 		5AA8346A296F28EE00728F59 /* cycleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83469296F28EE00728F59 /* cycleTimeView.swift */; };
+		5AD5B3CD2970806A00194055 /* fieldScoutingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5B3CC2970806A00194055 /* fieldScoutingForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		5AA83465296F274B00728F59 /* intakingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intakingView.swift; sourceTree = "<group>"; };
 		5AA83467296F281000728F59 /* intakingLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intakingLocationsView.swift; sourceTree = "<group>"; };
 		5AA83469296F28EE00728F59 /* cycleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cycleTimeView.swift; sourceTree = "<group>"; };
+		5AD5B3CC2970806A00194055 /* fieldScoutingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fieldScoutingForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 				5A74916D296E12590012A632 /* MBRTeamView.swift */,
 				5A749173296E2A6D0012A632 /* SVRTeamView.swift */,
 				5A749175296E53680012A632 /* pitScoutingForm.swift */,
+				5AD5B3CC2970806A00194055 /* fieldScoutingForm.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
 				5A38A4432966012000FE2C56 /* ContentView.swift in Sources */,
 				5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */,
+				5AD5B3CD2970806A00194055 /* fieldScoutingForm.swift in Sources */,
 				5A749174296E2A6D0012A632 /* SVRTeamView.swift in Sources */,
 				5AA83466296F274B00728F59 /* intakingView.swift in Sources */,
 				5A8A4BB329679C120051C128 /* HomeView.swift in Sources */,

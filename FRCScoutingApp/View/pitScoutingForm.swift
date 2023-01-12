@@ -13,6 +13,8 @@ struct pitScoutingForm: View {
     let MBRvm = MBRTeamViewModel()
     let SVRvm = SVRTeamViewModel()
     var Events = ["Monterey Bay Regional", "Silicon Valley Regional", "Select Option"]
+    
+    @Environment(\.dismiss) private var dismiss
     @State private var selectedEvent = "Select Option"
     @State private var teamNumber = ""
     @State private var drivetrainType = ""
@@ -110,8 +112,10 @@ struct pitScoutingForm: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                         })
-                        .alert("Submitted data, feel free to return.", isPresented: $showingAlert) {
-                                  Button("OK", role: .cancel) { }
+                        .alert("Data succesfully submitted", isPresented: $showingAlert) {
+                                  Button("OK", role: .cancel) {
+                                      dismiss()
+                                  }
                               }
 
                     
