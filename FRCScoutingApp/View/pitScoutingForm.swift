@@ -10,7 +10,7 @@ import SwiftUI
 struct pitScoutingForm: View {
     @State private var showingAlert = false
     
-    
+    let vm = MBRTeamViewModel()
     var Events = ["Monterey Bay Regional", "Silicon Valley Regional", "Select Option"]
     @State private var selectedEvent = "Select Option"
     @State private var teamNumber = ""
@@ -94,6 +94,7 @@ struct pitScoutingForm: View {
                         Button(action: {
                             showingAlert = true
                             //The really annoying part of encoding this bitch
+                           vm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
                         }, label: {
                             Text("Submit")
                                 .frame(maxWidth: .infinity,  alignment: .center)
