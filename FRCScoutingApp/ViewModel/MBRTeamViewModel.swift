@@ -46,7 +46,10 @@ final class MBRTeamViewModel: ObservableObject {
     //Quick, one time function so I don't need to do work
     //This function will likley never have to be used again
     func addTeams() {
-        FirebaseApp.configure()
+       
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
         let db = Firestore.firestore()
         
         for team in self.MBRTeams {
@@ -65,7 +68,9 @@ final class MBRTeamViewModel: ObservableObject {
     
     func addPitData(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromShelf: Bool, intakeFromGround: Bool) {
         
-        FirebaseApp.configure()
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
         let db = Firestore.firestore()
         
        // let i = String(teamnumber)
@@ -92,19 +97,37 @@ final class MBRTeamViewModel: ObservableObject {
         }
     }
     
-    /*  @State private var selectedEvent = "Select Option"
-     @State private var teamNumber = ""
-     @State private var drivetrainType = ""
-     @State private var motorType = ""
-     @State private var programmingLanguage = ""
-     @State private var canPlaceLow = false
-     @State private var canPlaceMid = false
-     @State private var canPlaceHigh = false
-     @State private var canPickCone = false
-     @State private var canPickCube = false
-     @State private var canPickFallenCones = false
-     @State private var cycleTimes = ""
-     @State private var canPickFromGround = false
-     @State private var canPickFromShelf = false
-     */
+    func addMatchData(teamnumber: String, matchnumber: String, matchType: String, autoChargeStationComplete: String, autoCyclesCompleted: String, autoLevelsReached: String, teleopCyclesCompleted: String, teamDefenseSkill: String, opponentDefenseSkill: String, opponentTeam: String, teamDefendedAgainst: String, teleopReachedL1: Bool, teleopReachedL2: Bool, teleopReachedL3: Bool, defended: Bool, teamPlayedDefense: Bool, endgameChargeStation: String, notes: String) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        let documentID = matchType + matchnumber
+        
+        db.collection("MontereyBayRegional").document(teamnumber).collection("Matches").document(documentID).setData([
+            "selectedMatchtype":matchType,
+            "autoChargeStationComplete":autoChargeStationComplete,
+            "autoCyclesCompleted":autoCyclesCompleted,
+            "autoLevelsReached":autoLevelsReached,
+            "telopCyclesCompleted":teleopCyclesCompleted,
+            "teamDefenseSkill":teamDefenseSkill,
+            "opponentDefenseSkill":opponentDefenseSkill,
+            "opponentTeam":opponentTeam,
+            "teamDefendedAgainst":teamDefendedAgainst,
+            "teleopReachedL1":teleopReachedL1,
+            "teleopReachedL2":teleopReachedL2,
+            "teleopReachedL3":teleopReachedL3,
+            "defended":defended,
+            "teamPlayedDefense":teamPlayedDefense,
+            "notes":notes
+        ], merge: true) { error in
+            if error == nil {
+                
+            } else {
+                print("Something went wrong")
+            }
+        }
+    }
 }
