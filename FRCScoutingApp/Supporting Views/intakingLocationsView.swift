@@ -9,7 +9,7 @@ import SwiftUI
 
 struct intakingLocationsView: View {
     
-    let team: MBRTeam
+    let team: MBRTeamUno
     var body: some View {
         VStack(alignment: .leading) {
             let i: String = String(team.team_number)

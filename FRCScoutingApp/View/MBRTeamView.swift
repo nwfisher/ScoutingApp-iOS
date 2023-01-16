@@ -7,47 +7,47 @@
 
 import SwiftUI
 
+
 struct MBRTeamView: View {
     
     let team: MBRTeam
-   
+   @StateObject var vm = MBRTeamViewModel()
     
     var body: some View {
-        
+        var trueTeam = vm.CalledTeam
+        let _ = print(vm.CalledTeam)
         ScrollView {
             VStack(alignment: .leading) {
                 let i: String = String(team.team_number)
-                            Text(i)
-                                .font(.title)
-                                .bold()
-                            
-                            Text("**Team Name**: \(team.nickname)")
-                            Divider()
-                        
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                             .padding()
+                Text(i)
+                    .font(.title)
+                    .bold()
+                
+                Text("**Team Name**: \(team.nickname)")
+                Divider()
+                
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                if (trueTeam != nil) {
+                    Group {
+                        robotInformationView(team: trueTeam!)
+                    }
+                    Group {
+                        scoringLocationsView(team: trueTeam!)
+                    }
+                    Group {
+                        scoringHeightsView(team: trueTeam!)
+                        intakingView(team: trueTeam!)
+                    }
+                    Group {
+                        intakingLocationsView(team: trueTeam!)
+                    }
+                    Group {
+                        cycleTimeView(team: trueTeam!)
+                        Divider()
+                    }
                     
-                Group {
-                    robotInformationView(team: team)
-                }
-                Group {
-                    scoringLocationsView(team: team)
-                }
-                Group {
-                    scoringHeightsView(team: team)
-                }
-                Group {
-                    intakingView(team: team)
-                }
-                Group {
-                    intakingLocationsView(team: team)
-                }
-                 Group {
-                     cycleTimeView(team: team)
-                     Divider()
-                 }
-                
-                
+                    
                     NavigationLink(destination: HomepageView()) {
                         Text("Matches")
                     }
@@ -55,13 +55,19 @@ struct MBRTeamView: View {
                     .foregroundColor(.blue)
                     .bold()
                     .underline()
-               
+                    
+                } else {
+                    Text("No Data")
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(maxHeight: .infinity).ignoresSafeArea()
             .padding()
             .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
             .padding(.horizontal, 4)
+        }
+        .onAppear {
+            vm.getTeam(teamNumber: team.team_number)
         }
     }
 }

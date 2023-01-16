@@ -9,7 +9,7 @@ import SwiftUI
 
 struct scoringHeightsView: View {
     
-    let team: MBRTeam
+    let team: MBRTeamUno
     
     var body: some View {
         VStack(alignment: .leading) {

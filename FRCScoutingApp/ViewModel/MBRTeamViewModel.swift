@@ -7,12 +7,13 @@
 
 import Foundation
 import Firebase
-
+import FirebaseFirestoreSwift
 final class MBRTeamViewModel: ObservableObject {
 
   //  let db = Firestore.firestore()
     
     @Published var MBRTeams: [MBRTeam] = []
+    @Published var CalledTeam: MBRTeamUno?
     func fetchTeams () {
         let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023camb/teams")!
         var request = URLRequest(url: url)
@@ -87,7 +88,7 @@ final class MBRTeamViewModel: ObservableObject {
             "intakeFallenCone":intakeFallenCone,
             "cycleTime":cycleTime,
             "intakeFromShelf":intakeFromShelf,
-            "intaleFromGround":intakeFromGround
+            "intakeFromGround":intakeFromGround
         ], merge: true) { error in
             if error == nil {
                 
@@ -127,6 +128,37 @@ final class MBRTeamViewModel: ObservableObject {
                 
             } else {
                 print("Something went wrong")
+            }
+        }
+    }
+    
+
+    func getTeam(teamNumber: Int) {
+                
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+    
+        let docRef = db.collection("MontereyBayRegional").document(String(teamNumber))
+        docRef.getDocument(as: MBRTeamUno.self) { result in
+            // The Result type encapsulates deserialization errors or
+            // successful deserialization, and can be handled as follows:
+            //
+            //      Result
+            //        /\
+            //   Error  City
+            print(result)
+            switch result {
+            case .success(let team):
+                print("Yay")
+                self.CalledTeam = team
+                // A `City` value was successfully initialized from the DocumentSnapshot.
+                print("City: \(team)")
+            case .failure(let error):
+                print("Nay")
+                // A `City` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding city: \(error)")
             }
         }
     }

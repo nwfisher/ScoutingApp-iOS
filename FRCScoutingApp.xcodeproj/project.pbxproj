@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A00C0702974CF2C0022982E /* MBRTeamUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C06F2974CF2C0022982E /* MBRTeamUno.swift */; };
 		5A2DBD412968C92700DEBF04 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2DBD402968C92700DEBF04 /* Alamofire */; };
 		5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */; };
 		5A38A4432966012000FE2C56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4422966012000FE2C56 /* ContentView.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A00C06F2974CF2C0022982E /* MBRTeamUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamUno.swift; sourceTree = "<group>"; };
 		5A38A43D2966012000FE2C56 /* FRCScoutingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRCScoutingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppApp.swift; sourceTree = "<group>"; };
 		5A38A4422966012000FE2C56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		5A38A46D2966029900FE2C56 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		5A749167296DEA350012A632 /* MBRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeam.swift; sourceTree = "<group>"; };
 		5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamViewModel.swift; sourceTree = "<group>"; };
-		5A74916D296E12590012A632 /* MBRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamView.swift; sourceTree = "<group>"; };
+		5A74916D296E12590012A632 /* MBRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MBRTeamView.swift; path = "/Users/nicolasfisher/Documents/Personal Projects/FRCScoutingApp/FRCScoutingApp/View/MBRTeamView.swift"; sourceTree = "<absolute>"; };
 		5A74916F296E29C20012A632 /* SVRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeam.swift; sourceTree = "<group>"; };
 		5A749171296E29D50012A632 /* SVRTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeamViewModel.swift; sourceTree = "<group>"; };
 		5A749173296E2A6D0012A632 /* SVRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeamView.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				5A749167296DEA350012A632 /* MBRTeam.swift */,
+				5A00C06F2974CF2C0022982E /* MBRTeamUno.swift */,
 				5A74916F296E29C20012A632 /* SVRTeam.swift */,
 			);
 			path = Model;
@@ -391,6 +394,7 @@
 				5A8A4BB7296889470051C128 /* SVRView.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
 				5A38A4432966012000FE2C56 /* ContentView.swift in Sources */,
+				5A00C0702974CF2C0022982E /* MBRTeamUno.swift in Sources */,
 				5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */,
 				5AD5B3CD2970806A00194055 /* fieldScoutingForm.swift in Sources */,
 				5A749174296E2A6D0012A632 /* SVRTeamView.swift in Sources */,

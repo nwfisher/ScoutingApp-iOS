@@ -9,7 +9,7 @@ import SwiftUI
 
 struct robotInformationView: View {
     
-    let team: MBRTeam
+    let team: MBRTeamUno
     
     var body: some View {
         
