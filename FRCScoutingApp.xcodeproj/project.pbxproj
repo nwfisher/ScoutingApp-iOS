@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5A00C0702974CF2C0022982E /* MBRTeamUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C06F2974CF2C0022982E /* MBRTeamUno.swift */; };
+		5A00C0722975EA060022982E /* teamMatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C0712975EA060022982E /* teamMatchesView.swift */; };
+		5A00C0742975EADE0022982E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C0732975EADE0022982E /* Match.swift */; };
+		5A00C07629760B160022982E /* detailedMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07529760B160022982E /* detailedMatchView.swift */; };
+		5A00C078297613EE0022982E /* AutoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C077297613EE0022982E /* AutoView.swift */; };
+		5A00C07A297614DA0022982E /* teleopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C079297614DA0022982E /* teleopView.swift */; };
+		5A00C07C2976184A0022982E /* endgameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07B2976184A0022982E /* endgameView.swift */; };
 		5A2DBD412968C92700DEBF04 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2DBD402968C92700DEBF04 /* Alamofire */; };
 		5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */; };
-		5A38A4432966012000FE2C56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4422966012000FE2C56 /* ContentView.swift */; };
 		5A38A4452966012100FE2C56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A38A4442966012100FE2C56 /* Assets.xcassets */; };
 		5A38A4482966012100FE2C56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A38A4472966012100FE2C56 /* Preview Assets.xcassets */; };
 		5A38A4522966012100FE2C56 /* FRCScoutingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4512966012100FE2C56 /* FRCScoutingAppTests.swift */; };
@@ -64,9 +69,14 @@
 
 /* Begin PBXFileReference section */
 		5A00C06F2974CF2C0022982E /* MBRTeamUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamUno.swift; sourceTree = "<group>"; };
+		5A00C0712975EA060022982E /* teamMatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamMatchesView.swift; sourceTree = "<group>"; };
+		5A00C0732975EADE0022982E /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		5A00C07529760B160022982E /* detailedMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailedMatchView.swift; sourceTree = "<group>"; };
+		5A00C077297613EE0022982E /* AutoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoView.swift; sourceTree = "<group>"; };
+		5A00C079297614DA0022982E /* teleopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teleopView.swift; sourceTree = "<group>"; };
+		5A00C07B2976184A0022982E /* endgameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endgameView.swift; sourceTree = "<group>"; };
 		5A38A43D2966012000FE2C56 /* FRCScoutingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRCScoutingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppApp.swift; sourceTree = "<group>"; };
-		5A38A4422966012000FE2C56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5A38A4442966012100FE2C56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A38A4472966012100FE2C56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5A38A44D2966012100FE2C56 /* FRCScoutingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FRCScoutingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +205,7 @@
 				5A749167296DEA350012A632 /* MBRTeam.swift */,
 				5A00C06F2974CF2C0022982E /* MBRTeamUno.swift */,
 				5A74916F296E29C20012A632 /* SVRTeam.swift */,
+				5A00C0732975EADE0022982E /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,7 +222,6 @@
 		5A38A46C296601C300FE2C56 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5A38A4422966012000FE2C56 /* ContentView.swift */,
 				5A38A46D2966029900FE2C56 /* HomepageView.swift */,
 				5A8A4BB229679C120051C128 /* HomeView.swift */,
 				5A8A4BB029679BAC0051C128 /* Scouting View.swift */,
@@ -221,6 +231,8 @@
 				5A749173296E2A6D0012A632 /* SVRTeamView.swift */,
 				5A749175296E53680012A632 /* pitScoutingForm.swift */,
 				5AD5B3CC2970806A00194055 /* fieldScoutingForm.swift */,
+				5A00C0712975EA060022982E /* teamMatchesView.swift */,
+				5A00C07529760B160022982E /* detailedMatchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,6 +246,9 @@
 				5AA83465296F274B00728F59 /* intakingView.swift */,
 				5AA83467296F281000728F59 /* intakingLocationsView.swift */,
 				5AA83469296F28EE00728F59 /* cycleTimeView.swift */,
+				5A00C07B2976184A0022982E /* endgameView.swift */,
+				5A00C077297613EE0022982E /* AutoView.swift */,
+				5A00C079297614DA0022982E /* teleopView.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -384,16 +399,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A749168296DEA350012A632 /* MBRTeam.swift in Sources */,
+				5A00C07A297614DA0022982E /* teleopView.swift in Sources */,
+				5A00C0722975EA060022982E /* teamMatchesView.swift in Sources */,
+				5A00C078297613EE0022982E /* AutoView.swift in Sources */,
 				5AA83468296F281000728F59 /* intakingLocationsView.swift in Sources */,
 				5AA83462296F231100728F59 /* scoringLocationsView.swift in Sources */,
 				5AA8346A296F28EE00728F59 /* cycleTimeView.swift in Sources */,
 				5A74916E296E12590012A632 /* MBRTeamView.swift in Sources */,
 				5A38A46E2966029900FE2C56 /* HomepageView.swift in Sources */,
+				5A00C0742975EADE0022982E /* Match.swift in Sources */,
 				5A749176296E53680012A632 /* pitScoutingForm.swift in Sources */,
 				5A74916C296DF3EC0012A632 /* MBRTeamViewModel.swift in Sources */,
 				5A8A4BB7296889470051C128 /* SVRView.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
-				5A38A4432966012000FE2C56 /* ContentView.swift in Sources */,
 				5A00C0702974CF2C0022982E /* MBRTeamUno.swift in Sources */,
 				5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */,
 				5AD5B3CD2970806A00194055 /* fieldScoutingForm.swift in Sources */,
@@ -404,6 +422,8 @@
 				5A749170296E29C20012A632 /* SVRTeam.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
 				5AA83460296F1BDE00728F59 /* robotInformationView.swift in Sources */,
+				5A00C07629760B160022982E /* detailedMatchView.swift in Sources */,
+				5A00C07C2976184A0022982E /* endgameView.swift in Sources */,
 				5AA83464296F269500728F59 /* scoringHeightsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,9 +580,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FRCScoutingApp/Preview Content\"";
+				DEVELOPMENT_TEAM = JW7VFRDC8Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -570,6 +592,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,6 +600,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Nicolaswfisher.FRCScoutingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -588,9 +612,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FRCScoutingApp/Preview Content\"";
+				DEVELOPMENT_TEAM = JW7VFRDC8Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -598,6 +624,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -605,6 +632,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Nicolaswfisher.FRCScoutingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

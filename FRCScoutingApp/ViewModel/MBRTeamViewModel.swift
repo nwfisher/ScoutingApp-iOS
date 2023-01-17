@@ -14,6 +14,7 @@ final class MBRTeamViewModel: ObservableObject {
     
     @Published var MBRTeams: [MBRTeam] = []
     @Published var CalledTeam: MBRTeamUno?
+    @Published var Matches: [Match] = []
     func fetchTeams () {
         let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023camb/teams")!
         var request = URLRequest(url: url)
@@ -122,7 +123,10 @@ final class MBRTeamViewModel: ObservableObject {
             "teleopReachedL3":teleopReachedL3,
             "defended":defended,
             "teamPlayedDefense":teamPlayedDefense,
-            "notes":notes
+            "notes":notes,
+            "matchNumber":matchnumber,
+            "matchID":documentID,
+            "endgameChargeStation":endgameChargeStation
         ], merge: true) { error in
             if error == nil {
                 
@@ -159,6 +163,59 @@ final class MBRTeamViewModel: ObservableObject {
                 print("Nay")
                 // A `City` value could not be initialized from the DocumentSnapshot.
                 print("Error decoding city: \(error)")
+            }
+        }
+    }
+    
+    private func getMatch(ID: String, i: String) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        db.collection("MontereyBayRegional").document(i).collection("Matches").document(ID).getDocument(as: Match.self) { result in
+         
+            print(result)
+            switch result {
+            case .success(let match):
+                print("Yay")
+                self.Matches.append(match)
+                // A `City` value was successfully initialized from the DocumentSnapshot.
+                print("City: \(match)")
+                print(self.Matches)
+            case .failure(let error):
+                print("Nay")
+                // A `City` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding city: \(error)")
+            }
+        }
+    }
+    
+    func fetchMatchData(teamNumber: Int) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        let i = String(teamNumber)
+        
+        let docRef = db.collection("MontereyBayRegional").document(i).collection("Matches")
+        
+        print("hello")
+        docRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                self.Matches.removeAll()
+                for document in querySnapshot!.documents {
+                    self.getMatch(ID: document.documentID, i: i)
+                   
+                    print("\(document.documentID) => \(document.data())")
+                }
+                print(self.Matches)
             }
         }
     }

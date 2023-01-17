@@ -48,7 +48,7 @@ struct MBRTeamView: View {
                     }
                     
                     
-                    NavigationLink(destination: HomepageView()) {
+                    NavigationLink(destination: teamMatchesView(team: team)) {
                         Text("Matches")
                     }
                     .font(.title3)

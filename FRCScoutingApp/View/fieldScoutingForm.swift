@@ -162,6 +162,7 @@ struct fieldScoutingForm: View {
                                 }
                                 
                             }
+                            TextField("Notes", text: $notes)
                         }
                         Button(action: {
                             showingAlert = true
