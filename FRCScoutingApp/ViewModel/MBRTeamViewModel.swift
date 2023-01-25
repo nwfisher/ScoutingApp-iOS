@@ -9,8 +9,6 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 final class MBRTeamViewModel: ObservableObject {
-
-  //  let db = Firestore.firestore()
     
     @Published var MBRTeams: [MBRTeam] = []
     @Published var CalledTeam: MBRTeamUno?
@@ -42,12 +40,11 @@ final class MBRTeamViewModel: ObservableObject {
                         }
                        
                     }.resume()
-        
     }
     
     //Quick, one time function so I don't need to do work
     //This function will likley never have to be used again
-    func addTeams() {
+    func resetTeams() {
        
         if FirebaseApp.app() == nil {
                   FirebaseApp.configure()
@@ -218,5 +215,9 @@ final class MBRTeamViewModel: ObservableObject {
                 print(self.Matches)
             }
         }
+    }
+    
+    func deleteData() {
+        
     }
 }

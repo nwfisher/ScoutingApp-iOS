@@ -23,6 +23,7 @@ struct MBRTeamView: View {
                     .font(.title)
                     .bold()
                 
+                
                 Text("**Team Name**: \(team.nickname)")
                 Divider()
                 

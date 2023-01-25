@@ -13,19 +13,19 @@ struct HomepageView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(hex: "#2c9c00").ignoresSafeArea()
+                Color(hex: "#144600").ignoresSafeArea()
+                //dark green = 144600
+                //light green = 2c9c00
                 
                 HStack{
                     //Profile Picture Image
-                    Image( "6623BA4C-73C7-444C-AA45-2B402A36904A_1_105_c")
+                    Image("Image")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 75.0)
-                        .clipShape(Circle())
                         .padding(.leading)
-                    
-                    //Welcome User
-                    Text("Welcome, Nick!")
+                
+                    Text("Welcome!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.leading)
@@ -49,7 +49,7 @@ struct HomepageView: View {
                     .tabItem {
                         Label("Scouting", systemImage: "note.text")
                     }
-                Text("Settings")
+                SettingsView()
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }

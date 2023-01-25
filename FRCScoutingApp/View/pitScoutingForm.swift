@@ -9,9 +9,11 @@ import SwiftUI
 
 struct pitScoutingForm: View {
     @State private var showingAlert = false
-    
+    @State private var noTeam = false
+    @State private var noEvent = false
     let MBRvm = MBRTeamViewModel()
     let SVRvm = SVRTeamViewModel()
+    let vm = formsViewModel()
     var Events = ["Monterey Bay Regional", "Silicon Valley Regional", "Select Option"]
     
     @Environment(\.dismiss) private var dismiss
@@ -72,15 +74,12 @@ struct pitScoutingForm: View {
                         Toggle(isOn: $canPlaceLow) {
                             Text("Low")
                         }
-                        
                         Toggle(isOn: $canPlaceMid) {
                             Text("Mid")
                         }
-                        
                         Toggle(isOn: $canPlaceHigh) {
                             Text("High")
                         }
-                        
                     }
                     Section(header: Text("Pickup Locations")) {
                         Toggle(isOn: $canPickFromShelf) {
@@ -95,15 +94,16 @@ struct pitScoutingForm: View {
                         TextField("Cycle Time", text: $cycleTimes)
                     }
                         Button(action: {
-                            showingAlert = true
                             //Very dumv long else if statement
-                            if selectedEvent == "Monterey Bay Regional" {
-                                MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                            } else if selectedEvent == "Silicon Valley Regional" {
-                                SVRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                            } else {
-                               print("An error has occured")
-                            }
+                                if selectedEvent == "Monterey Bay Regional" {
+                                    MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
+                                    showingAlert.toggle()
+                                } else if selectedEvent == "Silicon Valley Regional" {
+                                    SVRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
+                                    showingAlert.toggle()
+                                } else {
+                                    noEvent.toggle() //No point in this line because of check above
+                                }
                         }, label: {
                             Text("Submit")
                                 .frame(maxWidth: .infinity,  alignment: .center)
@@ -115,6 +115,16 @@ struct pitScoutingForm: View {
                         .alert("Data succesfully submitted", isPresented: $showingAlert) {
                                   Button("OK", role: .cancel) {
                                       dismiss()
+                                  }
+                              }
+                        .alert("Team does not exist at event", isPresented: $noTeam) {
+                                  Button("OK", role: .cancel) {
+                                      
+                                  }
+                              }
+                        .alert("Select an Event", isPresented: $noEvent) {
+                                  Button("OK", role: .cancel) {
+                                      
                                   }
                               }
 

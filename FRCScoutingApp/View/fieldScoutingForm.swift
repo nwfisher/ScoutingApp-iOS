@@ -170,7 +170,7 @@ struct fieldScoutingForm: View {
                             if selectedEvent == "Monterey Bay Regional" {
                                 MBRvm.addMatchData(teamnumber: teamNumber, matchnumber: matchNumber, matchType: selectedMatchType, autoChargeStationComplete: autoChargeStationComplete, autoCyclesCompleted: autoCyclesCompleted, autoLevelsReached: autoLevelsReached, teleopCyclesCompleted: teleopCyclesCompleted, teamDefenseSkill: teamDefenseSkill, opponentDefenseSkill: opponentDefenseSkill, opponentTeam: opponentTeam, teamDefendedAgainst: teamDefendedAgainst, teleopReachedL1: teleopReachedL1, teleopReachedL2: teleopReachedL2, teleopReachedL3: teleopReachedL3, defended: defended, teamPlayedDefense: teamPlayedDefense, endgameChargeStation: endgameChargeStation, notes: notes)
                             } else if selectedEvent == "Silicon Valley Regional" {
-                               //DO nothing
+                                SVRvm.addMatchData(teamnumber: teamNumber, matchnumber: matchNumber, matchType: selectedMatchType, autoChargeStationComplete: autoChargeStationComplete, autoCyclesCompleted: autoCyclesCompleted, autoLevelsReached: autoLevelsReached, teleopCyclesCompleted: teleopCyclesCompleted, teamDefenseSkill: teamDefenseSkill, opponentDefenseSkill: opponentDefenseSkill, opponentTeam: opponentTeam, teamDefendedAgainst: teamDefendedAgainst, teleopReachedL1: teleopReachedL1, teleopReachedL2: teleopReachedL2, teleopReachedL3: teleopReachedL3, defended: defended, teamPlayedDefense: teamPlayedDefense, endgameChargeStation: endgameChargeStation, notes: notes)
                             } else {
                                print("An error has occured")
                             }

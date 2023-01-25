@@ -11,6 +11,8 @@ import Firebase
 final class SVRTeamViewModel: ObservableObject {
     
     @Published var SVRTeams: [SVRTeam] = []
+    @Published var CalledTeam: SVRTeamUno?
+    @Published var Matches: [Match] = []
     
     func fetchTeams () {
         let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023casj/teams")!
@@ -87,6 +89,127 @@ final class SVRTeamViewModel: ObservableObject {
                 
             } else {
                 print("Something went wrong")
+            }
+        }
+    }
+    
+    func addMatchData(teamnumber: String, matchnumber: String, matchType: String, autoChargeStationComplete: String, autoCyclesCompleted: String, autoLevelsReached: String, teleopCyclesCompleted: String, teamDefenseSkill: String, opponentDefenseSkill: String, opponentTeam: String, teamDefendedAgainst: String, teleopReachedL1: Bool, teleopReachedL2: Bool, teleopReachedL3: Bool, defended: Bool, teamPlayedDefense: Bool, endgameChargeStation: String, notes: String) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        let documentID = matchType + matchnumber
+        
+        db.collection("SiliconValleyRegional").document(teamnumber).collection("Matches").document(documentID).setData([
+            "selectedMatchtype":matchType,
+            "autoChargeStationComplete":autoChargeStationComplete,
+            "autoCyclesCompleted":autoCyclesCompleted,
+            "autoLevelsReached":autoLevelsReached,
+            "telopCyclesCompleted":teleopCyclesCompleted,
+            "teamDefenseSkill":teamDefenseSkill,
+            "opponentDefenseSkill":opponentDefenseSkill,
+            "opponentTeam":opponentTeam,
+            "teamDefendedAgainst":teamDefendedAgainst,
+            "teleopReachedL1":teleopReachedL1,
+            "teleopReachedL2":teleopReachedL2,
+            "teleopReachedL3":teleopReachedL3,
+            "defended":defended,
+            "teamPlayedDefense":teamPlayedDefense,
+            "notes":notes,
+            "matchNumber":matchnumber,
+            "matchID":documentID,
+            "endgameChargeStation":endgameChargeStation
+        ], merge: true) { error in
+            if error == nil {
+                
+            } else {
+                print("Something went wrong")
+            }
+        }
+    }
+    
+
+    func getTeam(teamNumber: Int) {
+                
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+    
+        let docRef = db.collection("SiliconValleyRegional").document(String(teamNumber))
+        docRef.getDocument(as: SVRTeamUno.self) { result in
+            // The Result type encapsulates deserialization errors or
+            // successful deserialization, and can be handled as follows:
+            //
+            //      Result
+            //        /\
+            //   Error  City
+            print(result)
+            switch result {
+            case .success(let team):
+                print("Yay")
+                self.CalledTeam = team
+                // A `City` value was successfully initialized from the DocumentSnapshot.
+                print("City: \(team)")
+            case .failure(let error):
+                print("Nay")
+                // A `City` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding city: \(error)")
+            }
+        }
+    }
+    
+    private func getMatch(ID: String, i: String) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        db.collection("SiliconValleyRegional").document(i).collection("Matches").document(ID).getDocument(as: Match.self) { result in
+         
+            print(result)
+            switch result {
+            case .success(let match):
+                print("Yay")
+                self.Matches.append(match)
+                // A `City` value was successfully initialized from the DocumentSnapshot.
+                print("City: \(match)")
+                print(self.Matches)
+            case .failure(let error):
+                print("Nay")
+                // A `City` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding city: \(error)")
+            }
+        }
+    }
+    
+    func fetchMatchData(teamNumber: Int) {
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        let i = String(teamNumber)
+        
+        let docRef = db.collection("MontereyBayRegional").document(i).collection("Matches")
+        
+        print("hello")
+        docRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                self.Matches.removeAll()
+                for document in querySnapshot!.documents {
+                    self.getMatch(ID: document.documentID, i: i)
+                   
+                    print("\(document.documentID) => \(document.data())")
+                }
+                print(self.Matches)
             }
         }
     }

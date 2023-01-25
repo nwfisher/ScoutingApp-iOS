@@ -18,22 +18,22 @@ struct robotInformationView: View {
                 .font(.title3)
                 .bold()
     
-        Spacer()
-            .frame(minHeight: 10, idealHeight: 20, maxHeight: 20)
-        Text("Drivetrain")
+            Spacer()
+                .frame(minHeight: 10, idealHeight: 20, maxHeight: 20)
+            Text("Drivetrain")
             .font(.headline)
-        Text(team.drivetrainType)
-        Spacer()
-            .frame(maxHeight: 10)
-        Text("Motor Type")
+            Text(team.drivetrainType)
+            Spacer()
+                .frame(maxHeight: 10)
+            Text("Motor Type")
             .font(.headline)
-        Text(team.motorType)
-        Spacer()
-            .frame(maxHeight: 10)
-        Text("Programming Language")
-            .font(.headline)
-        Text(team.programmingLanguage)
-    }
+            Text(team.motorType)
+            Spacer()
+                .frame(maxHeight: 10)
+            Text("Programming Language")
+                .font(.headline)
+            Text(team.programmingLanguage)
+        }
     }
 }
 
