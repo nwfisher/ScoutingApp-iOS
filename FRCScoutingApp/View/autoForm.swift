@@ -220,7 +220,7 @@ struct autoForm: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                                 .bold()
-                        }
+                        }.id(UUID()) //this is stupid and hopefully will be fixed someday
                         
                     }
                 

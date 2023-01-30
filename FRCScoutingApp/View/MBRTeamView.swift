@@ -6,69 +6,71 @@
 //
 
 import SwiftUI
+import Charts
 
 
 struct MBRTeamView: View {
     
     let team: MBRTeam
-   @StateObject var vm = MBRTeamViewModel()
+    @StateObject var vm = MBRTeamViewModel()
+    
+    let err = MBRTeamUno(team_number: 0000, nickname: "Error", drivetrainType: "Error", motorType: "Error", programmingLanguage: "Error", canPlaceLow: true, canPlaceMid: true, canPlaceHigh: false, canPickCone: true, canPickCube: true, canPickFallenCones: false, cycleTimes: "Error", canPickFromGround: true, canPickFromShelf: true)
     
     var body: some View {
         var trueTeam = vm.CalledTeam
         let _ = print(vm.CalledTeam)
         ScrollView {
             VStack(alignment: .leading) {
-                let i: String = String(team.team_number)
-                Text(i)
-                    .font(.title)
-                    .bold()
-                
-                
-                Text("**Team Name**: \(team.nickname)")
-                Divider()
-                
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                if (trueTeam != nil) {
-                    Group {
-                        robotInformationView(team: trueTeam!)
-                    }
-                    Group {
-                        scoringLocationsView(team: trueTeam!)
-                    }
-                    Group {
-                        scoringHeightsView(team: trueTeam!)
-                        intakingView(team: trueTeam!)
-                    }
-                    Group {
-                        intakingLocationsView(team: trueTeam!)
-                    }
-                    Group {
-                        cycleTimeView(team: trueTeam!)
-                        Divider()
-                    }
+                Group {
+                    let i: String = String(team.team_number)
+                    Text(i)
+                        .font(.title)
+                        .bold()
                     
                     
-                    NavigationLink(destination: teamMatchesView(team: team)) {
-                        Text("Matches")
-                    }
-                    .font(.title3)
-                    .foregroundColor(.blue)
-                    .bold()
-                    .underline()
-                    
-                } else {
-                    Text("No Data")
+                    Text("**Team Name**: \(team.nickname)")
+                    Divider()
                 }
+                
+                Group {
+                    Text("Basic Information")
+                        .font(.title2)
+                        .bold()
+                        Spacer()
+                }
+                Group {
+                    robotInfo(team: trueTeam ?? err)
+                    Divider()
+                    scoringHeights(team: trueTeam ?? err)
+                    gamePieces(team: trueTeam ?? err)
+                    intakeLocations(team: trueTeam ?? err)
+                    cycleTime(team: trueTeam ?? err)
+                    Divider()
+                }
+                Spacer()
+                Text("Advanced Statistics")
+                    .font(.title2)
+                    .bold()
+                Spacer()
+                var matchesScoreRange: [scoringHeights] = []
+                
+                Group {
+                    
+                }
+    
+                
+                Text(String(vm.teamScore))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(maxHeight: .infinity).ignoresSafeArea()
             .padding()
-            .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+            .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous)).ignoresSafeArea()
             .padding(.horizontal, 4)
-        }
-        .onAppear {
-            vm.getTeam(teamNumber: team.team_number)
+            
+            
+            .onAppear {
+                vm.getTeam(teamNumber: team.team_number)
+            }
         }
     }
 }

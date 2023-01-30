@@ -14,6 +14,10 @@ struct teleopForm: View {
     @State private var reviewSheet = false
     @State var goingHome = false
     
+    //Viewmodels
+    let mbrVM = MBRTeamViewModel()
+    let svrVM = SVRTeamViewModel()
+    
     //Match Info
     let event: String
     let matchType: String
@@ -286,6 +290,14 @@ struct teleopForm: View {
                                         
                                         Section(header: Text("confirm")) {
                                             Button(action: {
+                                                if event == "Monterey Bay Regional" {
+                                                    print("works")
+                                                    mbrVM.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                } else if  event == "SiliconValleyRegional" {
+                                                    svrVM.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                } else {
+                                                    //Add safeguard later
+                                                }
                                                 reviewSheet.toggle()
                                                 
                                             }, label: {
@@ -305,7 +317,18 @@ struct teleopForm: View {
                                 .navigationTitle("Review Data")
                             }
                         }
-                        
+                    }
+                    Section(header: Text("Get outta here")) {
+                        NavigationLink(destination: HomepageView().navigationBarBackButtonHidden(true)) {
+                            Text("Back Home")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 50.0)
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                                .padding(.horizontal, 20)
+                        }
                     }
                 }
             }

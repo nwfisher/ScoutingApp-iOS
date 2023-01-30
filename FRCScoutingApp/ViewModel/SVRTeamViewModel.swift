@@ -93,34 +93,32 @@ final class SVRTeamViewModel: ObservableObject {
         }
     }
     
-    func addMatchData(teamnumber: String, matchnumber: String, matchType: String, autoChargeStationComplete: String, autoCyclesCompleted: String, autoLevelsReached: String, teleopCyclesCompleted: String, teamDefenseSkill: String, opponentDefenseSkill: String, opponentTeam: String, teamDefendedAgainst: String, teleopReachedL1: Bool, teleopReachedL2: Bool, teleopReachedL3: Bool, defended: Bool, teamPlayedDefense: Bool, endgameChargeStation: String, notes: String) {
+    func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) {
         
         if FirebaseApp.app() == nil {
                   FirebaseApp.configure()
               }
         let db = Firestore.firestore()
         
-        let documentID = matchType + matchnumber
+        let documentID = matchType + matchNumber
         
-        db.collection("SiliconValleyRegional").document(teamnumber).collection("Matches").document(documentID).setData([
-            "selectedMatchtype":matchType,
-            "autoChargeStationComplete":autoChargeStationComplete,
-            "autoCyclesCompleted":autoCyclesCompleted,
-            "autoLevelsReached":autoLevelsReached,
-            "telopCyclesCompleted":teleopCyclesCompleted,
-            "teamDefenseSkill":teamDefenseSkill,
-            "opponentDefenseSkill":opponentDefenseSkill,
-            "opponentTeam":opponentTeam,
-            "teamDefendedAgainst":teamDefendedAgainst,
-            "teleopReachedL1":teleopReachedL1,
-            "teleopReachedL2":teleopReachedL2,
-            "teleopReachedL3":teleopReachedL3,
-            "defended":defended,
-            "teamPlayedDefense":teamPlayedDefense,
-            "notes":notes,
-            "matchNumber":matchnumber,
-            "matchID":documentID,
-            "endgameChargeStation":endgameChargeStation
+        db.collection("SiliconValleyRegional").document(teamNumber).collection("Matches").document(documentID).setData([
+            "matchType":matchType,
+            "matchNumber":matchNumber,
+            "autoLowCube":autoLowCube,
+            "autoMidCube":autoMidCube,
+            "autoHighCube":autoHighCube,
+            "autoLowCone":autoLowCone,
+            "autoMidCone":autoMidCone,
+            "autoHighCone":autoHighCone,
+            "autoChargeStation":autoChargeStation,
+            "teleopLowCube":teleopLowCube,
+            "teleopMidCube":teleopMidCube,
+            "teleopHighCube":teleopHighCube,
+            "teleopLowCone":teleopLowCone,
+            "teleopMidCone":teleopMidCone,
+            "teleopHighCone":teleopHighCone,
+            "teleopChargeStation":teleopChargeStation
         ], merge: true) { error in
             if error == nil {
                 

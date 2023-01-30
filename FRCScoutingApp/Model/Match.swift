@@ -11,20 +11,22 @@ struct Match: Codable {
     
     var matchID: String
     var matchNumber: String
-    var selectedMatchtype: String
-    var autoChargeStationComplete: String
-    var autoCyclesCompleted: String
-    var autoLevelsReached: String
-    var telopCyclesCompleted: String //typo here, fix later
-    var teamDefenseSkill: String
-    var opponentDefenseSkill: String
-    var opponentTeam: String
-    var teamDefendedAgainst: String
-    var teleopReachedL1: Bool
-    var teleopReachedL2: Bool
-    var teleopReachedL3: Bool
-    var defended: Bool
-    var teamPlayedDefense: Bool
-    var notes: String
-    var endgameChargeStation: String
+    var matchType: String
+    //Auto scoring
+    var autoLowCube: Int
+    var autoMidCube: Int
+    var autoHighCube: Int
+    var autoLowCone: Int
+    var autoMidCone: Int
+    var autoHighCone: Int
+    //Teleop scoring
+    var teleopLowCube: Int
+    var teleopMidCube: Int
+    var teleopHighCube: Int
+    var teleopLowCone: Int
+    var teleopMidCone: Int
+    var teleopHighCone: Int
+    //Charge Station
+    var autoChargeStation: String
+    var teleopChargeStation: String
 }

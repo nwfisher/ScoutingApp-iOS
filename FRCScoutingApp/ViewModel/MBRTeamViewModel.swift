@@ -10,9 +10,23 @@ import Firebase
 import FirebaseFirestoreSwift
 final class MBRTeamViewModel: ObservableObject {
     
+    //Uncanny amount of published variables because I suck at figuring out completion handlers
     @Published var MBRTeams: [MBRTeam] = []
     @Published var CalledTeam: MBRTeamUno?
     @Published var Matches: [Match] = []
+    @Published var teamScore = 0.00
+    
+    @Published var blueAlliance1Avg = 0.00
+    @Published var blueAlliance2Avg = 0.00
+    @Published var blueAlliance3Avg = 0.00
+    @Published var redAlliance1Avg = 0.00
+    @Published var redAlliance2Avg = 0.00
+    @Published var redAlliance3Avg = 0.00
+    
+    @Published var winner = 3
+    @Published var redScore = 0.00
+    @Published var blueScore = 0.00
+    
     func fetchTeams () {
         let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023camb/teams")!
         var request = URLRequest(url: url)
@@ -96,34 +110,32 @@ final class MBRTeamViewModel: ObservableObject {
         }
     }
     
-    func addMatchData(teamnumber: String, matchnumber: String, matchType: String, autoChargeStationComplete: String, autoCyclesCompleted: String, autoLevelsReached: String, teleopCyclesCompleted: String, teamDefenseSkill: String, opponentDefenseSkill: String, opponentTeam: String, teamDefendedAgainst: String, teleopReachedL1: Bool, teleopReachedL2: Bool, teleopReachedL3: Bool, defended: Bool, teamPlayedDefense: Bool, endgameChargeStation: String, notes: String) {
+    func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) {
         
         if FirebaseApp.app() == nil {
                   FirebaseApp.configure()
               }
         let db = Firestore.firestore()
         
-        let documentID = matchType + matchnumber
+        let documentID = matchType + matchNumber
         
-        db.collection("MontereyBayRegional").document(teamnumber).collection("Matches").document(documentID).setData([
-            "selectedMatchtype":matchType,
-            "autoChargeStationComplete":autoChargeStationComplete,
-            "autoCyclesCompleted":autoCyclesCompleted,
-            "autoLevelsReached":autoLevelsReached,
-            "telopCyclesCompleted":teleopCyclesCompleted,
-            "teamDefenseSkill":teamDefenseSkill,
-            "opponentDefenseSkill":opponentDefenseSkill,
-            "opponentTeam":opponentTeam,
-            "teamDefendedAgainst":teamDefendedAgainst,
-            "teleopReachedL1":teleopReachedL1,
-            "teleopReachedL2":teleopReachedL2,
-            "teleopReachedL3":teleopReachedL3,
-            "defended":defended,
-            "teamPlayedDefense":teamPlayedDefense,
-            "notes":notes,
-            "matchNumber":matchnumber,
-            "matchID":documentID,
-            "endgameChargeStation":endgameChargeStation
+        db.collection("MontereyBayRegional").document(teamNumber).collection("Matches").document(documentID).setData([
+            "matchType":matchType,
+            "matchNumber":matchNumber,
+            "autoLowCube":autoLowCube,
+            "autoMidCube":autoMidCube,
+            "autoHighCube":autoHighCube,
+            "autoLowCone":autoLowCone,
+            "autoMidCone":autoMidCone,
+            "autoHighCone":autoHighCone,
+            "autoChargeStation":autoChargeStation,
+            "teleopLowCube":teleopLowCube,
+            "teleopMidCube":teleopMidCube,
+            "teleopHighCube":teleopHighCube,
+            "teleopLowCone":teleopLowCone,
+            "teleopMidCone":teleopMidCone,
+            "teleopHighCone":teleopHighCone,
+            "teleopChargeStation":teleopChargeStation
         ], merge: true) { error in
             if error == nil {
                 
@@ -219,5 +231,155 @@ final class MBRTeamViewModel: ObservableObject {
     
     func deleteData() {
         
+    }
+    
+    func getAverageScore(teamNumber: String, alliance: String, team: Int) {
+        
+        if (teamNumber.isEmpty || teamNumber == "") {
+            if alliance == "Blue" {
+                if team == 1 {
+                    self.blueAlliance1Avg = 0.00
+                } else if team == 2 {
+                    self.blueAlliance2Avg = 0.00
+                } else {
+                    self.blueAlliance3Avg = 0.00
+                }
+            } else if alliance == "Red" {
+                if team == 1 {
+                    self.redAlliance1Avg = 0.00
+                } else if team == 2 {
+                    self.redAlliance2Avg = 0.00
+                } else {
+                    self.redAlliance3Avg = 0.00
+                }
+            } else {
+                self.teamScore = 0.00
+            }
+            return
+        }
+        
+        if FirebaseApp.app() == nil {
+                  FirebaseApp.configure()
+              }
+        let db = Firestore.firestore()
+        
+        let docRef = db.collection("MontereyBayRegional").document(teamNumber).collection("Matches")
+        print("Team: \(teamNumber)")
+        docRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                var scores: [Int] = []
+                for document in querySnapshot!.documents {
+                    
+                    //Autonomous
+                    let autoLowCube = document.get("autoLowCube") as? Int ?? 0
+                    let autoLowCone = document.get("autoLowCone") as? Int ?? 0
+                    let autoMidCube = document.get("autoMidCube") as? Int ?? 0
+                    let autoMidCone = document.get("autoMidCone") as? Int ?? 0
+                    let autoHighCube = document.get("autoHighCube") as? Int ?? 0
+                    let autoHighCone = document.get("autoHighCone") as? Int ?? 0
+                    
+                    //Teleop
+                    let teleopLowCube = document.get("teleopLowCube") as? Int ?? 0
+                    let teleopLowCone = document.get("teleopLowCone") as? Int ?? 0
+                    let teleopMidCube = document.get("teleopMidCube") as? Int ?? 0
+                    let teleopMidCone = document.get("teleopMidCone") as? Int ?? 0
+                    let teleopHighCube = document.get("teleopHighCube") as? Int ?? 0
+                    let teleopHighCone = document.get("teleopHighCone") as? Int ?? 0
+                    
+                    //Charge Station
+                    let autoChargeStation = document.get("autoChargeStation") as? String ?? "None"
+                    let teleopChargeStation = document.get("teleopChargeStation") as? String ?? "None"
+                    
+                    //Auto Score
+                    var autoScore = (autoLowCube + autoLowCone) * 3 + (autoMidCone + autoMidCube) * 4 + (autoHighCone + autoHighCube) * 6
+                    switch autoChargeStation {
+                    case "None":
+                        autoScore += 0
+                    case "Mobility":
+                        autoScore += 3
+                    case "Docked":
+                        autoScore += 8
+                    case "Docked & Engaged":
+                        autoScore += 12
+                    default:
+                        break
+                    }
+                    
+                    //Teleoperated Score
+                    var teleopScore = (teleopLowCone + teleopLowCube) * 2 + (teleopMidCone + teleopMidCube) * 3 + (teleopHighCone + teleopHighCube) * 5
+                    switch teleopChargeStation {
+                    case "None":
+                        teleopScore += 0
+                    case "Park":
+                        teleopScore += 2
+                    case "Docked":
+                        teleopScore += 6
+                    case "Docked & Engaged":
+                        teleopScore += 10
+                    default:
+                        break
+                    }
+                    
+                    scores.append(teleopScore + autoScore)
+                    print(scores)
+                }
+                
+                //Get Score average
+                var sum = 0
+                for i in scores {
+                    sum += i
+                }
+                let average = Double(sum) / Double(scores.count)
+                print(average)
+                if alliance == "Blue" {
+                    if team == 1 {
+                        self.blueAlliance1Avg = average
+                    } else if team == 2 {
+                        self.blueAlliance2Avg = average
+                    } else {
+                        self.blueAlliance3Avg = average
+                    }
+                } else if alliance == "Red" {
+                    if team == 1 {
+                        self.redAlliance1Avg = average
+                    } else if team == 2 {
+                        self.redAlliance2Avg = average
+                    } else {
+                        self.redAlliance3Avg = average
+                    }
+                } else {
+                    self.teamScore = average
+                }
+                
+                self.predictWinner()
+                self.getRedScore()
+                self.getBlueScore()
+                
+            }
+        }
+    }
+    
+    func predictWinner() -> Void{
+        let blueAllianceScore = self.blueAlliance1Avg + self.blueAlliance2Avg + self.blueAlliance3Avg
+        let redAllianceScore = self.redAlliance1Avg + self.redAlliance2Avg + self.redAlliance3Avg
+        
+        if blueAllianceScore > redAllianceScore {
+            self.winner = 1
+        } else if redAllianceScore > blueAllianceScore {
+            self.winner = 2
+        } else {
+            self.winner = 3
+        }
+    }
+    
+    func getRedScore() -> Void {
+        self.redScore = self.redAlliance1Avg + self.redAlliance2Avg + self.redAlliance3Avg
+    }
+    
+    func getBlueScore() -> Void {
+        self.blueScore = self.blueAlliance1Avg + self.blueAlliance2Avg + self.blueAlliance3Avg
     }
 }

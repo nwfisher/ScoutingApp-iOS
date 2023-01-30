@@ -8,12 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A00C0702974CF2C0022982E /* mbrTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C06F2974CF2C0022982E /* mbrTeam.swift */; };
-		5A00C0722975EA060022982E /* teamMatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C0712975EA060022982E /* teamMatchesView.swift */; };
 		5A00C0742975EADE0022982E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C0732975EADE0022982E /* Match.swift */; };
-		5A00C07629760B160022982E /* detailedMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07529760B160022982E /* detailedMatchView.swift */; };
-		5A00C078297613EE0022982E /* AutoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C077297613EE0022982E /* AutoView.swift */; };
-		5A00C07A297614DA0022982E /* teleopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C079297614DA0022982E /* teleopView.swift */; };
-		5A00C07C2976184A0022982E /* endgameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07B2976184A0022982E /* endgameView.swift */; };
 		5A00C07E297658300022982E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07D297658300022982E /* SettingsView.swift */; };
 		5A00C080297731740022982E /* formsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07F297731740022982E /* formsViewModel.swift */; };
 		5A00C082297AFCC40022982E /* SVRTeamUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C081297AFCC40022982E /* SVRTeamUno.swift */; };
@@ -44,16 +39,14 @@
 		5A8A4BB329679C120051C128 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB229679C120051C128 /* HomeView.swift */; };
 		5A8A4BB5296889370051C128 /* MBRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB4296889370051C128 /* MBRView.swift */; };
 		5A8A4BB7296889470051C128 /* SVRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB6296889470051C128 /* SVRView.swift */; };
-		5AA83460296F1BDE00728F59 /* robotInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8345F296F1BDE00728F59 /* robotInformationView.swift */; };
-		5AA83462296F231100728F59 /* scoringLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83461296F231100728F59 /* scoringLocationsView.swift */; };
-		5AA83464296F269500728F59 /* scoringHeightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83463296F269500728F59 /* scoringHeightsView.swift */; };
-		5AA83466296F274B00728F59 /* intakingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83465296F274B00728F59 /* intakingView.swift */; };
-		5AA83468296F281000728F59 /* intakingLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83467296F281000728F59 /* intakingLocationsView.swift */; };
-		5AA8346A296F28EE00728F59 /* cycleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA83469296F28EE00728F59 /* cycleTimeView.swift */; };
 		5AB0588D297F137F00B4D1AB /* infoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0588C297F137F00B4D1AB /* infoForm.swift */; };
 		5AB0588F297F177E00B4D1AB /* autoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0588E297F177E00B4D1AB /* autoForm.swift */; };
 		5AB05893297F456D00B4D1AB /* teleopForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB05892297F456D00B4D1AB /* teleopForm.swift */; };
-		5AD5B3CD2970806A00194055 /* fieldScoutingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5B3CC2970806A00194055 /* fieldScoutingForm.swift */; };
+		5AFE62912985755200AFFB44 /* robotInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE62902985755200AFFB44 /* robotInfo.swift */; };
+		5AFE6293298576CA00AFFB44 /* scoringHeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE6292298576CA00AFFB44 /* scoringHeights.swift */; };
+		5AFE62952985778400AFFB44 /* gamePieces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE62942985778400AFFB44 /* gamePieces.swift */; };
+		5AFE62972985782A00AFFB44 /* intakeLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE62962985782A00AFFB44 /* intakeLocations.swift */; };
+		5AFE6299298578B300AFFB44 /* cycleTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE6298298578B300AFFB44 /* cycleTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,12 +68,7 @@
 
 /* Begin PBXFileReference section */
 		5A00C06F2974CF2C0022982E /* mbrTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mbrTeam.swift; sourceTree = "<group>"; };
-		5A00C0712975EA060022982E /* teamMatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamMatchesView.swift; sourceTree = "<group>"; };
 		5A00C0732975EADE0022982E /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		5A00C07529760B160022982E /* detailedMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailedMatchView.swift; sourceTree = "<group>"; };
-		5A00C077297613EE0022982E /* AutoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoView.swift; sourceTree = "<group>"; };
-		5A00C079297614DA0022982E /* teleopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teleopView.swift; sourceTree = "<group>"; };
-		5A00C07B2976184A0022982E /* endgameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endgameView.swift; sourceTree = "<group>"; };
 		5A00C07D297658300022982E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5A00C07F297731740022982E /* formsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = formsViewModel.swift; sourceTree = "<group>"; };
 		5A00C081297AFCC40022982E /* SVRTeamUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRTeamUno.swift; sourceTree = "<group>"; };
@@ -94,15 +82,6 @@
 		5A38A45B2966012100FE2C56 /* FRCScoutingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppUITests.swift; sourceTree = "<group>"; };
 		5A38A45D2966012100FE2C56 /* FRCScoutingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5A38A46D2966029900FE2C56 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
-		5A5E463B297C4E2F00ADAD77 /* SVRteleopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRteleopView.swift; sourceTree = "<group>"; };
-		5A5E463C297C4E2F00ADAD77 /* SVRcycleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRcycleTimeView.swift; sourceTree = "<group>"; };
-		5A5E463D297C4E2F00ADAD77 /* SVRendgameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRendgameView.swift; sourceTree = "<group>"; };
-		5A5E463E297C4E2F00ADAD77 /* SVRscoringHeightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRscoringHeightsView.swift; sourceTree = "<group>"; };
-		5A5E463F297C4E2F00ADAD77 /* SVRscoringLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRscoringLocationsView.swift; sourceTree = "<group>"; };
-		5A5E4640297C4E2F00ADAD77 /* SVRintakingLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRintakingLocationsView.swift; sourceTree = "<group>"; };
-		5A5E4641297C4E2F00ADAD77 /* SVRAutoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRAutoView.swift; sourceTree = "<group>"; };
-		5A5E4642297C4E2F00ADAD77 /* SVRintakingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRintakingView.swift; sourceTree = "<group>"; };
-		5A5E4643297C4E2F00ADAD77 /* SVRrobotInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRrobotInformationView.swift; sourceTree = "<group>"; };
 		5A749167296DEA350012A632 /* basicMBRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = basicMBRTeam.swift; sourceTree = "<group>"; };
 		5A74916B296DF3EC0012A632 /* MBRTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRTeamViewModel.swift; sourceTree = "<group>"; };
 		5A74916D296E12590012A632 /* MBRTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MBRTeamView.swift; path = "/Users/nicolasfisher/Documents/Personal Projects/FRCScoutingApp/FRCScoutingApp/View/MBRTeamView.swift"; sourceTree = "<absolute>"; };
@@ -115,16 +94,14 @@
 		5A8A4BB229679C120051C128 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5A8A4BB4296889370051C128 /* MBRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRView.swift; sourceTree = "<group>"; };
 		5A8A4BB6296889470051C128 /* SVRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRView.swift; sourceTree = "<group>"; };
-		5AA8345F296F1BDE00728F59 /* robotInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = robotInformationView.swift; path = "/Users/nicolasfisher/Documents/Personal Projects/FRCScoutingApp/FRCScoutingApp/MBRSupportingViews/robotInformationView.swift"; sourceTree = "<absolute>"; };
-		5AA83461296F231100728F59 /* scoringLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoringLocationsView.swift; sourceTree = "<group>"; };
-		5AA83463296F269500728F59 /* scoringHeightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoringHeightsView.swift; sourceTree = "<group>"; };
-		5AA83465296F274B00728F59 /* intakingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intakingView.swift; sourceTree = "<group>"; };
-		5AA83467296F281000728F59 /* intakingLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intakingLocationsView.swift; sourceTree = "<group>"; };
-		5AA83469296F28EE00728F59 /* cycleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cycleTimeView.swift; sourceTree = "<group>"; };
 		5AB0588C297F137F00B4D1AB /* infoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoForm.swift; sourceTree = "<group>"; };
 		5AB0588E297F177E00B4D1AB /* autoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = autoForm.swift; sourceTree = "<group>"; };
 		5AB05892297F456D00B4D1AB /* teleopForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teleopForm.swift; sourceTree = "<group>"; };
-		5AD5B3CC2970806A00194055 /* fieldScoutingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fieldScoutingForm.swift; sourceTree = "<group>"; };
+		5AFE62902985755200AFFB44 /* robotInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = robotInfo.swift; sourceTree = "<group>"; };
+		5AFE6292298576CA00AFFB44 /* scoringHeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoringHeights.swift; sourceTree = "<group>"; };
+		5AFE62942985778400AFFB44 /* gamePieces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamePieces.swift; sourceTree = "<group>"; };
+		5AFE62962985782A00AFFB44 /* intakeLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intakeLocations.swift; sourceTree = "<group>"; };
+		5AFE6298298578B300AFFB44 /* cycleTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cycleTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,23 +137,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5A00C083297B42750022982E /* SVRSupportingViews */ = {
-			isa = PBXGroup;
-			children = (
-				5A5E4641297C4E2F00ADAD77 /* SVRAutoView.swift */,
-				5A5E463C297C4E2F00ADAD77 /* SVRcycleTimeView.swift */,
-				5A5E463D297C4E2F00ADAD77 /* SVRendgameView.swift */,
-				5A5E4640297C4E2F00ADAD77 /* SVRintakingLocationsView.swift */,
-				5A5E4642297C4E2F00ADAD77 /* SVRintakingView.swift */,
-				5A5E4643297C4E2F00ADAD77 /* SVRrobotInformationView.swift */,
-				5A5E463E297C4E2F00ADAD77 /* SVRscoringHeightsView.swift */,
-				5A5E463F297C4E2F00ADAD77 /* SVRscoringLocationsView.swift */,
-				5A5E463B297C4E2F00ADAD77 /* SVRteleopView.swift */,
-			);
-			name = SVRSupportingViews;
-			path = "/Users/nicolasfisher/Documents/Personal Projects/FRCScoutingApp/FRCScoutingApp/SVRSupportingViews";
-			sourceTree = "<absolute>";
-		};
 		5A38A4342966012000FE2C56 = {
 			isa = PBXGroup;
 			children = (
@@ -203,8 +163,7 @@
 				5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */,
 				5A38A4442966012100FE2C56 /* Assets.xcassets */,
 				5A8A4BAE296796F20051C128 /* GoogleService-Info.plist */,
-				5A00C083297B42750022982E /* SVRSupportingViews */,
-				5AA8345E296F1BC200728F59 /* MBRSupportingViews */,
+				5AFE628D298574C700AFFB44 /* Supporting Views */,
 				5A38A46C296601C300FE2C56 /* View */,
 				5A38A46B296601AC00FE2C56 /* ViewModel */,
 				5A38A46A296601A700FE2C56 /* Model */,
@@ -271,31 +230,24 @@
 				5A74916D296E12590012A632 /* MBRTeamView.swift */,
 				5A749173296E2A6D0012A632 /* SVRTeamView.swift */,
 				5A749175296E53680012A632 /* pitScoutingForm.swift */,
-				5AD5B3CC2970806A00194055 /* fieldScoutingForm.swift */,
 				5AB0588C297F137F00B4D1AB /* infoForm.swift */,
 				5AB0588E297F177E00B4D1AB /* autoForm.swift */,
 				5AB05892297F456D00B4D1AB /* teleopForm.swift */,
-				5A00C0712975EA060022982E /* teamMatchesView.swift */,
-				5A00C07529760B160022982E /* detailedMatchView.swift */,
 				5A00C07D297658300022982E /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		5AA8345E296F1BC200728F59 /* MBRSupportingViews */ = {
+		5AFE628D298574C700AFFB44 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
-				5AA8345F296F1BDE00728F59 /* robotInformationView.swift */,
-				5AA83461296F231100728F59 /* scoringLocationsView.swift */,
-				5AA83463296F269500728F59 /* scoringHeightsView.swift */,
-				5AA83465296F274B00728F59 /* intakingView.swift */,
-				5AA83467296F281000728F59 /* intakingLocationsView.swift */,
-				5AA83469296F28EE00728F59 /* cycleTimeView.swift */,
-				5A00C07B2976184A0022982E /* endgameView.swift */,
-				5A00C077297613EE0022982E /* AutoView.swift */,
-				5A00C079297614DA0022982E /* teleopView.swift */,
+				5AFE62902985755200AFFB44 /* robotInfo.swift */,
+				5AFE6292298576CA00AFFB44 /* scoringHeights.swift */,
+				5AFE62942985778400AFFB44 /* gamePieces.swift */,
+				5AFE62962985782A00AFFB44 /* intakeLocations.swift */,
+				5AFE6298298578B300AFFB44 /* cycleTime.swift */,
 			);
-			path = MBRSupportingViews;
+			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,38 +396,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A749168296DEA350012A632 /* basicMBRTeam.swift in Sources */,
-				5A00C07A297614DA0022982E /* teleopView.swift in Sources */,
-				5A00C0722975EA060022982E /* teamMatchesView.swift in Sources */,
-				5A00C078297613EE0022982E /* AutoView.swift in Sources */,
 				5AB0588D297F137F00B4D1AB /* infoForm.swift in Sources */,
-				5AA83468296F281000728F59 /* intakingLocationsView.swift in Sources */,
-				5AA83462296F231100728F59 /* scoringLocationsView.swift in Sources */,
-				5AA8346A296F28EE00728F59 /* cycleTimeView.swift in Sources */,
+				5AFE62912985755200AFFB44 /* robotInfo.swift in Sources */,
 				5A74916E296E12590012A632 /* MBRTeamView.swift in Sources */,
 				5A38A46E2966029900FE2C56 /* HomepageView.swift in Sources */,
 				5A00C0742975EADE0022982E /* Match.swift in Sources */,
+				5AFE62952985778400AFFB44 /* gamePieces.swift in Sources */,
 				5AB0588F297F177E00B4D1AB /* autoForm.swift in Sources */,
 				5A749176296E53680012A632 /* pitScoutingForm.swift in Sources */,
 				5A74916C296DF3EC0012A632 /* MBRTeamViewModel.swift in Sources */,
 				5A8A4BB7296889470051C128 /* SVRView.swift in Sources */,
+				5AFE6299298578B300AFFB44 /* cycleTime.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
 				5A00C0702974CF2C0022982E /* mbrTeam.swift in Sources */,
 				5A00C080297731740022982E /* formsViewModel.swift in Sources */,
 				5A749172296E29D50012A632 /* SVRTeamViewModel.swift in Sources */,
-				5AD5B3CD2970806A00194055 /* fieldScoutingForm.swift in Sources */,
 				5A749174296E2A6D0012A632 /* SVRTeamView.swift in Sources */,
-				5AA83466296F274B00728F59 /* intakingView.swift in Sources */,
 				5A8A4BB329679C120051C128 /* HomeView.swift in Sources */,
+				5AFE6293298576CA00AFFB44 /* scoringHeights.swift in Sources */,
 				5A8A4BB5296889370051C128 /* MBRView.swift in Sources */,
+				5AFE62972985782A00AFFB44 /* intakeLocations.swift in Sources */,
 				5A00C07E297658300022982E /* SettingsView.swift in Sources */,
 				5A749170296E29C20012A632 /* SVRTeam.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
 				5A00C082297AFCC40022982E /* SVRTeamUno.swift in Sources */,
 				5AB05893297F456D00B4D1AB /* teleopForm.swift in Sources */,
-				5AA83460296F1BDE00728F59 /* robotInformationView.swift in Sources */,
-				5A00C07629760B160022982E /* detailedMatchView.swift in Sources */,
-				5A00C07C2976184A0022982E /* endgameView.swift in Sources */,
-				5AA83464296F269500728F59 /* scoringHeightsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
