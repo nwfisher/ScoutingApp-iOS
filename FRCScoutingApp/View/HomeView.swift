@@ -28,6 +28,8 @@ struct HomeView: View {
     @State var searchText = ""
     @ObservedObject var vm = ViewModel()
     
+    @FocusState private var nameIsFocused: Bool
+    
     @State private var blueAlliance1 = ""
     @State private var redAlliance1 = ""
     @State private var blueAlliance2 = ""
@@ -48,18 +50,30 @@ struct HomeView: View {
                     Section(header: Text("Stats and Predictions").font(.headline).bold()) {
                         HStack {
                             TextField("Blue Alliance Team", text: $blueAlliance1)
+                                .keyboardType(.numberPad)
+                                .focused($nameIsFocused)
                             Divider()
                             TextField("Red Alliance Team", text: $redAlliance1)
+                                .keyboardType(.numberPad)
+                                .focused($nameIsFocused)
                         }.frame(maxWidth: .infinity, alignment: .center)
                         HStack {
                             TextField("Blue Alliance Team", text: $blueAlliance2)
+                                .keyboardType(.numberPad)
+                                .focused($nameIsFocused)
                             Divider()
                             TextField("Red Alliance Team", text: $redAlliance2)
+                                .keyboardType(.numberPad)
+                                .focused($nameIsFocused)
                         }.frame(maxWidth: .infinity, alignment: .center)
                         HStack {
                             TextField("Blue Alliance Team", text: $blueAlliance3)
+                                .keyboardType(.numberPad)
+                                .focused($nameIsFocused)
                             Divider()
                             TextField("Red Alliance Team", text: $redAlliance3)
+                                .keyboardType(.numberPad)
+                                .focused($nameIsFocused)
                         }.frame(maxWidth: .infinity, alignment: .center)
                         
                         HStack {
@@ -75,6 +89,7 @@ struct HomeView: View {
                                 print(vm.winner)
                                 print(vm.blueScore)
                                 print(vm.redScore)
+                                nameIsFocused = false
                             }, label: {
                                 Text("Predict")
                                     .frame(maxWidth: .infinity)
@@ -83,6 +98,7 @@ struct HomeView: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(8)
                                     .bold()
+                                
                             })
                         }
                         
