@@ -10,14 +10,10 @@ import SwiftUI
 struct pitScoutingForm: View {
     @State private var showingAlert = false
     @State private var noTeam = false
-    @State private var noEvent = false
-    let MBRvm = MBRTeamViewModel()
-    let SVRvm = SVRTeamViewModel()
+    let MBRvm = ViewModel()
     let vm = formsViewModel()
-    var Events = ["Monterey Bay Regional", "Silicon Valley Regional", "Select Option"]
     
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedEvent = "Select Option"
     @State private var teamNumber = ""
     @State private var drivetrainType = ""
     @State private var motorType = ""
@@ -37,15 +33,6 @@ struct pitScoutingForm: View {
         NavigationStack {
             VStack {
                 Form {
-                    Section(header: Text("Event")) {
-                        Picker("Please choose an Event", selection: $selectedEvent) {
-                            ForEach(Events, id: \.self) {
-                                Text($0)
-                            }
-                            
-                        }
-                        
-                    }
                     Section(header: Text("Team Information")) {
                         TextField("Team Number", text: $teamNumber)
                     }
@@ -94,16 +81,8 @@ struct pitScoutingForm: View {
                         TextField("Cycle Time", text: $cycleTimes)
                     }
                         Button(action: {
-                            //Very dumv long else if statement
-                                if selectedEvent == "Monterey Bay Regional" {
                                     MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
                                     showingAlert.toggle()
-                                } else if selectedEvent == "Silicon Valley Regional" {
-                                    SVRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                                    showingAlert.toggle()
-                                } else {
-                                    noEvent.toggle() //No point in this line because of check above
-                                }
                         }, label: {
                             Text("Submit")
                                 .frame(maxWidth: .infinity,  alignment: .center)
@@ -117,18 +96,11 @@ struct pitScoutingForm: View {
                                       dismiss()
                                   }
                               }
-                        .alert("Team does not exist at event", isPresented: $noTeam) {
-                                  Button("OK", role: .cancel) {
-                                      
-                                  }
-                              }
-                        .alert("Select an Event", isPresented: $noEvent) {
-                                  Button("OK", role: .cancel) {
-                                      
-                                  }
-                              }
-
-                    
+                        .alert("Team does not exist", isPresented: $noTeam) {
+                            Button("OK", role: .cancel) {
+                                
+                            }
+                        }
                 }
             }
             .navigationTitle("Pit Scouting Form")

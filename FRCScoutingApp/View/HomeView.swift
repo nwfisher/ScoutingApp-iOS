@@ -10,9 +10,9 @@ import Charts
 
 struct Team: Identifiable {
     let id = UUID()
-    let name: String
-    let alliance: String
-    let points: Int
+    let points: Double
+    let type: String
+    let team: String
 }
 
 struct scoringRange: Identifiable {
@@ -26,7 +26,7 @@ struct HomeView: View {
     
     @State var temp = false
     @State var searchText = ""
-    @ObservedObject var vm = MBRTeamViewModel()
+    @ObservedObject var vm = ViewModel()
     
     @State private var blueAlliance1 = ""
     @State private var redAlliance1 = ""
@@ -37,44 +37,12 @@ struct HomeView: View {
     var body: some View {
       
         VStack {
-        /*    ZStack {
-                Color(hex: "#2c9c00").ignoresSafeArea()
-                
-                HStack{
-                    //Profile Picture Image
-                    Image( "6623BA4C-73C7-444C-AA45-2B402A36904A_1_105_c")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 75.0)
-                        .clipShape(Circle())
-                        .padding(.leading)
-                    
-                    //Welcome User
-                    Text("Welcome, Nick!")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                        .padding(0.0)
-                        .foregroundColor(Color(hex: "#FDDA24"))
-                        
-                    
-                    
-                }
-                
-            }
-            //Set frame height of Colored Bar
-            //.frame(height: 100)*/
-            
             //Create list of events
             NavigationStack {
                 List {
-                    Section(header: Text("Team Lists").font(.headline).bold()) {
+                    Section(header: Text("Team List").font(.headline).bold()) {
                         NavigationLink(destination: MBRView()) {
                             Text("Monterey Bay Regional")
-                        }
-                        NavigationLink(destination: SVRView()) {
-                            Text("Silicon Valley Regional")
                         }
                     }
                     Section(header: Text("Stats and Predictions").font(.headline).bold()) {
@@ -96,31 +64,13 @@ struct HomeView: View {
                         
                         HStack {
                             Button(action: {
-                                
-                                
                                     vm.getAverageScore(teamNumber: blueAlliance1, alliance: "Blue", team: 1)
-                                
-                                
                                     vm.getAverageScore(teamNumber: redAlliance1, alliance: "Red", team: 1)
-                                
-                                
                                     vm.getAverageScore(teamNumber: blueAlliance2, alliance: "Blue", team: 2)
-                                
-                                
                                     vm.getAverageScore(teamNumber: redAlliance2, alliance: "Red", team: 2)
-                                
-                               
                                     vm.getAverageScore(teamNumber: blueAlliance3, alliance: "Blue", team: 3)
-                      
-            
-                                    vm.getAverageScore(teamNumber: redAlliance1, alliance: "Red", team: 3)
-                               
-                                
-                                
-                               // vm.predictWinner()
-                                //vm.getRedScore()
-                                //vm.getBlueScore()
-                
+                                    vm.getAverageScore(teamNumber: redAlliance3, alliance: "Red", team: 3)
+        
                                 print("View stuff")
                                 print(vm.winner)
                                 print(vm.blueScore)
@@ -162,40 +112,60 @@ struct HomeView: View {
                         
                         
                     }
-                    /*Section(header: Text("Advanced Statistics")) {
-                        HStack {
-                            Text("     ")
-                            Spacer()
-                            Divider()
-                            blueAlliance1.isEmpty ?  Text("0000") :  Text(blueAlliance1)
-                            Spacer()
-                            Divider()
-                            blueAlliance2.isEmpty ?  Text("0000") :  Text(blueAlliance2)
-                            Spacer()
-                            Group {
-                                Divider()
-                                blueAlliance3.isEmpty ?  Text("0000") :  Text(blueAlliance3)
-                                Spacer()
-                            }
-                        }*/
                     
                     var predictedScoring: [Team] = [
-                        Team(name: blueAlliance1, alliance: "Blue", points: Int(round(vm.blueAlliance1Avg))),
-                        Team(name: blueAlliance2, alliance: "Blue", points: Int(round(vm.blueAlliance2Avg))),
-                        Team(name: blueAlliance3, alliance: "Blue", points: Int(round(vm.blueAlliance3Avg))),
-                        Team(name: redAlliance1, alliance: "Red", points: Int(round(vm.redAlliance1Avg))),
-                        Team(name: redAlliance2, alliance: "Red", points: Int(round(vm.redAlliance2Avg))),
-                        Team(name: redAlliance3, alliance: "Red", points: Int(round(vm.redAlliance3Avg)))
+                        Team(points: vm.blueAlliance1CubeAvg, type: "Cube", team: blueAlliance1),
+                        Team(points: vm.blueAlliance2CubeAvg, type: "Cube", team: blueAlliance2),
+                        Team(points: vm.blueAlliance3CubeAvg, type: "Cube", team: blueAlliance3),
+                        Team(points: vm.blueAlliance1ConeAvg, type: "Cone", team: blueAlliance1),
+                        Team(points: vm.blueAlliance2ConeAvg, type: "Cone", team: blueAlliance2),
+                        Team(points: vm.blueAlliance3ConeAvg, type: "Cone", team: blueAlliance3),
+                        Team(points: vm.blueAlliance1CSAvg, type: "Charge Station", team: blueAlliance1),
+                        Team(points: vm.blueAlliance2CSAvg, type: "Charge Station", team: blueAlliance2),
+                        Team(points: vm.blueAlliance3CSAvg, type: "Charge Station", team: blueAlliance3),
+                        Team(points: vm.redAlliance1CubeAvg, type: "Cube", team: redAlliance1),
+                        Team(points: vm.redAlliance2CubeAvg, type: "Cube", team: redAlliance2),
+                        Team(points: vm.redAlliance3CubeAvg, type: "Cube", team: redAlliance3),
+                        Team(points: vm.redAlliance1ConeAvg, type: "Cone", team: redAlliance1),
+                        Team(points: vm.redAlliance2ConeAvg, type: "Cone", team: redAlliance2),
+                        Team(points: vm.redAlliance3ConeAvg, type: "Cone", team: redAlliance3),
+                        Team(points: vm.redAlliance1CSAvg, type: "Charge Station", team: redAlliance1),
+                        Team(points: vm.redAlliance2CSAvg, type: "Charge Station", team: redAlliance2),
+                        Team(points: vm.redAlliance3CSAvg, type: "Charge Station", team: redAlliance3),
                     ]
                     
                     Chart {
                         ForEach(predictedScoring) { scoring in
                             BarMark(
-                                x: .value("Team", scoring.name),
+                                x: .value("Team", scoring.team),
                                 y: .value("Score", scoring.points)
-                            ).foregroundStyle(by: .value("Alliance Color", scoring.alliance))
+                            ).foregroundStyle(by: .value("Game Piece", scoring.type))
                         }
-                    }.chartForegroundStyleScale(["Blue":.blue, "Red":.red])
+                    }
+                    .chartForegroundStyleScale([
+                        "Cube": .purple, "Cone": .yellow, "Charge Station": Color(hex: "2c9c00")
+                    ])
+                    .frame(height: 250)
+                    var scoring: [scoringRange] = [
+                        scoringRange(name: blueAlliance1, alliance: "Blue", highestScore: vm.blueAlliance1High, lowestScore: vm.blueAlliance1Low),
+                        scoringRange(name: blueAlliance2, alliance: "Blue", highestScore: vm.blueAlliance2High, lowestScore: vm.blueAlliance2Low),
+                        scoringRange(name: blueAlliance3, alliance: "Blue", highestScore: vm.blueAlliance3High, lowestScore: vm.blueAlliance3Low),
+                        scoringRange(name: redAlliance1, alliance: "Red", highestScore: vm.redAlliance1High, lowestScore: vm.redAlliance1Low),
+                        scoringRange(name: redAlliance2, alliance: "Red", highestScore: vm.redAlliance2High, lowestScore: vm.redAlliance2Low),
+                        scoringRange(name: redAlliance3, alliance: "Red", highestScore: vm.redAlliance3High, lowestScore: vm.redAlliance3Low)
+                    ]
+                    Spacer()
+                    Chart {
+                        ForEach(scoring) { team in
+                            RuleMark(
+                                xStart: .value("Lowest Score", team.lowestScore),
+                                xEnd: .value("Highest Score", team.highestScore),
+                                y: .value("Team", team.name)
+                            ).foregroundStyle(by: .value("Alliance", team.alliance))
+                        }
+                    }.chartForegroundStyleScale([
+                        "Blue": .blue, "Red": .red
+                    ])
                 }
                 .navigationTitle("Events")
                 

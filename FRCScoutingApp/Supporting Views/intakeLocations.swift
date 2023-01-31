@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct intakeLocations: View {
-    let team: MBRTeamUno
+    let team: completeTeam
         var body: some View {
             VStack(alignment: .leading) {
                 let i: String = String(team.team_number)

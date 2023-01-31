@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MBRView: View {
     
-    @StateObject private var vm = MBRTeamViewModel()
+    @StateObject private var vm = ViewModel()
     @State private var searchText = ""
     
     var body: some View {

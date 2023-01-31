@@ -9,7 +9,7 @@ import SwiftUI
 
 struct cycleTime: View {
    
-    let team: MBRTeamUno
+    let team: completeTeam
     
     var body: some View {
         VStack(alignment: .leading) {

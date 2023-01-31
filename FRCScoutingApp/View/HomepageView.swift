@@ -23,18 +23,6 @@ struct HomepageView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 75.0)
-                        .padding(.leading)
-                
-                    Text("Welcome!")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                        .padding(0.0)
-                        .foregroundColor(Color(hex: "#FDDA24"))
-                        
-                    
-                    
                 }
                 
             }

@@ -12,7 +12,6 @@ struct autoForm: View {
     @Environment(\.dismiss) private var dismiss
     @State private var sheetIsPresented = false
     
-    let selectedEvent: String
     let selectedMatchType: String
     let matchNumber: String
     let teamNumber: String
@@ -212,7 +211,7 @@ struct autoForm: View {
                         }).onTapGesture {
                             dismiss()
                         }
-                        NavigationLink(destination: teleopForm(event: selectedEvent, matchType: selectedMatchType, matchNumber: matchNumber, teamNumber: teamNumber, autoLowCube: lowCube, autoMidCube: midCube, autoHighCube: highCube, autoLowCone: lowCone, autoMidCone: midCone, autoHighCone: highCone, autoChargeStation: autoChargeStation)) {
+                        NavigationLink(destination: teleopForm(matchType: selectedMatchType, matchNumber: matchNumber, teamNumber: teamNumber, autoLowCube: lowCube, autoMidCube: midCube, autoHighCube: highCube, autoLowCone: lowCone, autoMidCone: midCone, autoHighCone: highCone, autoChargeStation: autoChargeStation)) {
                             Text("Next")
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 75.0)
@@ -225,7 +224,6 @@ struct autoForm: View {
                     }
                 
                     Section(header: Text("Match Info")) {
-                        Text("Event: \(selectedEvent)")
                         Text("Match Type: \(selectedMatchType)")
                         Text("Team Number: \(teamNumber)")
                         Text("Match Number: \(matchNumber)")
@@ -240,6 +238,6 @@ struct autoForm: View {
 
 struct autoForm_Previews: PreviewProvider {
     static var previews: some View {
-        autoForm(selectedEvent: "Houston World Championship", selectedMatchType: "Qualifiers", matchNumber: "13", teamNumber: "4255")
+        autoForm(selectedMatchType: "Qualifiers", matchNumber: "13", teamNumber: "4255")
     }
 }

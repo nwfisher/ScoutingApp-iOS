@@ -8,20 +8,63 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
-final class MBRTeamViewModel: ObservableObject {
+final class ViewModel: ObservableObject {
     
     //Uncanny amount of published variables because I suck at figuring out completion handlers
-    @Published var MBRTeams: [MBRTeam] = []
-    @Published var CalledTeam: MBRTeamUno?
+    @Published var MBRTeams: [basicTeam] = []
+    @Published var CalledTeam: completeTeam?
     @Published var Matches: [Match] = []
     @Published var teamScore = 0.00
     
+    //1st blue team stuff
     @Published var blueAlliance1Avg = 0.00
+    @Published var blueAlliance1ConeAvg = 0.00
+    @Published var blueAlliance1CubeAvg = 0.00
+    @Published var blueAlliance1CSAvg = 0.00
+    @Published var blueAlliance1Low = 0
+    @Published var blueAlliance1High = 0
+    
+    //2nd blue team stuff
     @Published var blueAlliance2Avg = 0.00
+    @Published var blueAlliance2ConeAvg = 0.00
+    @Published var blueAlliance2CubeAvg = 0.00
+    @Published var blueAlliance2CSAvg = 0.00
+    @Published var blueAlliance2Low = 0
+    @Published var blueAlliance2High = 0
+    
+    
+    //3rd blue team stuff
     @Published var blueAlliance3Avg = 0.00
+    @Published var blueAlliance3ConeAvg = 0.00
+    @Published var blueAlliance3CubeAvg = 0.00
+    @Published var blueAlliance3CSAvg = 0.00
+    @Published var blueAlliance3Low = 0
+    @Published var blueAlliance3High = 0
+    
+    
+    //1st red team stuff
     @Published var redAlliance1Avg = 0.00
+    @Published var redAlliance1ConeAvg = 0.00
+    @Published var redAlliance1CubeAvg = 0.00
+    @Published var redAlliance1CSAvg = 0.00
+    @Published var redAlliance1Low = 0
+    @Published var redAlliance1High = 0
+    
+    //2nd red team stuff
     @Published var redAlliance2Avg = 0.00
+    @Published var redAlliance2ConeAvg = 0.00
+    @Published var redAlliance2CubeAvg = 0.00
+    @Published var redAlliance2CSAvg = 0.00
+    @Published var redAlliance2Low = 0
+    @Published var redAlliance2High = 0
+    
+    //3rd red team stuff
     @Published var redAlliance3Avg = 0.00
+    @Published var redAlliance3ConeAvg = 0.00
+    @Published var redAlliance3CubeAvg = 0.00
+    @Published var redAlliance3CSAvg = 0.00
+    @Published var redAlliance3Low = 0
+    @Published var redAlliance3High = 0
     
     @Published var winner = 3
     @Published var redScore = 0.00
@@ -44,7 +87,7 @@ final class MBRTeamViewModel: ObservableObject {
                                 JSONDecoder().keyDecodingStrategy = .convertFromSnakeCase
                                 
                                 if let data = data,
-                                let teams = try? decoder.decode ([MBRTeam].self, from: data) {
+                                let teams = try? decoder.decode ([basicTeam].self, from: data) {
                                 
                                     self?.MBRTeams = teams
                                 } else {
@@ -154,7 +197,7 @@ final class MBRTeamViewModel: ObservableObject {
         let db = Firestore.firestore()
     
         let docRef = db.collection("MontereyBayRegional").document(String(teamNumber))
-        docRef.getDocument(as: MBRTeamUno.self) { result in
+        docRef.getDocument(as: completeTeam.self) { result in
             // The Result type encapsulates deserialization errors or
             // successful deserialization, and can be handled as follows:
             //
@@ -270,6 +313,9 @@ final class MBRTeamViewModel: ObservableObject {
                 print("Error getting documents: \(err)")
             } else {
                 
+                var conesScore: [Int] = []
+                var cubesScore: [Int] = []
+                var chargeScore: [Int] = []
                 var scores: [Int] = []
                 for document in querySnapshot!.documents {
                     
@@ -325,6 +371,18 @@ final class MBRTeamViewModel: ObservableObject {
                     
                     scores.append(teleopScore + autoScore)
                     print(scores)
+                    
+                    //Average cone
+                    var autoConeScore = autoLowCone * 3 + autoMidCone * 4 + autoHighCone * 6
+                    var teleopConeScore = teleopLowCone * 2 + teleopMidCone * 3 + teleopHighCone * 5
+                    
+                    conesScore.append(autoConeScore + teleopConeScore)
+                    
+                    //Average Cube
+                    var autoCubeScore = autoLowCube * 3 + autoMidCube * 4 + autoHighCube * 6
+                    var teleopCubeScore = teleopLowCube * 2 + teleopMidCube * 3 + teleopHighCube * 5
+                    
+                    cubesScore.append(autoCubeScore + teleopCubeScore)
                 }
                 
                 //Get Score average
@@ -332,23 +390,69 @@ final class MBRTeamViewModel: ObservableObject {
                 for i in scores {
                     sum += i
                 }
-                let average = Double(sum) / Double(scores.count)
+                var average = Double(sum) / Double(scores.count)
                 print(average)
+                
+                //Get cone average
+                var a = 0
+                for i in conesScore {
+                    a += i
+                }
+                var coneAverage = Double(a) / Double(conesScore.count)
+            
+                //Get cube average
+                var u = 0
+                for i in cubesScore {
+                    u += i
+                }
+                var cubeAverage = Double(a) / Double(cubesScore.count)
+                
                 if alliance == "Blue" {
                     if team == 1 {
                         self.blueAlliance1Avg = average
+                        self.blueAlliance1ConeAvg = coneAverage
+                        self.blueAlliance1CubeAvg = cubeAverage
+                        self.blueAlliance1CSAvg = average - (cubeAverage + coneAverage)
+                        self.blueAlliance1Low = scores.min() ?? 0
+                        self.blueAlliance1High = scores.max() ?? 0
                     } else if team == 2 {
                         self.blueAlliance2Avg = average
+                        self.blueAlliance2ConeAvg = coneAverage
+                        self.blueAlliance2CubeAvg = cubeAverage
+                        self.blueAlliance2CSAvg = average - (cubeAverage + coneAverage)
+                        self.blueAlliance2Low = scores.min() ?? 0
+                        self.blueAlliance2High = scores.max() ?? 0
                     } else {
                         self.blueAlliance3Avg = average
+                        self.blueAlliance3ConeAvg = coneAverage
+                        self.blueAlliance3CubeAvg = cubeAverage
+                        self.blueAlliance3CSAvg = average - (cubeAverage + coneAverage)
+                        self.blueAlliance3Low = scores.min() ?? 0
+                        self.blueAlliance3High = scores.max() ?? 0
                     }
                 } else if alliance == "Red" {
                     if team == 1 {
                         self.redAlliance1Avg = average
+                        self.redAlliance1ConeAvg = coneAverage
+                        self.redAlliance1CubeAvg = cubeAverage
+                        self.redAlliance1CSAvg = average - (cubeAverage + coneAverage)
+                        self.redAlliance1Low = scores.min() ?? 0
+                        self.redAlliance1High = scores.max() ?? 0
+                        
                     } else if team == 2 {
                         self.redAlliance2Avg = average
+                        self.redAlliance2ConeAvg = coneAverage
+                        self.redAlliance2CubeAvg = cubeAverage
+                        self.redAlliance2CSAvg = average - (cubeAverage + coneAverage)
+                        self.redAlliance2Low = scores.min() ?? 0
+                        self.redAlliance2High = scores.max() ?? 0
                     } else {
                         self.redAlliance3Avg = average
+                        self.redAlliance3ConeAvg = coneAverage
+                        self.redAlliance3CubeAvg = cubeAverage
+                        self.redAlliance3CSAvg = average - (cubeAverage + coneAverage)
+                        self.redAlliance3Low = scores.min() ?? 0
+                        self.redAlliance3High = scores.max() ?? 0
                     }
                 } else {
                     self.teamScore = average

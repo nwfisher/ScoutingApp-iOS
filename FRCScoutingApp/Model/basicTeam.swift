@@ -1,13 +1,13 @@
 //
-//  SVRTeamUno.swift
+//  MBRTeam.swift
 //  FRCScoutingApp
 //
-//  Created by Nicolas Fisher on 1/20/23.
+//  Created by Nicolas Fisher on 1/10/23.
 //
 
 import Foundation
 
-struct SVRTeamUno: Decodable {
+struct basicTeam: Decodable {
     //fetch from api
     let team_number: Int
     let nickname: String
@@ -29,17 +29,5 @@ struct SVRTeamUno: Decodable {
     enum CodingKeys: String, CodingKey {
         case team_number = "team_number"
         case nickname = "nickname"
-        case drivetrainType = "drivetrainType"
-        case motorType = "motorType"
-        case programmingLanguage = "programmingLanguage"
-        case canPlaceLow = "placeLow"
-        case canPlaceMid = "placeMid"
-        case canPlaceHigh = "placeHigh"
-        case canPickCone = "intakeCone"
-        case canPickCube = "intakeCube"
-        case canPickFallenCones = "intakeFallenCone"
-        case cycleTimes = "cycleTime"
-        case canPickFromGround = "intakeFromGround"
-        case canPickFromShelf = "intakeFromShelf"
     }
 }

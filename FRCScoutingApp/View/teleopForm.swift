@@ -15,11 +15,9 @@ struct teleopForm: View {
     @State var goingHome = false
     
     //Viewmodels
-    let mbrVM = MBRTeamViewModel()
-    let svrVM = SVRTeamViewModel()
+    let vm = ViewModel()
     
     //Match Info
-    let event: String
     let matchType: String
     let matchNumber: String
     let teamNumber: String
@@ -262,7 +260,6 @@ struct teleopForm: View {
                                 VStack(alignment: .leading) {
                                     Form {
                                         Section(header: Text("Match Info")) {
-                                            Text("Event \(event)")
                                             Text("Match Type: \(matchType)")
                                             Text("Match Number: \(matchNumber)")
                                             Text("Team Number: \(teamNumber)")
@@ -290,15 +287,8 @@ struct teleopForm: View {
                                         
                                         Section(header: Text("confirm")) {
                                             Button(action: {
-                                                if event == "Monterey Bay Regional" {
-                                                    print("works")
-                                                    mbrVM.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
-                                                } else if  event == "SiliconValleyRegional" {
-                                                    svrVM.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
-                                                } else {
-                                                    //Add safeguard later
-                                                }
-                                                reviewSheet.toggle()
+                                                    vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                    reviewSheet.toggle()
                                                 
                                             }, label: {
                                                 Text("Confirm Data")
@@ -339,6 +329,6 @@ struct teleopForm: View {
 
 struct teleopForm_Previews: PreviewProvider {
     static var previews: some View {
-        teleopForm(event: "Houston World Championship", matchType: "Qualifier", matchNumber: "69", teamNumber: "4255", autoLowCube: 0, autoMidCube: 0, autoHighCube: 0, autoLowCone: 0, autoMidCone: 0, autoHighCone: 0, teleopLowCube: 0, teleopMidCube: 0, teleopHighCube: 0, teleopLowCone: 0, teleopMidCone: 0, teleopHighCone: 0, autoChargeStation: "MOBILITY")
+        teleopForm(matchType: "Qualifier", matchNumber: "69", teamNumber: "4255", autoLowCube: 0, autoMidCube: 0, autoHighCube: 0, autoLowCone: 0, autoMidCone: 0, autoHighCone: 0, teleopLowCube: 0, teleopMidCube: 0, teleopHighCube: 0, teleopLowCone: 0, teleopMidCone: 0, teleopHighCone: 0, autoChargeStation: "MOBILITY")
     }
 }

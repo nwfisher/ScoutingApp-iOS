@@ -12,7 +12,7 @@ struct SettingsView: View {
     @State private var accessDenied = false
     @State private var resetData = false
     @State private var adminPass = ""
-    @StateObject private var vm = MBRTeamViewModel()
+    @StateObject private var vm = ViewModel()
     var body: some View {
         Text("Under construction 🚧")
         

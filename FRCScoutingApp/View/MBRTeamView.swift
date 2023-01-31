@@ -11,10 +11,10 @@ import Charts
 
 struct MBRTeamView: View {
     
-    let team: MBRTeam
-    @StateObject var vm = MBRTeamViewModel()
+    let team: basicTeam
+    @StateObject var vm = ViewModel()
     
-    let err = MBRTeamUno(team_number: 0000, nickname: "Error", drivetrainType: "Error", motorType: "Error", programmingLanguage: "Error", canPlaceLow: true, canPlaceMid: true, canPlaceHigh: false, canPickCone: true, canPickCube: true, canPickFallenCones: false, cycleTimes: "Error", canPickFromGround: true, canPickFromShelf: true)
+    let err = completeTeam(team_number: 0000, nickname: "No Info", drivetrainType: "No Info", motorType: "No Info", programmingLanguage: "No Info", canPlaceLow: true, canPlaceMid: true, canPlaceHigh: false, canPickCone: true, canPickCube: true, canPickFallenCones: false, cycleTimes: "No Info", canPickFromGround: true, canPickFromShelf: true)
     
     var body: some View {
         var trueTeam = vm.CalledTeam

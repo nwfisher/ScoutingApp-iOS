@@ -9,7 +9,7 @@ import Foundation
 
 struct formsViewModel {
     
-    let vm = MBRTeamViewModel()
+    let vm = ViewModel()
     
     func checkTeamExists(teamNumber: String) -> Bool {
         
