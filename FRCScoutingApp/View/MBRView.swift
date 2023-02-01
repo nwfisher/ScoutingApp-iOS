@@ -22,23 +22,23 @@ struct MBRView: View {
                     //Create a NavigationLink for each MBRTeam
                     ForEach(sortedTeams, id: \.team_number) { team in
                         
-                            NavigationLink(destination: MBRTeamView(team: team)) {
-                                
-                                let i = String(team.team_number)
-                                
-                                Text("**\(i)** \n\(team.nickname)")
-                            }
-                                
+                        NavigationLink(destination: MBRTeamView(team: team)) {
+                            
+                            let i = String(team.team_number)
+                            
+                            Text("**\(i)** \n\(team.nickname)")
                         }
                         
                     }
                     
-                    .listStyle(.plain)
-                    .navigationTitle("Teams")
                 }
-                .onAppear(perform: vm.fetchTeams)
+                
+                .listStyle(.plain)
+                .navigationTitle("Teams")
             }
-    //Search function is non-functional
+            .onAppear(perform: vm.fetchTeams)
+        }
+        //Search function is non-functional
         .searchable(text: $searchText, prompt: "Seach by Team number")
     }
     

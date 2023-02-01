@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		5A00C0702974CF2C0022982E /* completeTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C06F2974CF2C0022982E /* completeTeam.swift */; };
 		5A00C0742975EADE0022982E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C0732975EADE0022982E /* Match.swift */; };
-		5A00C07E297658300022982E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07D297658300022982E /* SettingsView.swift */; };
-		5A00C080297731740022982E /* formsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C07F297731740022982E /* formsViewModel.swift */; };
-		5A2DBD412968C92700DEBF04 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2DBD402968C92700DEBF04 /* Alamofire */; };
 		5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */; };
 		5A38A4452966012100FE2C56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A38A4442966012100FE2C56 /* Assets.xcassets */; };
 		5A38A4482966012100FE2C56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A38A4472966012100FE2C56 /* Preview Assets.xcassets */; };
@@ -64,8 +61,6 @@
 /* Begin PBXFileReference section */
 		5A00C06F2974CF2C0022982E /* completeTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = completeTeam.swift; sourceTree = "<group>"; };
 		5A00C0732975EADE0022982E /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		5A00C07D297658300022982E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		5A00C07F297731740022982E /* formsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = formsViewModel.swift; sourceTree = "<group>"; };
 		5A38A43D2966012000FE2C56 /* FRCScoutingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRCScoutingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppApp.swift; sourceTree = "<group>"; };
 		5A38A4442966012100FE2C56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +95,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A8A4BA7296795DE0051C128 /* FirebaseDatabaseSwift in Frameworks */,
-				5A2DBD412968C92700DEBF04 /* Alamofire in Frameworks */,
 				5A8A4BA5296795DE0051C128 /* FirebaseDatabase in Frameworks */,
 				5A8A4BA1296795DE0051C128 /* FirebaseAuth in Frameworks */,
 				5A8A4BAD296795DE0051C128 /* FirebaseFirestoreSwift in Frameworks */,
@@ -201,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				5A74916B296DF3EC0012A632 /* ViewModel.swift */,
-				5A00C07F297731740022982E /* formsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -218,7 +211,6 @@
 				5AB0588C297F137F00B4D1AB /* infoForm.swift */,
 				5AB0588E297F177E00B4D1AB /* autoForm.swift */,
 				5AB05892297F456D00B4D1AB /* teleopForm.swift */,
-				5A00C07D297658300022982E /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,7 +251,6 @@
 				5A8A4BA8296795DE0051C128 /* FirebaseFirestore */,
 				5A8A4BAA296795DE0051C128 /* FirebaseFirestoreCombine-Community */,
 				5A8A4BAC296795DE0051C128 /* FirebaseFirestoreSwift */,
-				5A2DBD402968C92700DEBF04 /* Alamofire */,
 			);
 			productName = FRCScoutingApp;
 			productReference = 5A38A43D2966012000FE2C56 /* FRCScoutingApp.app */;
@@ -393,12 +384,10 @@
 				5AFE6299298578B300AFFB44 /* cycleTime.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
 				5A00C0702974CF2C0022982E /* completeTeam.swift in Sources */,
-				5A00C080297731740022982E /* formsViewModel.swift in Sources */,
 				5A8A4BB329679C120051C128 /* HomeView.swift in Sources */,
 				5AFE6293298576CA00AFFB44 /* scoringHeights.swift in Sources */,
 				5A8A4BB5296889370051C128 /* MBRView.swift in Sources */,
 				5AFE62972985782A00AFFB44 /* intakeLocations.swift in Sources */,
-				5A00C07E297658300022982E /* SettingsView.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
 				5AB05893297F456D00B4D1AB /* teleopForm.swift in Sources */,
 			);
@@ -748,11 +737,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5A2DBD402968C92700DEBF04 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5A2DBD3F2968C92700DEBF04 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		5A8A4BA0296795DE0051C128 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5A8A4B9F296795DE0051C128 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

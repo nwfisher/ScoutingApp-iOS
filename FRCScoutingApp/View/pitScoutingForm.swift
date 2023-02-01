@@ -11,7 +11,6 @@ struct pitScoutingForm: View {
     @State private var showingAlert = false
     @State private var noTeam = false
     let MBRvm = ViewModel()
-    let vm = formsViewModel()
     
     @Environment(\.dismiss) private var dismiss
     @State private var teamNumber = ""
@@ -80,27 +79,27 @@ struct pitScoutingForm: View {
                     Section(header: Text("Cycle Time")) {
                         TextField("Cycle Time", text: $cycleTimes)
                     }
-                        Button(action: {
-                                    MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                                    showingAlert.toggle()
-                        }, label: {
-                            Text("Submit")
-                                .frame(maxWidth: .infinity,  alignment: .center)
-                                .frame(height: 50.0)
-                                .background( Color(hex: "#2c9c00"))
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        })
-                        .alert("Data succesfully submitted", isPresented: $showingAlert) {
-                                  Button("OK", role: .cancel) {
-                                      dismiss()
-                                  }
-                              }
-                        .alert("Team does not exist", isPresented: $noTeam) {
-                            Button("OK", role: .cancel) {
-                                
-                            }
+                    Button(action: {
+                        MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
+                        showingAlert.toggle()
+                    }, label: {
+                        Text("Submit")
+                            .frame(maxWidth: .infinity,  alignment: .center)
+                            .frame(height: 50.0)
+                            .background( Color(hex: "#2c9c00"))
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    })
+                    .alert("Data succesfully submitted", isPresented: $showingAlert) {
+                        Button("OK", role: .cancel) {
+                            dismiss()
                         }
+                    }
+                    .alert("Team does not exist", isPresented: $noTeam) {
+                        Button("OK", role: .cancel) {
+                            
+                        }
+                    }
                 }
             }
             .navigationTitle("Pit Scouting Form")

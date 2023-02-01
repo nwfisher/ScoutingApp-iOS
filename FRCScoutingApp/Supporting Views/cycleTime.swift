@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct cycleTime: View {
-   
+    
     let team: completeTeam
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Cycle Time")
-            .font(.title3)
-            .bold()
+                .font(.title3)
+                .bold()
             Spacer()
-            .frame(maxHeight: 20)
+                .frame(maxHeight: 20)
             Text(team.cycleTimes)
         }
     }

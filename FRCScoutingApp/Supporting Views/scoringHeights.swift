@@ -9,22 +9,22 @@ import SwiftUI
 
 struct scoringHeights: View {
     let team: completeTeam
-        
-        var body: some View {
-            VStack(alignment: .leading) {
-
-                Spacer()
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            
+            Spacer()
                 .frame(maxHeight: 10)
-                Text("Scoring Heights")
-                    .font(.title3)
-                    .bold()
-                team.canPlaceLow ? Text("Low") : Text("")
-                team.canPlaceMid ? Text("Mid") : Text("")
-                team.canPlaceHigh ? Text("High") : Text("")
-                
-                Divider()
-            }
+            Text("Scoring Heights")
+                .font(.title3)
+                .bold()
+            team.canPlaceLow ? Text("Low") : Text("")
+            team.canPlaceMid ? Text("Mid") : Text("")
+            team.canPlaceHigh ? Text("High") : Text("")
+            
+            Divider()
         }
+    }
 }
 
 struct scoringHeights_Previews: PreviewProvider {

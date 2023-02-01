@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomepageView: View {
     
-   
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -36,27 +36,22 @@ struct HomepageView: View {
                 Scouting_View()
                     .tabItem {
                         Label("Scouting", systemImage: "note.text")
-                    }
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-                
+                    }                
             }
             
             
         }
     }
 }
-            
-            
-        
-        
-        
+
+
+
+
+
 struct HomepageView_Previews: PreviewProvider {
-        static var previews: some View{
-            HomepageView()
-            
-        }
-}
+    static var previews: some View{
+        HomepageView()
         
+    }
+}
+

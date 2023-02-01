@@ -37,7 +37,7 @@ struct HomeView: View {
     @State private var blueAlliance3 = ""
     @State private var redAlliance3 = ""
     var body: some View {
-      
+        
         VStack {
             //Create list of events
             NavigationStack {
@@ -78,17 +78,17 @@ struct HomeView: View {
                         
                         HStack {
                             Button(action: {
-                                    vm.getAverageScore(teamNumber: blueAlliance1, alliance: "Blue", team: 1)
-                                    vm.getAverageScore(teamNumber: redAlliance1, alliance: "Red", team: 1)
-                                    vm.getAverageScore(teamNumber: blueAlliance2, alliance: "Blue", team: 2)
-                                    vm.getAverageScore(teamNumber: redAlliance2, alliance: "Red", team: 2)
-                                    vm.getAverageScore(teamNumber: blueAlliance3, alliance: "Blue", team: 3)
-                                    vm.getAverageScore(teamNumber: redAlliance3, alliance: "Red", team: 3)
-        
+                                vm.getAverageScore(teamNumber: blueAlliance1, alliance: "Blue", team: 1)
+                                vm.getAverageScore(teamNumber: redAlliance1, alliance: "Red", team: 1)
+                                vm.getAverageScore(teamNumber: blueAlliance2, alliance: "Blue", team: 2)
+                                vm.getAverageScore(teamNumber: redAlliance2, alliance: "Red", team: 2)
+                                vm.getAverageScore(teamNumber: blueAlliance3, alliance: "Blue", team: 3)
+                                vm.getAverageScore(teamNumber: redAlliance3, alliance: "Red", team: 3)
+                                
                                 print("View stuff")
                                 print(vm.winner)
-                                print(vm.blueScore)
-                                print(vm.redScore)
+                                print(round(vm.blueScore * 100) / 100.0)
+                                print(round(vm.redScore * 100) / 100.0)
                                 nameIsFocused = false
                             }, label: {
                                 Text("Predict")
@@ -103,11 +103,11 @@ struct HomeView: View {
                         }
                         
                         HStack(alignment: .center) {
-                            Text(String(vm.blueScore))
+                            Text(String(round(vm.blueScore * 100) / 100.0))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .listRowBackground(Color.blue)
                             Divider()
-                            Text(String(vm.redScore)).frame(maxWidth: .infinity, alignment: .trailing)
+                            Text(String(round(vm.redScore * 100) / 100.0)).frame(maxWidth: .infinity, alignment: .trailing)
                         }.frame(maxWidth: .infinity, alignment: .center)
                             .listRowBackground(Color.gray.opacity(0.1))
                         if vm.winner == 1 {
@@ -129,7 +129,7 @@ struct HomeView: View {
                         
                     }
                     
-                    var predictedScoring: [Team] = [
+                    let predictedScoring: [Team] = [
                         Team(points: vm.blueAlliance1CubeAvg, type: "Cube", team: blueAlliance1),
                         Team(points: vm.blueAlliance2CubeAvg, type: "Cube", team: blueAlliance2),
                         Team(points: vm.blueAlliance3CubeAvg, type: "Cube", team: blueAlliance3),
@@ -162,7 +162,7 @@ struct HomeView: View {
                         "Cube": .purple, "Cone": .yellow, "Charge Station": Color(hex: "2c9c00")
                     ])
                     .frame(height: 250)
-                    var scoring: [scoringRange] = [
+                    let scoring: [scoringRange] = [
                         scoringRange(name: blueAlliance1, alliance: "Blue", highestScore: vm.blueAlliance1High, lowestScore: vm.blueAlliance1Low),
                         scoringRange(name: blueAlliance2, alliance: "Blue", highestScore: vm.blueAlliance2High, lowestScore: vm.blueAlliance2Low),
                         scoringRange(name: blueAlliance3, alliance: "Blue", highestScore: vm.blueAlliance3High, lowestScore: vm.blueAlliance3Low),
@@ -185,7 +185,7 @@ struct HomeView: View {
                 }
                 .navigationTitle("Events")
                 
-             
+                
                 
             }
             
@@ -194,13 +194,13 @@ struct HomeView: View {
                 .fontWeight(.bold)
                 .font(.title3)
                 .padding()
-                Spacer()
+            Spacer()
             
         }
     }
 }
-    
-    
+
+
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
@@ -224,7 +224,7 @@ extension Color {
         default:
             (a, r, g, b) = (1, 1, 1, 0)
         }
-
+        
         self.init(
             .sRGB,
             red: Double(r) / 255,

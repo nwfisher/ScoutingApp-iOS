@@ -9,31 +9,31 @@ import SwiftUI
 
 struct robotInfo: View {
     let team: completeTeam
-       
-       var body: some View {
-           
-           VStack(alignment: .leading) {
-               Text("Robot Information")
-                   .font(.title3)
-                   .bold()
-       
-               Spacer()
-                   .frame(minHeight: 10, idealHeight: 20, maxHeight: 20)
-               Text("Drivetrain")
-               .font(.headline)
-               Text(team.drivetrainType)
-               Spacer()
-                   .frame(maxHeight: 10)
-               Text("Motor Type")
-               .font(.headline)
-               Text(team.motorType)
-               Spacer()
-                   .frame(maxHeight: 10)
-               Text("Programming Language")
-                   .font(.headline)
-               Text(team.programmingLanguage)
-           }
-       }
+    
+    var body: some View {
+        
+        VStack(alignment: .leading) {
+            Text("Robot Information")
+                .font(.title3)
+                .bold()
+
+            Spacer()
+                .frame(minHeight: 10, idealHeight: 20, maxHeight: 20)
+            Text("Drivetrain")
+                .font(.headline)
+            Text(team.drivetrainType)
+            Spacer()
+                .frame(maxHeight: 10)
+            Text("Motor Type")
+                .font(.headline)
+            Text(team.motorType)
+            Spacer()
+                .frame(maxHeight: 10)
+            Text("Programming Language")
+                .font(.headline)
+            Text(team.programmingLanguage)
+        }
+    }
 }
 
 struct robotInfo_Previews: PreviewProvider {

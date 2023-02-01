@@ -20,15 +20,14 @@ struct infoForm: View {
         NavigationStack {
             VStack {
                 Form {
-                        Picker("Please choose a Match Type", selection: $selectedMatchType) {
-                            ForEach(matchTypes, id: \.self) {
-                                Text($0)
+                    Picker("Please choose a Match Type", selection: $selectedMatchType) {
+                        ForEach(matchTypes, id: \.self) {
+                            Text($0)
                         }
                     }
-        
+                    
                     TextField("Match Number", text: $matchNumber)
                     TextField("Team Number", text: $teamNumber)
-                    
                     
                     if isDisabled {
                         Text("Fill out the form weirdo")
@@ -46,7 +45,7 @@ struct infoForm: View {
                         }
                     }
                 }
-
+                
             }
             .navigationTitle("Match & Team Info")
         }

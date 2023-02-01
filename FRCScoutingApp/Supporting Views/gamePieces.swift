@@ -9,36 +9,36 @@ import SwiftUI
 
 struct gamePieces: View {
     let team: completeTeam
-        
-        var body: some View {
-            VStack(alignment: .leading) {
-                let i: String = String(team.team_number)
-                
-                Group {
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            let i: String = String(team.team_number)
+            
+            Group {
                 Text("Intaking Game Pieces")
-                .font(.title3)
-                .bold()
+                    .font(.title3)
+                    .bold()
                 Text("\(i) can intake the following")
-                .font(.footnote)
+                    .font(.footnote)
                 Spacer()
-                .frame(maxHeight: 20)
-                }
-                Group {
+                    .frame(maxHeight: 20)
+            }
+            Group {
                 Text("Cones")
-                .font(.headline)
+                    .font(.headline)
                 team.canPickCone ? Text("Yes") : Text("No")
                 
                 Text("Cubes")
-                .font(.headline)
+                    .font(.headline)
                 team.canPickCube ? Text("Yes") : Text("No")
                 
                 Text("Fallen Cones")
-                .font(.headline)
+                    .font(.headline)
                 team.canPickFallenCones ? Text("Yes") : Text("No")
                 Divider()
-                }
             }
         }
+    }
 }
 
 struct gamePieces_Previews: PreviewProvider {

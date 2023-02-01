@@ -32,7 +32,7 @@ struct Scouting_View: View {
                         .navigationTitle("Scouting")
                         .cornerRadius(10)
                 }
-             
+                
             }
         }
         

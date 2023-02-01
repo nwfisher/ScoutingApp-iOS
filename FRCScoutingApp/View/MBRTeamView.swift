@@ -14,11 +14,10 @@ struct MBRTeamView: View {
     let team: basicTeam
     @StateObject var vm = ViewModel()
     
-    let err = completeTeam(team_number: 0000, nickname: "No Info", drivetrainType: "No Info", motorType: "No Info", programmingLanguage: "No Info", canPlaceLow: true, canPlaceMid: true, canPlaceHigh: false, canPickCone: true, canPickCube: true, canPickFallenCones: false, cycleTimes: "No Info", canPickFromGround: true, canPickFromShelf: true)
+    let err = completeTeam(team_number: 0000, nickname: "No Info", drivetrainType: "No Info", motorType: "No Info", programmingLanguage: "No Info", canPlaceLow: false, canPlaceMid: true, canPlaceHigh: false, canPickCone: false, canPickCube: false, canPickFallenCones: false, cycleTimes: "No Info", canPickFromGround: false, canPickFromShelf: false)
     
     var body: some View {
-        var trueTeam = vm.CalledTeam
-        let _ = print(vm.CalledTeam)
+        let trueTeam = vm.CalledTeam
         ScrollView {
             VStack(alignment: .leading) {
                 Group {
@@ -31,12 +30,11 @@ struct MBRTeamView: View {
                     Text("**Team Name**: \(team.nickname)")
                     Divider()
                 }
-                
                 Group {
                     Text("Basic Information")
                         .font(.title2)
                         .bold()
-                        Spacer()
+                    Spacer()
                 }
                 Group {
                     robotInfo(team: trueTeam ?? err)
@@ -52,14 +50,35 @@ struct MBRTeamView: View {
                     .font(.title2)
                     .bold()
                 Spacer()
-                var matchesScoreRange: [scoringHeights] = []
-                
                 Group {
-                    
+                    Text("Average Score")
+                        .bold()
+                        .font(.title3)
+                    Text(String(round(vm.teamScore * 100) / 100.0))
+                    Text("Average Cone")
+                        .bold()
+                        .font(.title3)
+                    Text(String(round(vm.teamConeAvg * 100) / 100.0))
+                    Text("Average Cube")
+                        .bold()
+                        .font(.title3)
+                    Text(String(round(vm.teamCubeAvg * 100) / 100.0))
                 }
-    
+                Group {
+                    Text("Average Charge Station")
+                        .bold()
+                        .font(.title3)
+                    Text(String(round(vm.teamCSAvg * 100) / 100.0))
+                    Text("Lowest match score")
+                        .bold()
+                        .font(.title3)
+                    Text(String(vm.teamLow))
+                    Text("Highest match score")
+                        .bold()
+                        .font(.title3)
+                    Text(String(vm.teamHigh))
+                }
                 
-                Text(String(vm.teamScore))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(maxHeight: .infinity).ignoresSafeArea()
@@ -70,6 +89,7 @@ struct MBRTeamView: View {
             
             .onAppear {
                 vm.getTeam(teamNumber: team.team_number)
+                vm.getAverageScore(teamNumber: String(team.team_number), alliance: "None", team: 0)
             }
         }
     }

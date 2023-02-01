@@ -9,23 +9,23 @@ import SwiftUI
 
 struct intakeLocations: View {
     let team: completeTeam
-        var body: some View {
-            VStack(alignment: .leading) {
-                let i: String = String(team.team_number)
-                
-                Text("Intaking Locations")
-                    .font(.title3)
-                    .bold()
-                Text("\(i) can intake at the following locations")
-                    .font(.footnote)
-                Spacer()
-                    .frame(maxHeight: 20)
-                
-                team.canPickFromShelf ? Text("Shelf") : Text("")
-                team.canPickFromGround ? Text("Ground") : Text("")
-                Divider()
-            }
+    var body: some View {
+        VStack(alignment: .leading) {
+            let i: String = String(team.team_number)
+            
+            Text("Intaking Locations")
+                .font(.title3)
+                .bold()
+            Text("\(i) can intake at the following locations")
+                .font(.footnote)
+            Spacer()
+                .frame(maxHeight: 20)
+            
+            team.canPickFromShelf ? Text("Shelf") : Text("")
+            team.canPickFromGround ? Text("Ground") : Text("")
+            Divider()
         }
+    }
 }
 
 struct intakeLocations_Previews: PreviewProvider {

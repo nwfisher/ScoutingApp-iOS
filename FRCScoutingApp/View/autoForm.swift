@@ -24,7 +24,7 @@ struct autoForm: View {
     @State var highCone = 0 //6
     
     @State var autoChargeStation = ""
-
+    
     @State var mostRecentVariableChange = ""
     var body: some View {
         NavigationStack {
@@ -40,7 +40,7 @@ struct autoForm: View {
                                 .cornerRadius(8)
                                 .bold()
                         }).onTapGesture {
-                             lowCube += 1
+                            lowCube += 1
                             mostRecentVariableChange = "1"
                         }
                         Button(action: {}, label: {
@@ -104,7 +104,7 @@ struct autoForm: View {
                                 .cornerRadius(8)
                                 .bold()
                         }).onTapGesture {
-                             highCone += 1
+                            highCone += 1
                             mostRecentVariableChange = "6"
                         }
                     }
@@ -157,45 +157,57 @@ struct autoForm: View {
                             .font(.title2)
                         
                         Divider()
+                        Button(action: {
+                            autoChargeStation = "Mobility"
+                        }, label: {
                             Button(action: {
-                                autoChargeStation = "Mobility"
+                                autoChargeStation = "None"
                             }, label: {
-                                Text("Mobility")
+                                Text("None")
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 75.0)
-                                    .background(Color.green)
+                                    .background(Color.blue)
                                     .foregroundColor(.white)
                                     .cornerRadius(8)
                                     .bold()
                                     .padding(.horizontal, 20)
                             })
-                            Button(action: {
-                                autoChargeStation = "Docked"
-                            }, label: {
-                                Text("Docked")
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 75.0)
-                                    .background(Color.yellow)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                                    .bold()
-                                    .padding(.horizontal, 20)
-                            })
-                            Button(action: {
-                                autoChargeStation = "Docked & Engaged"
-                            }, label: {
-                                Text("Docked & Engaged")
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 75.0)
-                                    .background(Color.red)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                                    .bold()
-                                    .padding(.horizontal, 20)
-                            })
+                            Text("Mobility")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 75.0)
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                                .padding(.horizontal, 20)
+                        })
+                        Button(action: {
+                            autoChargeStation = "Docked"
+                        }, label: {
+                            Text("Docked")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 75.0)
+                                .background(Color.yellow)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                                .padding(.horizontal, 20)
+                        })
+                        Button(action: {
+                            autoChargeStation = "Docked & Engaged"
+                        }, label: {
+                            Text("Docked & Engaged")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 75.0)
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                                .padding(.horizontal, 20)
+                        })
                         
                         Text("Selected Status: \(autoChargeStation)")
-                        .presentationDetents([.fraction(0.45)])
+                            .presentationDetents([.fraction(0.6)])
                     }
                     
                     HStack {
@@ -207,7 +219,7 @@ struct autoForm: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                                 .bold()
-    
+                            
                         }).onTapGesture {
                             dismiss()
                         }
@@ -222,7 +234,7 @@ struct autoForm: View {
                         }.id(UUID()) //this is stupid and hopefully will be fixed someday
                         
                     }
-                
+                    
                     Section(header: Text("Match Info")) {
                         Text("Match Type: \(selectedMatchType)")
                         Text("Team Number: \(teamNumber)")

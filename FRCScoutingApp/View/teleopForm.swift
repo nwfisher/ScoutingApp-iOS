@@ -122,7 +122,7 @@ struct teleopForm: View {
                                 .cornerRadius(8)
                                 .bold()
                         }).onTapGesture {
-                             teleopHighCone += 1
+                            teleopHighCone += 1
                             mostRecentVariableChange = "6"
                         }
                     }
@@ -188,45 +188,45 @@ struct teleopForm: View {
                                 .bold()
                                 .padding(.horizontal, 20)
                         })
-                            Button(action: {
-                                chargeStation = "Park"
-                            }, label: {
-                                Text("Park")
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 75.0)
-                                    .background(Color.green)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                                    .bold()
-                                    .padding(.horizontal, 20)
-                            })
-                            Button(action: {
-                                chargeStation = "Docked"
-                            }, label: {
-                                Text("Docked")
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 75.0)
-                                    .background(Color.yellow)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                                    .bold()
-                                    .padding(.horizontal, 20)
-                            })
-                            Button(action: {
-                                chargeStation = "Docked & Engaged"
-                            }, label: {
-                                Text("Docked & Engaged")
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 75.0)
-                                    .background(Color.red)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                                    .bold()
-                                    .padding(.horizontal, 20)
-                            })
+                        Button(action: {
+                            chargeStation = "Park"
+                        }, label: {
+                            Text("Park")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 75.0)
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                                .padding(.horizontal, 20)
+                        })
+                        Button(action: {
+                            chargeStation = "Docked"
+                        }, label: {
+                            Text("Docked")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 75.0)
+                                .background(Color.yellow)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                                .padding(.horizontal, 20)
+                        })
+                        Button(action: {
+                            chargeStation = "Docked & Engaged"
+                        }, label: {
+                            Text("Docked & Engaged")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 75.0)
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                                .padding(.horizontal, 20)
+                        })
                         
                         Text("Selected Status: \(chargeStation)")
-                        .presentationDetents([.fraction(0.6)])
+                            .presentationDetents([.fraction(0.6)])
                     }
                     
                     HStack {
@@ -238,7 +238,7 @@ struct teleopForm: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                                 .bold()
-    
+                            
                         }).onTapGesture {
                             dismiss()
                         }
@@ -250,7 +250,7 @@ struct teleopForm: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                                 .bold()
-    
+                            
                         }).onTapGesture {
                             reviewSheet.toggle()
                         }
@@ -287,8 +287,8 @@ struct teleopForm: View {
                                         
                                         Section(header: Text("confirm")) {
                                             Button(action: {
-                                                    vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
-                                                    reviewSheet.toggle()
+                                                vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                reviewSheet.toggle()
                                                 
                                             }, label: {
                                                 Text("Confirm Data")

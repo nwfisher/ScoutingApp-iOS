@@ -14,7 +14,15 @@ final class ViewModel: ObservableObject {
     @Published var MBRTeams: [basicTeam] = []
     @Published var CalledTeam: completeTeam?
     @Published var Matches: [Match] = []
+    @Published var isLoading = false
+    
+    //team stuff
     @Published var teamScore = 0.00
+    @Published var teamConeAvg = 0.00
+    @Published var teamCubeAvg = 0.00
+    @Published var teamCSAvg = 0.00
+    @Published var teamLow = 0
+    @Published var teamHigh = 0
     
     //1st blue team stuff
     @Published var blueAlliance1Avg = 0.00
@@ -76,36 +84,36 @@ final class ViewModel: ObservableObject {
         
         request.addValue("eC94U6j5wAui6S7IFdgHLgxVQ4lUw2EUOm3EkzdC6VDS0Hd80efGBf5SKrPymOWa", forHTTPHeaderField: "X-TBA-Auth-Key")
         
-            URLSession
-                    .shared
-                    .dataTask(with: request) { [weak self] data, response, error in
+        URLSession
+            .shared
+            .dataTask(with: request) { [weak self] data, response, error in
+                
+                DispatchQueue.main.async {
+                    if error == nil {
                         
-                        DispatchQueue.main.async {
-                            if error == nil {
-                                
-                                let decoder = JSONDecoder()
-                                JSONDecoder().keyDecodingStrategy = .convertFromSnakeCase
-                                
-                                if let data = data,
-                                let teams = try? decoder.decode ([basicTeam].self, from: data) {
-                                
-                                    self?.MBRTeams = teams
-                                } else {
-                                    
-                                }
-                            }
+                        let decoder = JSONDecoder()
+                        JSONDecoder().keyDecodingStrategy = .convertFromSnakeCase
+                        
+                        if let data = data,
+                           let teams = try? decoder.decode ([basicTeam].self, from: data) {
+                            
+                            self?.MBRTeams = teams
+                        } else {
+                            
                         }
-                       
-                    }.resume()
+                    }
+                }
+                
+            }.resume()
     }
     
     //Quick, one time function so I don't need to do work
     //This function will likley never have to be used again
     func resetTeams() {
-       
+        
         if FirebaseApp.app() == nil {
-                  FirebaseApp.configure()
-              }
+            FirebaseApp.configure()
+        }
         let db = Firestore.firestore()
         
         for team in self.MBRTeams {
@@ -125,11 +133,11 @@ final class ViewModel: ObservableObject {
     func addPitData(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromShelf: Bool, intakeFromGround: Bool) {
         
         if FirebaseApp.app() == nil {
-                  FirebaseApp.configure()
-              }
+            FirebaseApp.configure()
+        }
         let db = Firestore.firestore()
         
-       // let i = String(teamnumber)
+        // let i = String(teamnumber)
         
         db.collection("MontereyBayRegional").document(teamnumber).setData([
             "drivetrainType":drivetrainType,
@@ -156,8 +164,8 @@ final class ViewModel: ObservableObject {
     func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) {
         
         if FirebaseApp.app() == nil {
-                  FirebaseApp.configure()
-              }
+            FirebaseApp.configure()
+        }
         let db = Firestore.firestore()
         
         let documentID = matchType + matchNumber
@@ -188,32 +196,24 @@ final class ViewModel: ObservableObject {
         }
     }
     
-
-    func getTeam(teamNumber: Int) {
-                
-        if FirebaseApp.app() == nil {
-                  FirebaseApp.configure()
-              }
-        let db = Firestore.firestore()
     
+    func getTeam(teamNumber: Int) {
+        
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+        let db = Firestore.firestore()
+        
         let docRef = db.collection("MontereyBayRegional").document(String(teamNumber))
         docRef.getDocument(as: completeTeam.self) { result in
-            // The Result type encapsulates deserialization errors or
-            // successful deserialization, and can be handled as follows:
-            //
-            //      Result
-            //        /\
-            //   Error  City
             print(result)
             switch result {
             case .success(let team):
                 print("Yay")
                 self.CalledTeam = team
-                // A `City` value was successfully initialized from the DocumentSnapshot.
                 print("City: \(team)")
             case .failure(let error):
                 print("Nay")
-                // A `City` value could not be initialized from the DocumentSnapshot.
                 print("Error decoding city: \(error)")
             }
         }
@@ -222,12 +222,12 @@ final class ViewModel: ObservableObject {
     private func getMatch(ID: String, i: String) {
         
         if FirebaseApp.app() == nil {
-                  FirebaseApp.configure()
-              }
+            FirebaseApp.configure()
+        }
         let db = Firestore.firestore()
         
         db.collection("MontereyBayRegional").document(i).collection("Matches").document(ID).getDocument(as: Match.self) { result in
-         
+            
             print(result)
             switch result {
             case .success(let match):
@@ -247,8 +247,8 @@ final class ViewModel: ObservableObject {
     func fetchMatchData(teamNumber: Int) {
         
         if FirebaseApp.app() == nil {
-                  FirebaseApp.configure()
-              }
+            FirebaseApp.configure()
+        }
         let db = Firestore.firestore()
         
         let i = String(teamNumber)
@@ -264,7 +264,7 @@ final class ViewModel: ObservableObject {
                 self.Matches.removeAll()
                 for document in querySnapshot!.documents {
                     self.getMatch(ID: document.documentID, i: i)
-                   
+                    
                     print("\(document.documentID) => \(document.data())")
                 }
                 print(self.Matches)
@@ -272,28 +272,55 @@ final class ViewModel: ObservableObject {
         }
     }
     
-    func deleteData() {
-        
-    }
-    
     func getAverageScore(teamNumber: String, alliance: String, team: Int) {
         
+        //Deal with an empty TextField
         if (teamNumber.isEmpty || teamNumber == "") {
             if alliance == "Blue" {
                 if team == 1 {
                     self.blueAlliance1Avg = 0.00
+                    self.blueAlliance1ConeAvg = 0.00
+                    self.blueAlliance1CubeAvg = 0.00
+                    self.blueAlliance1CSAvg = 0.00
+                    self.blueAlliance1Low = 0
+                    self.blueAlliance1High = 0
                 } else if team == 2 {
                     self.blueAlliance2Avg = 0.00
+                    self.blueAlliance2ConeAvg = 0.00
+                    self.blueAlliance2CubeAvg = 0.00
+                    self.blueAlliance2CSAvg = 0.00
+                    self.blueAlliance2Low = 0
+                    self.blueAlliance2High = 0
                 } else {
                     self.blueAlliance3Avg = 0.00
+                    self.blueAlliance3ConeAvg = 0.00
+                    self.blueAlliance3CubeAvg = 0.00
+                    self.blueAlliance3CSAvg = 0.00
+                    self.blueAlliance3Low = 0
+                    self.blueAlliance3High = 0
                 }
             } else if alliance == "Red" {
                 if team == 1 {
                     self.redAlliance1Avg = 0.00
+                    self.redAlliance1ConeAvg = 0.00
+                    self.redAlliance1CubeAvg = 0.00
+                    self.redAlliance1CSAvg = 0.00
+                    self.redAlliance1Low = 0
+                    self.redAlliance1High = 0
                 } else if team == 2 {
                     self.redAlliance2Avg = 0.00
+                    self.redAlliance2ConeAvg = 0.00
+                    self.redAlliance2CubeAvg = 0.00
+                    self.redAlliance2CSAvg = 0.00
+                    self.redAlliance2Low = 0
+                    self.redAlliance2High = 0
                 } else {
                     self.redAlliance3Avg = 0.00
+                    self.redAlliance3ConeAvg = 0.00
+                    self.redAlliance3CubeAvg = 0.00
+                    self.redAlliance3CSAvg = 0.00
+                    self.redAlliance3Low = 0
+                    self.redAlliance3High = 0
                 }
             } else {
                 self.teamScore = 0.00
@@ -302,8 +329,8 @@ final class ViewModel: ObservableObject {
         }
         
         if FirebaseApp.app() == nil {
-                  FirebaseApp.configure()
-              }
+            FirebaseApp.configure()
+        }
         let db = Firestore.firestore()
         
         let docRef = db.collection("MontereyBayRegional").document(teamNumber).collection("Matches")
@@ -315,7 +342,6 @@ final class ViewModel: ObservableObject {
                 
                 var conesScore: [Int] = []
                 var cubesScore: [Int] = []
-                var chargeScore: [Int] = []
                 var scores: [Int] = []
                 for document in querySnapshot!.documents {
                     
@@ -373,14 +399,14 @@ final class ViewModel: ObservableObject {
                     print(scores)
                     
                     //Average cone
-                    var autoConeScore = autoLowCone * 3 + autoMidCone * 4 + autoHighCone * 6
-                    var teleopConeScore = teleopLowCone * 2 + teleopMidCone * 3 + teleopHighCone * 5
+                    let autoConeScore = autoLowCone * 3 + autoMidCone * 4 + autoHighCone * 6
+                    let teleopConeScore = teleopLowCone * 2 + teleopMidCone * 3 + teleopHighCone * 5
                     
                     conesScore.append(autoConeScore + teleopConeScore)
                     
                     //Average Cube
-                    var autoCubeScore = autoLowCube * 3 + autoMidCube * 4 + autoHighCube * 6
-                    var teleopCubeScore = teleopLowCube * 2 + teleopMidCube * 3 + teleopHighCube * 5
+                    let autoCubeScore = autoLowCube * 3 + autoMidCube * 4 + autoHighCube * 6
+                    let teleopCubeScore = teleopLowCube * 2 + teleopMidCube * 3 + teleopHighCube * 5
                     
                     cubesScore.append(autoCubeScore + teleopCubeScore)
                 }
@@ -390,22 +416,21 @@ final class ViewModel: ObservableObject {
                 for i in scores {
                     sum += i
                 }
-                var average = Double(sum) / Double(scores.count)
-                print(average)
+                let average = Double(sum) / Double(scores.count)
                 
                 //Get cone average
                 var a = 0
                 for i in conesScore {
                     a += i
                 }
-                var coneAverage = Double(a) / Double(conesScore.count)
-            
+                let coneAverage = Double(a) / Double(conesScore.count)
+                
                 //Get cube average
                 var u = 0
                 for i in cubesScore {
                     u += i
                 }
-                var cubeAverage = Double(a) / Double(cubesScore.count)
+                let cubeAverage = Double(u) / Double(cubesScore.count)
                 
                 if alliance == "Blue" {
                     if team == 1 {
@@ -456,6 +481,12 @@ final class ViewModel: ObservableObject {
                     }
                 } else {
                     self.teamScore = average
+                    self.teamConeAvg = coneAverage
+                    self.teamCubeAvg = cubeAverage
+                    self.teamCSAvg = average - (cubeAverage + coneAverage)
+                    self.teamLow = scores.min() ?? 0
+                    self.teamHigh = scores.max() ?? 0
+                    
                 }
                 
                 self.predictWinner()
