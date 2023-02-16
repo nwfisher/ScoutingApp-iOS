@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5A00C0702974CF2C0022982E /* completeTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C06F2974CF2C0022982E /* completeTeam.swift */; };
 		5A00C0742975EADE0022982E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C0732975EADE0022982E /* Match.swift */; };
+		5A0515002995966500619A45 /* offlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0514FF2995966500619A45 /* offlineView.swift */; };
+		5A281544299C146900D1476E /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A281543299C146900D1476E /* LaunchView.swift */; };
 		5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */; };
 		5A38A4452966012100FE2C56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A38A4442966012100FE2C56 /* Assets.xcassets */; };
 		5A38A4482966012100FE2C56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A38A4472966012100FE2C56 /* Preview Assets.xcassets */; };
@@ -34,6 +36,9 @@
 		5AB0588D297F137F00B4D1AB /* infoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0588C297F137F00B4D1AB /* infoForm.swift */; };
 		5AB0588F297F177E00B4D1AB /* autoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0588E297F177E00B4D1AB /* autoForm.swift */; };
 		5AB05893297F456D00B4D1AB /* teleopForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB05892297F456D00B4D1AB /* teleopForm.swift */; };
+		5AFBED73299D958D00879657 /* pitInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBED72299D958D00879657 /* pitInfo.swift */; };
+		5AFBED75299E9B3C00879657 /* offlinePitDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBED74299E9B3C00879657 /* offlinePitDataView.swift */; };
+		5AFBED77299E9B5A00879657 /* offlineFieldDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBED76299E9B5A00879657 /* offlineFieldDataView.swift */; };
 		5AFE62912985755200AFFB44 /* robotInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE62902985755200AFFB44 /* robotInfo.swift */; };
 		5AFE6293298576CA00AFFB44 /* scoringHeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE6292298576CA00AFFB44 /* scoringHeights.swift */; };
 		5AFE62952985778400AFFB44 /* gamePieces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE62942985778400AFFB44 /* gamePieces.swift */; };
@@ -61,6 +66,8 @@
 /* Begin PBXFileReference section */
 		5A00C06F2974CF2C0022982E /* completeTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = completeTeam.swift; sourceTree = "<group>"; };
 		5A00C0732975EADE0022982E /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		5A0514FF2995966500619A45 /* offlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offlineView.swift; sourceTree = "<group>"; };
+		5A281543299C146900D1476E /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		5A38A43D2966012000FE2C56 /* FRCScoutingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRCScoutingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRCScoutingAppApp.swift; sourceTree = "<group>"; };
 		5A38A4442966012100FE2C56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +89,9 @@
 		5AB0588C297F137F00B4D1AB /* infoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoForm.swift; sourceTree = "<group>"; };
 		5AB0588E297F177E00B4D1AB /* autoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = autoForm.swift; sourceTree = "<group>"; };
 		5AB05892297F456D00B4D1AB /* teleopForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teleopForm.swift; sourceTree = "<group>"; };
+		5AFBED72299D958D00879657 /* pitInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pitInfo.swift; sourceTree = "<group>"; };
+		5AFBED74299E9B3C00879657 /* offlinePitDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offlinePitDataView.swift; sourceTree = "<group>"; };
+		5AFBED76299E9B5A00879657 /* offlineFieldDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offlineFieldDataView.swift; sourceTree = "<group>"; };
 		5AFE62902985755200AFFB44 /* robotInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = robotInfo.swift; sourceTree = "<group>"; };
 		5AFE6292298576CA00AFFB44 /* scoringHeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoringHeights.swift; sourceTree = "<group>"; };
 		5AFE62942985778400AFFB44 /* gamePieces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamePieces.swift; sourceTree = "<group>"; };
@@ -187,6 +197,7 @@
 				5A749167296DEA350012A632 /* basicTeam.swift */,
 				5A00C06F2974CF2C0022982E /* completeTeam.swift */,
 				5A00C0732975EADE0022982E /* Match.swift */,
+				5AFBED72299D958D00879657 /* pitInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				5A38A46D2966029900FE2C56 /* HomepageView.swift */,
+				5A0514FF2995966500619A45 /* offlineView.swift */,
 				5A8A4BB229679C120051C128 /* HomeView.swift */,
 				5A8A4BB029679BAC0051C128 /* Scouting View.swift */,
 				5A8A4BB4296889370051C128 /* MBRView.swift */,
@@ -211,6 +223,9 @@
 				5AB0588C297F137F00B4D1AB /* infoForm.swift */,
 				5AB0588E297F177E00B4D1AB /* autoForm.swift */,
 				5AB05892297F456D00B4D1AB /* teleopForm.swift */,
+				5A281543299C146900D1476E /* LaunchView.swift */,
+				5AFBED74299E9B3C00879657 /* offlinePitDataView.swift */,
+				5AFBED76299E9B5A00879657 /* offlineFieldDataView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -378,15 +393,20 @@
 				5A38A46E2966029900FE2C56 /* HomepageView.swift in Sources */,
 				5A00C0742975EADE0022982E /* Match.swift in Sources */,
 				5AFE62952985778400AFFB44 /* gamePieces.swift in Sources */,
+				5AFBED73299D958D00879657 /* pitInfo.swift in Sources */,
 				5AB0588F297F177E00B4D1AB /* autoForm.swift in Sources */,
+				5AFBED77299E9B5A00879657 /* offlineFieldDataView.swift in Sources */,
 				5A749176296E53680012A632 /* pitScoutingForm.swift in Sources */,
 				5A74916C296DF3EC0012A632 /* ViewModel.swift in Sources */,
+				5A281544299C146900D1476E /* LaunchView.swift in Sources */,
 				5AFE6299298578B300AFFB44 /* cycleTime.swift in Sources */,
 				5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */,
 				5A00C0702974CF2C0022982E /* completeTeam.swift in Sources */,
+				5AFBED75299E9B3C00879657 /* offlinePitDataView.swift in Sources */,
 				5A8A4BB329679C120051C128 /* HomeView.swift in Sources */,
 				5AFE6293298576CA00AFFB44 /* scoringHeights.swift in Sources */,
 				5A8A4BB5296889370051C128 /* MBRView.swift in Sources */,
+				5A0515002995966500619A45 /* offlineView.swift in Sources */,
 				5AFE62972985782A00AFFB44 /* intakeLocations.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
 				5AB05893297F456D00B4D1AB /* teleopForm.swift in Sources */,
@@ -545,6 +565,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -577,6 +598,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

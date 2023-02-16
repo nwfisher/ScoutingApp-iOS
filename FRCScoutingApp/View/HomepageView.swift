@@ -36,7 +36,11 @@ struct HomepageView: View {
                 Scouting_View()
                     .tabItem {
                         Label("Scouting", systemImage: "note.text")
-                    }                
+                    }
+                offlineView()
+                    .tabItem {
+                        Label("My Data", systemImage: "externaldrive.badge.person.crop")
+                    }
             }
             
             

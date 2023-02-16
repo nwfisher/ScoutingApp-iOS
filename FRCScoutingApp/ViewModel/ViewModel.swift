@@ -14,6 +14,7 @@ final class ViewModel: ObservableObject {
     @Published var MBRTeams: [basicTeam] = []
     @Published var CalledTeam: completeTeam?
     @Published var Matches: [Match] = []
+    @Published var pitData: [pitInfo] = []
     @Published var isLoading = false
     
     //team stuff
@@ -161,6 +162,99 @@ final class ViewModel: ObservableObject {
         }
     }
     
+    func downloadPitJSON(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromShelf: Bool, intakeFromGround: Bool) throws -> Void {
+        
+        let data = pitInfo(teamnumber: teamnumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, canPlaceLow: placeLow, canPlaceMid: placeMid, canPlaceHigh: placeHigh, canPickCone: intakeCone, canPickCube: intakeCube, canPickFallenCones: intakeFallenCone, cycleTimes: cycleTime, canPickFromGround: intakeFromGround, canPickFromShelf: intakeFromShelf)
+        
+        //encode the data
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        let jsonData = try encoder.encode(data)
+        
+        //Get the documents directory
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            fatalError("Failed to get documents directory.")
+        }
+        
+        //Get the pitData directory
+        let pitDataDirectory = documentsDirectory.appendingPathComponent("pitData")
+        
+        //Check if pitData directory exists
+        if !FileManager.default.fileExists(atPath: pitDataDirectory.path) {
+            do {
+                try FileManager.default.createDirectory(at: pitDataDirectory, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("Error creating directory: \(error.localizedDescription)")
+            }
+        }
+        
+        //Write to directory
+        let fileURL = pitDataDirectory.appendingPathComponent("\(teamnumber)Pit.json")
+        try jsonData.write(to: fileURL)
+    }
+    
+    func getAllData(dir: String) throws -> [URL] {
+        
+        var directoryURL: URL
+        
+        if dir == "pit" {
+            guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                fatalError("Failed to get documents directory.")
+            }
+
+            directoryURL = documentsDirectory.appendingPathComponent("pitData")
+            
+            if !FileManager.default.fileExists(atPath: directoryURL.path) {
+                do {
+                    try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    print("Error creating directory: \(error.localizedDescription)")
+                }
+            }
+        } else {
+            guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                fatalError("Failed to get documents directory.")
+            }
+
+            directoryURL = documentsDirectory.appendingPathComponent("fieldData")
+            
+            if !FileManager.default.fileExists(atPath: directoryURL.path) {
+                do {
+                    try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    print("Error creating directory: \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        var fileURLs: [URL] = []
+        
+        do {
+            fileURLs = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil, options: [])
+        } catch {
+            fatalError("oopsie")
+        }
+        
+        return fileURLs
+    }
+    
+    func decodePitData(file: URL) -> pitInfo {
+        let decoder = JSONDecoder()
+        var data: Data
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            fatalError("oopsie")
+        }
+        
+        do {
+            let decodedData = try decoder.decode(pitInfo.self, from: data)
+            return decodedData
+        } catch {
+            fatalError("oopsie pt. 2")
+        }
+    }
     func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) {
         
         if FirebaseApp.app() == nil {
