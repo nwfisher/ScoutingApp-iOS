@@ -8,6 +8,7 @@ target 'FRCScoutingApp' do
 
   # Pods for FRCScoutingApp
 pod 'FirebaseFirestoreSwift'
+pod 'ReachabilitySwift'
 
   target 'FRCScoutingAppTests' do
     inherit! :search_paths

@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct pitScoutingForm: View {
+    
+    let reachability = try? Reachability()
+    
+    @State private var noInternet = false
+    @State private var pushAlert = false
+    @State private var noFileSystem = false
+    
     @State private var showingAlert = false
-    @State private var noTeam = false
     let MBRvm = ViewModel()
     
     @Environment(\.dismiss) private var dismiss
@@ -80,14 +86,25 @@ struct pitScoutingForm: View {
                         TextField("Cycle Time", text: $cycleTimes)
                     }
                     Button(action: {
-                        MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
                         
-                        do {
-                            try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                        } catch {
+                        if reachability?.connection == .unavailable {
+                            do {
+                                try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
+                            } catch {
+                                print(error)
+                                noFileSystem.toggle()
+                            }
+                        } else {
+                            MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
                             
+                            do {
+                                try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
+                            } catch {
+                                print(error)
+                                noFileSystem.toggle()
+                            }
+                            showingAlert.toggle()
                         }
-                        showingAlert.toggle()
                     }, label: {
                         Text("Submit")
                             .frame(maxWidth: .infinity,  alignment: .center)
@@ -96,14 +113,19 @@ struct pitScoutingForm: View {
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     })
-                    .alert("Data succesfully submitted", isPresented: $showingAlert) {
+                    .alert("Data pushed!", isPresented: $showingAlert) {
                         Button("OK", role: .cancel) {
                             dismiss()
                         }
                     }
-                    .alert("Team does not exist", isPresented: $noTeam) {
+                    .alert("No Internet! Data saved to document directoy. Attempt to push again when you have a valid connection", isPresented: $noInternet) {
                         Button("OK", role: .cancel) {
-                            
+                            dismiss()
+                        }
+                    }
+                    .alert("An error with saving data to document directory!", isPresented: $noFileSystem) {
+                        Button("OK", role: .cancel) {
+                            dismiss()
                         }
                     }
                 }

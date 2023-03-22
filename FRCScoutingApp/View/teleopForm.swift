@@ -9,9 +9,13 @@ import SwiftUI
 
 struct teleopForm: View {
     
+    let reachability = try? Reachability()
     @Environment(\.dismiss) private var dismiss
     @State private var sheetIsPresented = false
     @State private var reviewSheet = false
+    @State private var noInternet = false
+    @State private var pushAlert = false
+    @State private var noFileSystem = false
     @State var goingHome = false
     
     //Viewmodels
@@ -287,8 +291,26 @@ struct teleopForm: View {
                                         
                                         Section(header: Text("confirm")) {
                                             Button(action: {
-                                                vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
-                                                reviewSheet.toggle()
+                                                
+                                                if reachability?.connection == .unavailable {
+                                                    
+                                                    noInternet.toggle()
+                                                    do {
+                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                    } catch {
+                                                        print(error)
+                                                        noFileSystem.toggle()
+                                                    }
+                                                } else {
+                                                    vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                    pushAlert.toggle()
+                                                    do {
+                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                    } catch {
+                                                        print(error)
+                                                        noFileSystem.toggle()
+                                                    }
+                                                }
                                                 
                                             }, label: {
                                                 Text("Confirm Data")
@@ -300,6 +322,17 @@ struct teleopForm: View {
                                                     .bold()
                                                     .padding(.horizontal, 20)
                                             })
+                                            .alert("Data pushed!", isPresented: $pushAlert) {
+                                                Button("OK", role: .cancel) {
+                                                    reviewSheet.toggle()
+                                                }
+                                            }
+                                            .alert("No Internet! Data saved to document directoy. Attempt to push again when you have a valid connection", isPresented: $noInternet) {
+                                                Button("OK", role: .cancel) {}
+                                            }
+                                            .alert("An error with saving data to document directory!", isPresented: $noFileSystem) {
+                                                Button("OK", role: .cancel) {}
+                                            }
                                         }
                                     }
                                     

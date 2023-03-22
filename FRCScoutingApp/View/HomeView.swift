@@ -150,38 +150,43 @@ struct HomeView: View {
                         Team(points: vm.redAlliance3CSAvg, type: "Charge Station", team: redAlliance3),
                     ]
                     
-                    Chart {
-                        ForEach(predictedScoring) { scoring in
-                            BarMark(
-                                x: .value("Team", scoring.team),
-                                y: .value("Score", scoring.points)
-                            ).foregroundStyle(by: .value("Game Piece", scoring.type))
+                    Section(header: Text("Scoring by game piece")) {
+                        Chart {
+                            ForEach(predictedScoring) { scoring in
+                                BarMark(
+                                    x: .value("Team", scoring.team),
+                                    y: .value("Score", scoring.points)
+                                ).foregroundStyle(by: .value("Game Piece", scoring.type))
+                            }
                         }
+                        .chartForegroundStyleScale([
+                            "Cube": .purple, "Cone": .yellow, "Charge Station": Color(hex: "2c9c00")
+                        ])
+                        .frame(height: 250)
                     }
-                    .chartForegroundStyleScale([
-                        "Cube": .purple, "Cone": .yellow, "Charge Station": Color(hex: "2c9c00")
-                    ])
-                    .frame(height: 250)
-                    let scoring: [scoringRange] = [
-                        scoringRange(name: blueAlliance1, alliance: "Blue", highestScore: vm.blueAlliance1High, lowestScore: vm.blueAlliance1Low),
-                        scoringRange(name: blueAlliance2, alliance: "Blue", highestScore: vm.blueAlliance2High, lowestScore: vm.blueAlliance2Low),
-                        scoringRange(name: blueAlliance3, alliance: "Blue", highestScore: vm.blueAlliance3High, lowestScore: vm.blueAlliance3Low),
-                        scoringRange(name: redAlliance1, alliance: "Red", highestScore: vm.redAlliance1High, lowestScore: vm.redAlliance1Low),
-                        scoringRange(name: redAlliance2, alliance: "Red", highestScore: vm.redAlliance2High, lowestScore: vm.redAlliance2Low),
-                        scoringRange(name: redAlliance3, alliance: "Red", highestScore: vm.redAlliance3High, lowestScore: vm.redAlliance3Low)
-                    ]
-                    Spacer()
-                    Chart {
-                        ForEach(scoring) { team in
-                            RuleMark(
-                                xStart: .value("Lowest Score", team.lowestScore),
-                                xEnd: .value("Highest Score", team.highestScore),
-                                y: .value("Team", team.name)
-                            ).foregroundStyle(by: .value("Alliance", team.alliance))
-                        }
-                    }.chartForegroundStyleScale([
-                        "Blue": .blue, "Red": .red
-                    ])
+                    
+                    Section(header: Text("Team scoring range")) {
+                        let scoring: [scoringRange] = [
+                            scoringRange(name: blueAlliance1, alliance: "Blue Alliance", highestScore: vm.blueAlliance1High, lowestScore: vm.blueAlliance1Low),
+                            scoringRange(name: blueAlliance2, alliance: "Blue Alliance", highestScore: vm.blueAlliance2High, lowestScore: vm.blueAlliance2Low),
+                            scoringRange(name: blueAlliance3, alliance: "Blue Alliance", highestScore: vm.blueAlliance3High, lowestScore: vm.blueAlliance3Low),
+                            scoringRange(name: redAlliance1, alliance: "Red Alliance", highestScore: vm.redAlliance1High, lowestScore: vm.redAlliance1Low),
+                            scoringRange(name: redAlliance2, alliance: "Red Alliance", highestScore: vm.redAlliance2High, lowestScore: vm.redAlliance2Low),
+                            scoringRange(name: redAlliance3, alliance: "Red Alliance", highestScore: vm.redAlliance3High, lowestScore: vm.redAlliance3Low)
+                        ]
+                        Spacer()
+                        Chart {
+                            ForEach(scoring) { team in
+                                RuleMark(
+                                    xStart: .value("Lowest Score", team.lowestScore),
+                                    xEnd: .value("Highest Score", team.highestScore),
+                                    y: .value("Team", team.name)
+                                ).foregroundStyle(by: .value("Alliance", team.alliance))
+                            }
+                        }.chartForegroundStyleScale([
+                            "Blue Alliance": .blue, "Red Alliance": .red
+                        ])
+                    }
                 }
                 .navigationTitle("Events")
                 

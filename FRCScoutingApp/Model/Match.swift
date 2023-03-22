@@ -9,6 +9,7 @@ import Foundation
 
 struct Match: Codable {
     
+    var teamNumber: String
     var matchID: String
     var matchNumber: String
     var matchType: String

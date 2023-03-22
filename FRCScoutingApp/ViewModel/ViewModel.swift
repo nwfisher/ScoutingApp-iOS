@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import Network
 final class ViewModel: ObservableObject {
     
     //Uncanny amount of published variables because I suck at figuring out completion handlers
@@ -194,6 +195,38 @@ final class ViewModel: ObservableObject {
         try jsonData.write(to: fileURL)
     }
     
+    func downloadFieldJSON(teamnumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) throws -> Void {
+        
+        let data = Match(teamNumber: teamnumber, matchID: matchType + matchNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: teleopChargeStation)
+        
+        //encode the data
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        let jsonData = try encoder.encode(data)
+        
+        //Get the documents directory
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            fatalError("Failed to get documents directory.")
+        }
+        
+        //Get the pitData directory
+        let pitDataDirectory = documentsDirectory.appendingPathComponent("fieldData")
+        
+        //Check if pitData directory exists
+        if !FileManager.default.fileExists(atPath: pitDataDirectory.path) {
+            do {
+                try FileManager.default.createDirectory(at: pitDataDirectory, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("Error creating directory: \(error.localizedDescription)")
+            }
+        }
+        
+        //Write to directory
+        let fileURL = pitDataDirectory.appendingPathComponent("\(teamnumber)\(matchType)\(matchNumber)Field.json")
+        try jsonData.write(to: fileURL)
+    }
+    
     func getAllData(dir: String) throws -> [URL] {
         
         var directoryURL: URL
@@ -255,6 +288,23 @@ final class ViewModel: ObservableObject {
             fatalError("oopsie pt. 2")
         }
     }
+    
+    func decodeFieldData(file: URL) -> Match {
+        let decoder = JSONDecoder()
+        var data: Data
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            fatalError("oopsie")
+        }
+        
+        do {
+            let decodedData = try decoder.decode(Match.self, from: data)
+            return decodedData
+        } catch {
+            fatalError("oopsie pt. 2")
+        }
+    }
     func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) {
         
         if FirebaseApp.app() == nil {
@@ -265,6 +315,7 @@ final class ViewModel: ObservableObject {
         let documentID = matchType + matchNumber
         
         db.collection("MontereyBayRegional").document(teamNumber).collection("Matches").document(documentID).setData([
+            "teamNumber":teamNumber,
             "matchType":matchType,
             "matchNumber":matchNumber,
             "autoLowCube":autoLowCube,

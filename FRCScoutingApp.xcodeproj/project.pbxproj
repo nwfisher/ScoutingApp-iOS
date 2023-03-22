@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A00C0702974CF2C0022982E /* completeTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C06F2974CF2C0022982E /* completeTeam.swift */; };
 		5A00C0742975EADE0022982E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C0732975EADE0022982E /* Match.swift */; };
+		5A030B6D29CA7AE8004EE233 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A030B6C29CA7AE8004EE233 /* Reachability.swift */; };
 		5A0515002995966500619A45 /* offlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0514FF2995966500619A45 /* offlineView.swift */; };
 		5A281544299C146900D1476E /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A281543299C146900D1476E /* LaunchView.swift */; };
 		5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A38A4402966012000FE2C56 /* FRCScoutingAppApp.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		5A00C06F2974CF2C0022982E /* completeTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = completeTeam.swift; sourceTree = "<group>"; };
 		5A00C0732975EADE0022982E /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		5A030B6C29CA7AE8004EE233 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5A0514FF2995966500619A45 /* offlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offlineView.swift; sourceTree = "<group>"; };
 		5A281543299C146900D1476E /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		5A38A43D2966012000FE2C56 /* FRCScoutingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRCScoutingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				5A749167296DEA350012A632 /* basicTeam.swift */,
+				5A030B6C29CA7AE8004EE233 /* Reachability.swift */,
 				5A00C06F2974CF2C0022982E /* completeTeam.swift */,
 				5A00C0732975EADE0022982E /* Match.swift */,
 				5AFBED72299D958D00879657 /* pitInfo.swift */,
@@ -409,6 +412,7 @@
 				5A0515002995966500619A45 /* offlineView.swift in Sources */,
 				5AFE62972985782A00AFFB44 /* intakeLocations.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
+				5A030B6D29CA7AE8004EE233 /* Reachability.swift in Sources */,
 				5AB05893297F456D00B4D1AB /* teleopForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
