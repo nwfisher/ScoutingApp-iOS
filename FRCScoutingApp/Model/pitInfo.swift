@@ -20,5 +20,6 @@ struct pitInfo: Codable {
     var canPickFallenCones: Bool
     var cycleTimes: String
     var canPickFromGround: Bool
-    var canPickFromShelf: Bool
+    var canPickFromDouble: Bool
+    var canPickFromSingle: Bool
 }

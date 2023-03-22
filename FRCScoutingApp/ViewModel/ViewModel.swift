@@ -132,7 +132,7 @@ final class ViewModel: ObservableObject {
         }
     }
     
-    func addPitData(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromShelf: Bool, intakeFromGround: Bool) {
+    func addPitData(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromDouble: Bool, intakeFromSingle: Bool, intakeFromGround: Bool) {
         
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -152,7 +152,8 @@ final class ViewModel: ObservableObject {
             "intakeCube":intakeCube,
             "intakeFallenCone":intakeFallenCone,
             "cycleTime":cycleTime,
-            "intakeFromShelf":intakeFromShelf,
+            "intakeFromSingle":intakeFromSingle,
+            "intakeFromDouble":intakeFromDouble,
             "intakeFromGround":intakeFromGround
         ], merge: true) { error in
             if error == nil {
@@ -163,9 +164,9 @@ final class ViewModel: ObservableObject {
         }
     }
     
-    func downloadPitJSON(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromShelf: Bool, intakeFromGround: Bool) throws -> Void {
+    func downloadPitJSON(teamnumber: String, drivetrainType: String, motorType: String, programmingLanguage: String, placeLow: Bool, placeMid: Bool, placeHigh: Bool, intakeCone: Bool, intakeCube: Bool, intakeFallenCone: Bool, cycleTime: String, intakeFromDouble: Bool, intakeFromGround: Bool, intakeFromSingle: Bool) throws -> Void {
         
-        let data = pitInfo(teamnumber: teamnumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, canPlaceLow: placeLow, canPlaceMid: placeMid, canPlaceHigh: placeHigh, canPickCone: intakeCone, canPickCube: intakeCube, canPickFallenCones: intakeFallenCone, cycleTimes: cycleTime, canPickFromGround: intakeFromGround, canPickFromShelf: intakeFromShelf)
+        let data = pitInfo(teamnumber: teamnumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, canPlaceLow: placeLow, canPlaceMid: placeMid, canPlaceHigh: placeHigh, canPickCone: intakeCone, canPickCube: intakeCube, canPickFallenCones: intakeFallenCone, cycleTimes: cycleTime, canPickFromGround: intakeFromGround, canPickFromDouble: intakeFromDouble, canPickFromSingle: intakeFromSingle)
         
         //encode the data
         let encoder = JSONEncoder()

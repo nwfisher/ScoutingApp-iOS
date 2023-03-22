@@ -14,6 +14,7 @@ struct pitScoutingForm: View {
     @State private var noInternet = false
     @State private var pushAlert = false
     @State private var noFileSystem = false
+    @State private var noTeam = false
     
     @State private var showingAlert = false
     let MBRvm = ViewModel()
@@ -31,7 +32,8 @@ struct pitScoutingForm: View {
     @State private var canPickFallenCones = false
     @State private var cycleTimes = ""
     @State private var canPickFromGround = false
-    @State private var canPickFromShelf = false
+    @State private var canPickFromSingle = false
+    @State private var canPickFromDouble = false
     
     
     var body: some View {
@@ -74,10 +76,12 @@ struct pitScoutingForm: View {
                         }
                     }
                     Section(header: Text("Pickup Locations")) {
-                        Toggle(isOn: $canPickFromShelf) {
-                            Text("Shelf")
+                        Toggle(isOn: $canPickFromSingle) {
+                            Text("Single Substation")
                         }
-                        
+                        Toggle(isOn: $canPickFromDouble) {
+                            Text("Double Substation")
+                        }
                         Toggle(isOn: $canPickFromGround) {
                             Text("Ground")
                         }
@@ -87,23 +91,27 @@ struct pitScoutingForm: View {
                     }
                     Button(action: {
                         
-                        if reachability?.connection == .unavailable {
-                            do {
-                                try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                            } catch {
-                                print(error)
-                                noFileSystem.toggle()
-                            }
+                        if teamNumber.isEmpty {
+                            noTeam.toggle()
                         } else {
-                            MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                            
-                            do {
-                                try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromShelf: canPickFromShelf, intakeFromGround: canPickFromGround)
-                            } catch {
-                                print(error)
-                                noFileSystem.toggle()
+                            if reachability?.connection == .unavailable {
+                                do {
+                                    try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromDouble: canPickFromSingle, intakeFromGround: canPickFromDouble, intakeFromSingle: canPickFromGround)
+                                } catch {
+                                    print(error)
+                                    noFileSystem.toggle()
+                                }
+                            } else {
+                                MBRvm.addPitData(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromDouble: canPickFromDouble, intakeFromSingle: canPickFromSingle, intakeFromGround: canPickFromGround)
+                                
+                                do {
+                                    try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromDouble: canPickFromSingle, intakeFromGround: canPickFromDouble, intakeFromSingle: canPickFromGround)
+                                } catch {
+                                    print(error)
+                                    noFileSystem.toggle()
+                                }
+                                showingAlert.toggle()
                             }
-                            showingAlert.toggle()
                         }
                     }, label: {
                         Text("Submit")
@@ -127,6 +135,9 @@ struct pitScoutingForm: View {
                         Button("OK", role: .cancel) {
                             dismiss()
                         }
+                    }
+                    .alert("You did not input a team!", isPresented: $noTeam) {
+                        Button("OK", role: .cancel) {}
                     }
                 }
             }

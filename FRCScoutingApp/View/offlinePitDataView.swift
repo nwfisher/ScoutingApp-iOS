@@ -41,7 +41,7 @@ struct offlinePitDataView: View {
                                 
                                 let team = vm.decodePitData(file: file)
                                 
-                                vm.addPitData(teamnumber: team.teamnumber, drivetrainType: team.drivetrainType, motorType: team.motorType, programmingLanguage: team.programmingLanguage, placeLow: team.canPlaceLow, placeMid: team.canPlaceMid, placeHigh: team.canPlaceHigh, intakeCone: team.canPickCone, intakeCube: team.canPickCube, intakeFallenCone: team.canPickFallenCones, cycleTime: team.cycleTimes, intakeFromShelf: team.canPickFromShelf, intakeFromGround: team.canPickFromGround)
+                                vm.addPitData(teamnumber: team.teamnumber, drivetrainType: team.drivetrainType, motorType: team.motorType, programmingLanguage: team.programmingLanguage, placeLow: team.canPlaceLow, placeMid: team.canPlaceMid, placeHigh: team.canPlaceHigh, intakeCone: team.canPickCone, intakeCube: team.canPickCube, intakeFallenCone: team.canPickFallenCones, cycleTime: team.cycleTimes, intakeFromDouble: team.canPickFromDouble, intakeFromSingle: team.canPickFromSingle, intakeFromGround: team.canPickFromGround)
                                 
                                 showingAlert.toggle()
                             }
