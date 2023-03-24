@@ -43,7 +43,7 @@ struct teleopForm: View {
     @State var teleopHighCone = 0 //6
     
     //Charge station
-    let autoChargeStation: String
+    let autoChargeStation: Int
     @State var chargeStation = "NONE"
     
     //Allow for undo
@@ -276,7 +276,7 @@ struct teleopForm: View {
                                             Text("L1 Cone: \(autoLowCone)")
                                             Text("L2 Cone: \(autoMidCone)")
                                             Text("L3 Cone: \(autoHighCone)")
-                                            Text("Charge Station: \(autoChargeStation)")
+                                            Text("Points off Charge Station: \(autoChargeStation)")
                                         }
                                         
                                         Section(header: Text("teleoperated period")) {
@@ -296,16 +296,16 @@ struct teleopForm: View {
                                                     
                                                     noInternet.toggle()
                                                     do {
-                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation)
                                                     } catch {
                                                         print(error)
                                                         noFileSystem.toggle()
                                                     }
                                                 } else {
-                                                    vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                    vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation)
                                                     pushAlert.toggle()
                                                     do {
-                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: chargeStation)
+                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation)
                                                     } catch {
                                                         print(error)
                                                         noFileSystem.toggle()
@@ -362,6 +362,6 @@ struct teleopForm: View {
 
 struct teleopForm_Previews: PreviewProvider {
     static var previews: some View {
-        teleopForm(matchType: "Qualifier", matchNumber: "69", teamNumber: "4255", autoLowCube: 0, autoMidCube: 0, autoHighCube: 0, autoLowCone: 0, autoMidCone: 0, autoHighCone: 0, teleopLowCube: 0, teleopMidCube: 0, teleopHighCube: 0, teleopLowCone: 0, teleopMidCone: 0, teleopHighCone: 0, autoChargeStation: "MOBILITY")
+        teleopForm(matchType: "Qualifier", matchNumber: "69", teamNumber: "4255", autoLowCube: 0, autoMidCube: 0, autoHighCube: 0, autoLowCone: 0, autoMidCone: 0, autoHighCone: 0, teleopLowCube: 0, teleopMidCube: 0, teleopHighCube: 0, teleopLowCone: 0, teleopMidCone: 0, teleopHighCone: 0, autoChargeStation: 0)
     }
 }

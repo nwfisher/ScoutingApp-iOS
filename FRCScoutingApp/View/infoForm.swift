@@ -12,6 +12,7 @@ struct infoForm: View {
     var matchTypes = ["Quali", "Quarterfinals", "Semifinals"]
     
     @State private var isDisabled = false
+    @State private var noTeam = false
     
     @State private var selectedMatchType = "Quali"
     @State private var matchNumber = ""
@@ -29,21 +30,22 @@ struct infoForm: View {
                     TextField("Match Number", text: $matchNumber)
                     TextField("Team Number", text: $teamNumber)
                     
-                    if isDisabled {
-                        Text("Fill out the form weirdo")
-                    } else {
                         Section(header: Text(" ")) {
-                            NavigationLink(destination: autoForm(selectedMatchType: selectedMatchType, matchNumber: matchNumber, teamNumber: teamNumber).navigationBarBackButtonHidden(true)) {
-                                Text("Next")
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 75.0)
-                                    .background(Color(hex: "2c9c00"))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                                    .bold()
+                            
+                            if teamNumber.isEmpty {
+                                Text("Fill out information")
+                            } else {
+                                NavigationLink(destination: autoForm(selectedMatchType: selectedMatchType, matchNumber: matchNumber, teamNumber: teamNumber).navigationBarBackButtonHidden(true)) {
+                                    Text("Next")
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 75.0)
+                                        .background(Color(hex: "2c9c00"))
+                                        .foregroundColor(.white)
+                                        .cornerRadius(8)
+                                        .bold()
+                                }
                             }
                         }
-                    }
                 }
                 
             }

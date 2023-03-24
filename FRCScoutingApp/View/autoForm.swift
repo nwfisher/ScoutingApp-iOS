@@ -23,7 +23,9 @@ struct autoForm: View {
     @State var midCone = 0 //5
     @State var highCone = 0 //6
     
-    @State var autoChargeStation = ""
+    @State var achievedMobility = false
+    @State var chargeStationPts = 0
+    @State var chargeStation = "None" //For UI only
     
     @State var mostRecentVariableChange = ""
     var body: some View {
@@ -139,75 +141,89 @@ struct autoForm: View {
                             .cornerRadius(8)
                             .bold()
                     })
-                    
-                    Button(action: {
-                        sheetIsPresented.toggle()
-                    }, label: {
-                        Text("New Charge Station")
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60.0)
-                            .background(Color.orange)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                            .bold()
-                    })
-                    
-                    .sheet(isPresented: $sheetIsPresented) {
-                        Text("Select Attempt")
-                            .font(.title2)
-                        
-                        Divider()
+                    HStack {
+                        Button(action: {}, label: {
+                            Text("Mobility - " + (achievedMobility ? "Y" : "N"))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 60.0)
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+
+                        })
+                        .onTapGesture {
+                            achievedMobility.toggle()
+                        }
                         Button(action: {
-                            autoChargeStation = "Mobility"
+                            sheetIsPresented.toggle()
                         }, label: {
+                            Text("New Charge Station")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 60.0)
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .bold()
+                        })
+                        
+                        .sheet(isPresented: $sheetIsPresented) {
+                            Text("Select Attempt")
+                                .font(.title2)
+                            
+                            Divider()
                             Button(action: {
-                                autoChargeStation = "None"
+                                chargeStationPts = 0
+                                chargeStation = "None"
+                            },
+                                   label: {
+                                    Text("None")
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 75.0)
+                                        .background(Color.blue)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(8)
+                                        .bold()
+                                        .padding(.horizontal, 20)
+                                })
+                            Button(action: {
+                                if (achievedMobility == true) {
+                                    chargeStationPts = 11
+                                } else {
+                                    chargeStationPts = 8
+                                }
+                                chargeStation = "Docked"
                             }, label: {
-                                Text("None")
+                                Text("Docked")
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 75.0)
-                                    .background(Color.blue)
+                                    .background(Color.yellow)
                                     .foregroundColor(.white)
                                     .cornerRadius(8)
                                     .bold()
                                     .padding(.horizontal, 20)
                             })
-                            Text("Mobility")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 75.0)
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                                .bold()
-                                .padding(.horizontal, 20)
-                        })
-                        Button(action: {
-                            autoChargeStation = "Docked"
-                        }, label: {
-                            Text("Docked")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 75.0)
-                                .background(Color.yellow)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                                .bold()
-                                .padding(.horizontal, 20)
-                        })
-                        Button(action: {
-                            autoChargeStation = "Docked & Engaged"
-                        }, label: {
-                            Text("Docked & Engaged")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 75.0)
-                                .background(Color.red)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                                .bold()
-                                .padding(.horizontal, 20)
-                        })
-                        
-                        Text("Selected Status: \(autoChargeStation)")
-                            .presentationDetents([.fraction(0.6)])
+                            Button(action: {
+                                if (achievedMobility == true) {
+                                    chargeStationPts = 15
+                                } else {
+                                    chargeStationPts = 12
+                                }
+                                chargeStation = "Docked & Engaged"
+                            }, label: {
+                                Text("Docked & Engaged")
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 75.0)
+                                    .background(Color.red)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                    .bold()
+                                    .padding(.horizontal, 20)
+                            })
+                            
+                            Text("Selected Status: \(chargeStation)")
+                                .presentationDetents([.fraction(0.6)])
+                        }
                     }
                     
                     HStack {
@@ -223,7 +239,7 @@ struct autoForm: View {
                         }).onTapGesture {
                             dismiss()
                         }
-                        NavigationLink(destination: teleopForm(matchType: selectedMatchType, matchNumber: matchNumber, teamNumber: teamNumber, autoLowCube: lowCube, autoMidCube: midCube, autoHighCube: highCube, autoLowCone: lowCone, autoMidCone: midCone, autoHighCone: highCone, autoChargeStation: autoChargeStation)) {
+                        NavigationLink(destination: teleopForm(matchType: selectedMatchType, matchNumber: matchNumber, teamNumber: teamNumber, autoLowCube: lowCube, autoMidCube: midCube, autoHighCube: highCube, autoLowCone: lowCone, autoMidCone: midCone, autoHighCone: highCone, autoChargeStation: chargeStationPts)) {
                             Text("Next")
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 75.0)

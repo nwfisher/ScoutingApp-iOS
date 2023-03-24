@@ -90,6 +90,7 @@ struct HomeView: View {
                                 print(round(vm.blueScore * 100) / 100.0)
                                 print(round(vm.redScore * 100) / 100.0)
                                 nameIsFocused = false
+
                             }, label: {
                                 Text("Predict")
                                     .frame(maxWidth: .infinity)

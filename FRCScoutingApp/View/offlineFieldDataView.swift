@@ -41,7 +41,7 @@ struct offlineFieldDataView: View {
                                 
                                 let team = vm.decodeFieldData(file: file)
                                 
-                                vm.addMatchData(teamNumber: team.teamNumber, matchNumber: team.matchNumber, matchType: team.matchType, autoLowCube: team.autoLowCube, autoMidCube: team.autoMidCube, autoHighCube: team.autoHighCube, autoLowCone: team.autoLowCone, autoMidCone: team.autoMidCone, autoHighCone: team.autoHighCone, teleopLowCube: team.teleopLowCube, teleopMidCube: team.teleopMidCube, teleopHighCube: team.teleopHighCube, teleopLowCone: team.teleopLowCone, teleopMidCone: team.teleopMidCone, teleopHighCone: team.teleopHighCone, autoChargeStation: team.autoChargeStation, teleopChargeStation: team.teleopChargeStation)
+                                vm.addMatchData(teamNumber: team.teamNumber, matchNumber: team.matchNumber, matchType: team.matchType, autoLowCube: team.autoLowCube, autoMidCube: team.autoMidCube, autoHighCube: team.autoHighCube, autoLowCone: team.autoLowCone, autoMidCone: team.autoMidCone, autoHighCone: team.autoHighCone, teleopLowCube: team.teleopLowCube, teleopMidCube: team.teleopMidCube, teleopHighCube: team.teleopHighCube, teleopLowCone: team.teleopLowCone, teleopMidCone: team.teleopMidCone, teleopHighCone: team.teleopHighCone, autoChargeStationPts: team.autoChargeStationPts, endgame: team.endgame)
                             }
                             
                             showingAlert.toggle()

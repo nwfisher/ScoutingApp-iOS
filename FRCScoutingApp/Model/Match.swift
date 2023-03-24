@@ -28,6 +28,6 @@ struct Match: Codable {
     var teleopMidCone: Int
     var teleopHighCone: Int
     //Charge Station
-    var autoChargeStation: String
-    var teleopChargeStation: String
+    var autoChargeStationPts: Int
+    var endgame: String
 }

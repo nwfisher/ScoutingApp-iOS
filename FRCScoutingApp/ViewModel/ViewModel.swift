@@ -196,9 +196,9 @@ final class ViewModel: ObservableObject {
         try jsonData.write(to: fileURL)
     }
     
-    func downloadFieldJSON(teamnumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) throws -> Void {
+    func downloadFieldJSON(teamnumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStationPts: Int, endgame: String) throws -> Void {
         
-        let data = Match(teamNumber: teamnumber, matchID: matchType + matchNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStation: autoChargeStation, teleopChargeStation: teleopChargeStation)
+        let data = Match(teamNumber: teamnumber, matchID: matchType + matchNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStationPts, endgame: endgame)
         
         //encode the data
         let encoder = JSONEncoder()
@@ -286,7 +286,8 @@ final class ViewModel: ObservableObject {
             let decodedData = try decoder.decode(pitInfo.self, from: data)
             return decodedData
         } catch {
-            fatalError("oopsie pt. 2")
+            print(error)
+            fatalError("Unable to decode pit data! View the stacktrace above!")
         }
     }
     
@@ -303,10 +304,10 @@ final class ViewModel: ObservableObject {
             let decodedData = try decoder.decode(Match.self, from: data)
             return decodedData
         } catch {
-            fatalError("oopsie pt. 2")
+            fatalError("Unable to decode match data!")
         }
     }
-    func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStation: String, teleopChargeStation: String) {
+    func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStationPts: Int, endgame: String) {
         
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -325,14 +326,14 @@ final class ViewModel: ObservableObject {
             "autoLowCone":autoLowCone,
             "autoMidCone":autoMidCone,
             "autoHighCone":autoHighCone,
-            "autoChargeStation":autoChargeStation,
+            "autoChargeStationPts":autoChargeStationPts,
             "teleopLowCube":teleopLowCube,
             "teleopMidCube":teleopMidCube,
             "teleopHighCube":teleopHighCube,
             "teleopLowCone":teleopLowCone,
             "teleopMidCone":teleopMidCone,
             "teleopHighCone":teleopHighCone,
-            "teleopChargeStation":teleopChargeStation
+            "endgame":endgame
         ], merge: true) { error in
             if error == nil {
                 
@@ -508,27 +509,15 @@ final class ViewModel: ObservableObject {
                     let teleopHighCone = document.get("teleopHighCone") as? Int ?? 0
                     
                     //Charge Station
-                    let autoChargeStation = document.get("autoChargeStation") as? String ?? "None"
-                    let teleopChargeStation = document.get("teleopChargeStation") as? String ?? "None"
+                    let autoChargeStationPts = document.get("autoChargeStationPts") as? Int ?? 0
+                    let endgame = document.get("endgame") as? String ?? "None"
                     
                     //Auto Score
-                    var autoScore = (autoLowCube + autoLowCone) * 3 + (autoMidCone + autoMidCube) * 4 + (autoHighCone + autoHighCube) * 6
-                    switch autoChargeStation {
-                    case "None":
-                        autoScore += 0
-                    case "Mobility":
-                        autoScore += 3
-                    case "Docked":
-                        autoScore += 8
-                    case "Docked & Engaged":
-                        autoScore += 12
-                    default:
-                        break
-                    }
+                    var autoScore = (autoLowCube + autoLowCone) * 3 + (autoMidCone + autoMidCube) * 4 + (autoHighCone + autoHighCube) * 6 + autoChargeStationPts
                     
                     //Teleoperated Score
                     var teleopScore = (teleopLowCone + teleopLowCube) * 2 + (teleopMidCone + teleopMidCube) * 3 + (teleopHighCone + teleopHighCube) * 5
-                    switch teleopChargeStation {
+                    switch endgame {
                     case "None":
                         teleopScore += 0
                     case "Park":
@@ -562,7 +551,7 @@ final class ViewModel: ObservableObject {
                 for i in scores {
                     sum += i
                 }
-                let average = Double(sum) / Double(scores.count)
+                let average: Double = Double(sum / (scores.count != 0 ? scores.count : 1))
                 
                 //Get cone average
                 var a = 0

@@ -96,6 +96,7 @@ struct pitScoutingForm: View {
                         } else {
                             if reachability?.connection == .unavailable {
                                 do {
+                                    noInternet.toggle()
                                     try MBRvm.downloadPitJSON(teamnumber: teamNumber, drivetrainType: drivetrainType, motorType: motorType, programmingLanguage: programmingLanguage, placeLow: canPlaceLow, placeMid: canPlaceMid, placeHigh: canPlaceHigh, intakeCone: canPickCone, intakeCube: canPickCube, intakeFallenCone: canPickFallenCones, cycleTime: cycleTimes, intakeFromDouble: canPickFromSingle, intakeFromGround: canPickFromDouble, intakeFromSingle: canPickFromGround)
                                 } catch {
                                     print(error)
