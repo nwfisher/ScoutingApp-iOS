@@ -14,7 +14,7 @@ struct MBRTeamView: View {
     let team: basicTeam
     @StateObject var vm = ViewModel()
     
-    let err = completeTeam(team_number: 0000, nickname: "No Info", drivetrainType: "No Info", motorType: "No Info", programmingLanguage: "No Info", canPlaceLow: false, canPlaceMid: true, canPlaceHigh: false, canPickCone: false, canPickCube: false, canPickFallenCones: false, cycleTimes: "No Info", canPickFromGround: false, canPickFromShelf: false)
+    let err = completeTeam(team_number: 0000, nickname: "No Info", drivetrainType: "No Info", motorType: "No Info", programmingLanguage: "No Info", canPlaceLow: false, canPlaceMid: false, canPlaceHigh: false, canPickCone: false, canPickCube: false, canPickFallenCones: false, cycleTimes: "No Info", intakeFromGround: false, intakeFromSingle: false, intakeFromDouble: false)
     
     var body: some View {
         let trueTeam = vm.CalledTeam
@@ -97,6 +97,6 @@ struct MBRTeamView: View {
 
 struct MBRTeamView_Previews: PreviewProvider {
     static var previews: some View {
-        MBRTeamView(team: .init(team_number: 4255, nickname: "Robodores", drivetrainType: "Swerve", motorType: "Falcon 500", programmingLanguage: "Java", canPlaceLow: true, canPlaceMid: true, canPlaceHigh: false, canPickCone: true, canPickCube: true, canPickFallenCones: false, cycleTimes: "15", canPickFromGround: true, canPickFromShelf: true))
+        MBRTeamView(team: .init(team_number: 4255, nickname: "Robodores", drivetrainType: "Swerve", motorType: "Falcon 500", programmingLanguage: "Java", canPlaceLow: true, canPlaceMid: true, canPlaceHigh: false, canPickCone: true, canPickCube: true, canPickFallenCones: false, cycleTimes: "15", intakeFromDouble: true, intakeFromSingle: true, intakeFromGround: true))
     }
 }

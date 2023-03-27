@@ -23,8 +23,9 @@ struct basicTeam: Decodable {
     var canPickCube: Bool = false
     var canPickFallenCones: Bool = false
     var cycleTimes: String = ""
-    var canPickFromGround: Bool = false
-    var canPickFromShelf: Bool = false
+    var intakeFromDouble: Bool = false
+    var intakeFromSingle: Bool = false
+    var intakeFromGround: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case team_number = "team_number"
