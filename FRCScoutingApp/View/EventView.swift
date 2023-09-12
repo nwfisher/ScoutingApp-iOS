@@ -1,5 +1,5 @@
 //
-//  MBRView.swift
+//  EventView.swift
 //  FRCScoutingApp
 //
 //  Created by Nicolas Fisher on 1/6/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MBRView: View {
+struct EventView: View {
     
     @StateObject private var vm = ViewModel()
     @State private var searchText = ""
@@ -44,8 +44,8 @@ struct MBRView: View {
     
 }
 
-struct MBRView_Previews: PreviewProvider {
+struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        MBRView()
+        EventView()
     }
 }

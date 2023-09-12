@@ -33,7 +33,7 @@
 		5A8A4BAF296796F20051C128 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A8A4BAE296796F20051C128 /* GoogleService-Info.plist */; };
 		5A8A4BB129679BAC0051C128 /* Scouting View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB029679BAC0051C128 /* Scouting View.swift */; };
 		5A8A4BB329679C120051C128 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB229679C120051C128 /* HomeView.swift */; };
-		5A8A4BB5296889370051C128 /* MBRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB4296889370051C128 /* MBRView.swift */; };
+		5A8A4BB5296889370051C128 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A4BB4296889370051C128 /* EventView.swift */; };
 		5AB0588D297F137F00B4D1AB /* infoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0588C297F137F00B4D1AB /* infoForm.swift */; };
 		5AB0588F297F177E00B4D1AB /* autoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0588E297F177E00B4D1AB /* autoForm.swift */; };
 		5AB05893297F456D00B4D1AB /* teleopForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB05892297F456D00B4D1AB /* teleopForm.swift */; };
@@ -87,7 +87,7 @@
 		5A8A4BAE296796F20051C128 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A8A4BB029679BAC0051C128 /* Scouting View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scouting View.swift"; sourceTree = "<group>"; };
 		5A8A4BB229679C120051C128 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		5A8A4BB4296889370051C128 /* MBRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRView.swift; sourceTree = "<group>"; };
+		5A8A4BB4296889370051C128 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		5AB0588C297F137F00B4D1AB /* infoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoForm.swift; sourceTree = "<group>"; };
 		5AB0588E297F177E00B4D1AB /* autoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = autoForm.swift; sourceTree = "<group>"; };
 		5AB05892297F456D00B4D1AB /* teleopForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teleopForm.swift; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 				5A0514FF2995966500619A45 /* offlineView.swift */,
 				5A8A4BB229679C120051C128 /* HomeView.swift */,
 				5A8A4BB029679BAC0051C128 /* Scouting View.swift */,
-				5A8A4BB4296889370051C128 /* MBRView.swift */,
+				5A8A4BB4296889370051C128 /* EventView.swift */,
 				5A74916D296E12590012A632 /* MBRTeamView.swift */,
 				5A749175296E53680012A632 /* pitScoutingForm.swift */,
 				5AB0588C297F137F00B4D1AB /* infoForm.swift */,
@@ -408,7 +408,7 @@
 				5AFBED75299E9B3C00879657 /* offlinePitDataView.swift in Sources */,
 				5A8A4BB329679C120051C128 /* HomeView.swift in Sources */,
 				5AFE6293298576CA00AFFB44 /* scoringHeights.swift in Sources */,
-				5A8A4BB5296889370051C128 /* MBRView.swift in Sources */,
+				5A8A4BB5296889370051C128 /* EventView.swift in Sources */,
 				5A0515002995966500619A45 /* offlineView.swift in Sources */,
 				5AFE62972985782A00AFFB44 /* intakeLocations.swift in Sources */,
 				5A38A4412966012000FE2C56 /* FRCScoutingAppApp.swift in Sources */,
@@ -574,7 +574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FRCScoutingApp/Preview Content\"";
-				DEVELOPMENT_TEAM = JW7VFRDC8Q;
+				DEVELOPMENT_TEAM = 39LTH45NRM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -587,7 +587,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Nicolaswfisher.FRCScoutingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -607,7 +607,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FRCScoutingApp/Preview Content\"";
-				DEVELOPMENT_TEAM = JW7VFRDC8Q;
+				DEVELOPMENT_TEAM = 39LTH45NRM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -620,7 +620,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Nicolaswfisher.FRCScoutingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

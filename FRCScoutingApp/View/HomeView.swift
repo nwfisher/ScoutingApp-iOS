@@ -42,10 +42,8 @@ struct HomeView: View {
             //Create list of events
             NavigationStack {
                 List {
-                    Section(header: Text("Team List").font(.headline).bold()) {
-                        NavigationLink(destination: MBRView()) {
-                            Text("Monterey Bay Regional")
-                        }
+                    NavigationLink(destination: EventView()) {
+                        Text("Team List")
                     }
                     Section(header: Text("Stats and Predictions").font(.headline).bold()) {
                         HStack {
@@ -189,7 +187,7 @@ struct HomeView: View {
                         ])
                     }
                 }
-                .navigationTitle("Events")
+                .navigationTitle("2023 Chezy Champs")
                 
                 
                 

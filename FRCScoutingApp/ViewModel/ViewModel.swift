@@ -81,7 +81,8 @@ final class ViewModel: ObservableObject {
     @Published var blueScore = 0.00
     
     func fetchTeams () {
-        let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023camb/teams")!
+        print("Fetch teams called")
+        let url = URL(string: "https://www.thebluealliance.com/api/v3/event/2023cc/teams")!
         var request = URLRequest(url: url)
         
         request.addValue("eC94U6j5wAui6S7IFdgHLgxVQ4lUw2EUOm3EkzdC6VDS0Hd80efGBf5SKrPymOWa", forHTTPHeaderField: "X-TBA-Auth-Key")
@@ -98,8 +99,14 @@ final class ViewModel: ObservableObject {
                         
                         if let data = data,
                            let teams = try? decoder.decode ([basicTeam].self, from: data) {
+                            print("teams array")
+                            print (teams)
                             
                             self?.MBRTeams = teams
+                            
+                            /* Use this when you eventually need to reset all of the teams at an event
+                             self?.resetTeams()
+                             */
                         } else {
                             
                         }
@@ -112,14 +119,13 @@ final class ViewModel: ObservableObject {
     //Quick, one time function so I don't need to do work
     //This function will likley never have to be used again
     func resetTeams() {
-        
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
         let db = Firestore.firestore()
         
         for team in self.MBRTeams {
-            db.collection("MontereyBayRegional").document(String(team.team_number)).setData([
+            db.collection("ChezyChamps").document(String(team.team_number)).setData([
                 "team_number": team.team_number,
                 "nickname": team.nickname
             ]) { err in
@@ -141,7 +147,7 @@ final class ViewModel: ObservableObject {
         
         // let i = String(teamnumber)
         
-        db.collection("MontereyBayRegional").document(teamnumber).setData([
+        db.collection("ChezyChamps").document(teamnumber).setData([
             "drivetrainType":drivetrainType,
             "motorType":motorType,
             "programmingLanguage":programmingLanguage,
@@ -316,7 +322,7 @@ final class ViewModel: ObservableObject {
         
         let documentID = matchType + matchNumber
         
-        db.collection("MontereyBayRegional").document(teamNumber).collection("Matches").document(documentID).setData([
+        db.collection("ChezyChamps").document(teamNumber).collection("Matches").document(documentID).setData([
             "teamNumber":teamNumber,
             "matchType":matchType,
             "matchNumber":matchNumber,
@@ -351,7 +357,7 @@ final class ViewModel: ObservableObject {
         }
         let db = Firestore.firestore()
         
-        let docRef = db.collection("MontereyBayRegional").document(String(teamNumber))
+        let docRef = db.collection("ChezyChamps").document(String(teamNumber))
         docRef.getDocument(as: completeTeam.self) { result in
             print(result)
             switch result {
@@ -373,7 +379,7 @@ final class ViewModel: ObservableObject {
         }
         let db = Firestore.firestore()
         
-        db.collection("MontereyBayRegional").document(i).collection("Matches").document(ID).getDocument(as: Match.self) { result in
+        db.collection("ChezyChamps").document(i).collection("Matches").document(ID).getDocument(as: Match.self) { result in
             
             print(result)
             switch result {
@@ -400,7 +406,7 @@ final class ViewModel: ObservableObject {
         
         let i = String(teamNumber)
         
-        let docRef = db.collection("MontereyBayRegional").document(i).collection("Matches")
+        let docRef = db.collection("ChezyChamps").document(i).collection("Matches")
         
         print("hello")
         docRef.getDocuments() { (querySnapshot, err) in
@@ -480,7 +486,7 @@ final class ViewModel: ObservableObject {
         }
         let db = Firestore.firestore()
         
-        let docRef = db.collection("MontereyBayRegional").document(teamNumber).collection("Matches")
+        let docRef = db.collection("ChezyChamps").document(teamNumber).collection("Matches")
         print("Team: \(teamNumber)")
         docRef.getDocuments() { (querySnapshot, err) in
             if let err = err {

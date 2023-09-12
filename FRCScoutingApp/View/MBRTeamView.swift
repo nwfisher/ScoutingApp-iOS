@@ -88,6 +88,7 @@ struct MBRTeamView: View {
             
             
             .onAppear {
+                vm.resetTeams()
                 vm.getTeam(teamNumber: team.team_number)
                 vm.getAverageScore(teamNumber: String(team.team_number), alliance: "None", team: 0)
             }
