@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Match: Codable {
+struct Match: Codable, Hashable {
     
     var teamNumber: String
     var matchID: String
@@ -30,4 +30,5 @@ struct Match: Codable {
     //Charge Station
     var autoChargeStationPts: Int
     var endgame: String
+    var notes: String
 }

@@ -115,7 +115,6 @@ final class ViewModel: ObservableObject {
                 
             }.resume()
     }
-    
     //Quick, one time function so I don't need to do work
     //This function will likley never have to be used again
     func resetTeams() {
@@ -202,9 +201,9 @@ final class ViewModel: ObservableObject {
         try jsonData.write(to: fileURL)
     }
     
-    func downloadFieldJSON(teamnumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStationPts: Int, endgame: String) throws -> Void {
+    func downloadFieldJSON(teamnumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStationPts: Int, endgame: String, notes: String) throws -> Void {
         
-        let data = Match(teamNumber: teamnumber, matchID: matchType + matchNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStationPts, endgame: endgame)
+        let data = Match(teamNumber: teamnumber, matchID: matchType + matchNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStationPts, endgame: endgame, notes: notes)
         
         //encode the data
         let encoder = JSONEncoder()
@@ -310,10 +309,11 @@ final class ViewModel: ObservableObject {
             let decodedData = try decoder.decode(Match.self, from: data)
             return decodedData
         } catch {
+            print(error)
             fatalError("Unable to decode match data!")
         }
     }
-    func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStationPts: Int, endgame: String) {
+    func addMatchData(teamNumber: String, matchNumber: String, matchType: String, autoLowCube: Int, autoMidCube: Int, autoHighCube: Int, autoLowCone: Int, autoMidCone: Int, autoHighCone: Int, teleopLowCube: Int, teleopMidCube: Int, teleopHighCube: Int, teleopLowCone: Int, teleopMidCone: Int, teleopHighCone: Int, autoChargeStationPts: Int, endgame: String, notes: String) {
         
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -324,6 +324,7 @@ final class ViewModel: ObservableObject {
         
         db.collection("ChezyChamps").document(teamNumber).collection("Matches").document(documentID).setData([
             "teamNumber":teamNumber,
+            "matchID":matchType + matchNumber,
             "matchType":matchType,
             "matchNumber":matchNumber,
             "autoLowCube":autoLowCube,
@@ -339,7 +340,8 @@ final class ViewModel: ObservableObject {
             "teleopLowCone":teleopLowCone,
             "teleopMidCone":teleopMidCone,
             "teleopHighCone":teleopHighCone,
-            "endgame":endgame
+            "endgame":endgame,
+            "notes":notes
         ], merge: true) { error in
             if error == nil {
                 
@@ -367,7 +369,7 @@ final class ViewModel: ObservableObject {
                 print("City: \(team)")
             case .failure(let error):
                 print("Nay")
-                print("Error decoding city: \(error)")
+                print("Error decoding team: \(error)")
             }
         }
     }
@@ -420,7 +422,6 @@ final class ViewModel: ObservableObject {
                     
                     print("\(document.documentID) => \(document.data())")
                 }
-                print(self.Matches)
             }
         }
     }

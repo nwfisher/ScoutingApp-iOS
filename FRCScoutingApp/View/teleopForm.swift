@@ -46,6 +46,7 @@ struct teleopForm: View {
     let autoChargeStation: Int
     @State var chargeStation = "NONE"
     
+    @State var notes = "";
     //Allow for undo
     @State var mostRecentVariableChange = ""
     var body: some View {
@@ -233,6 +234,9 @@ struct teleopForm: View {
                             .presentationDetents([.fraction(0.6)])
                     }
                     
+                    Section(header: Text("notes")) {
+                        TextField("Extra Notes", text: $notes, axis: .vertical)
+                    }
                     HStack {
                         Button(action: {}, label: {
                             Text("Back")
@@ -296,16 +300,17 @@ struct teleopForm: View {
                                                     
                                                     noInternet.toggle()
                                                     do {
-                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation)
+                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation, notes: notes)
                                                     } catch {
                                                         print(error)
                                                         noFileSystem.toggle()
                                                     }
                                                 } else {
-                                                    vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation)
+                                                    vm.addMatchData(teamNumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation, notes: notes)
                                                     pushAlert.toggle()
                                                     do {
-                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation)
+                                                        try vm.downloadFieldJSON(teamnumber: teamNumber, matchNumber: matchNumber, matchType: matchType, autoLowCube: autoLowCube, autoMidCube: autoMidCube, autoHighCube: autoHighCube, autoLowCone: autoLowCone, autoMidCone: autoMidCone, autoHighCone: autoHighCone, teleopLowCube: teleopLowCube, teleopMidCube: teleopMidCube, teleopHighCube: teleopHighCube, teleopLowCone: teleopLowCone, teleopMidCone: teleopMidCone, teleopHighCone: teleopHighCone, autoChargeStationPts: autoChargeStation, endgame: chargeStation, notes: notes
+                                                        )
                                                     } catch {
                                                         print(error)
                                                         noFileSystem.toggle()

@@ -18,6 +18,7 @@ struct MBRTeamView: View {
     
     var body: some View {
         let trueTeam = vm.CalledTeam
+        let matches = vm.Matches
         ScrollView {
             VStack(alignment: .leading) {
                 Group {
@@ -78,7 +79,20 @@ struct MBRTeamView: View {
                         .font(.title3)
                     Text(String(vm.teamHigh))
                 }
-                
+                Group {
+                    Spacer()
+                    Divider()
+                    Text("Match Notes")
+                        .bold()
+                        .font(.title2)
+                    ForEach(matches, id: \.self) { match in
+                        Text(match.matchType + " " + match.matchNumber).bold()
+                        
+                        
+                        
+                        Text(match.notes)
+                    }
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(maxHeight: .infinity).ignoresSafeArea()
@@ -88,7 +102,7 @@ struct MBRTeamView: View {
             
             
             .onAppear {
-                vm.resetTeams()
+                vm.fetchMatchData(teamNumber: team.team_number)
                 vm.getTeam(teamNumber: team.team_number)
                 vm.getAverageScore(teamNumber: String(team.team_number), alliance: "None", team: 0)
             }
